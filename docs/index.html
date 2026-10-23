@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IA aplicada al análisis financiero — Moisés Retuerto Espinoza</title>
+<meta name="description" content="Como la inteligencia artificial acelera el analisis de datos y el reporting en control de gestion, costes y FP&amp;A. Con un caso real: de un Excel de 165 MB a un P&amp;L automatizado y reconciliado.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%2314355f%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%224.5%22%20height%3D%227%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%2213%22%20width%3D%224.5%22%20height%3D%2212%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%221.2%22%20fill%3D%22%236ea3e8%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="marca-sitio" href="index.html">
+      <span class="nombre">Moisés Retuerto Espinoza</span>
+      <span class="cargo">Control de Gestión &middot; Planeamiento Financiero &middot; Análisis de Datos</span>
+    </a>
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="caso.html">El caso</a>
+      <a href="ia-en-el-cierre.html">La IA en el cierre</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qué automatizar</a>
+      <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+      <span class="separador" role="presentation"></span>
+      <a href="proceso.html">Proceso</a>
+      <a href="datos.html">Datos</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="explorador.html">Explorador</a>
+      <span class="separador" role="presentation"></span>
+      <a class="externo" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+      <a class="externo" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="contenedor">
+  <div class="tesis portada-grafico">
+    <div>
+      <p class="rotulo">Inteligencia artificial aplicada a finanzas y control de gestión</p>
+      <h1>El cierre dejará de medirse en días. Lo que no cambia es quién responde por la cifra.</h1>
+      <p class="entradilla">
+        La automatización está moviendo el trabajo del analista financiero: de
+        consolidar y cuadrar a diseñar el proceso, fijar las reglas y decidir
+        qué se publica. Este sitio cuenta cómo se hace ese salto, con un caso
+        real, sus cifras y los controles que las sostienen.
+      </p>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El criterio</p>
+      <h2>Qué se delega y qué no</h2>
+      <p class="glosa-grafico">
+        No todas las tareas de finanzas se comportan igual ante la
+        automatización. Lo que decide no es si la herramienta sabe hacerlas:
+        es cuánto juicio profesional hay detrás de cada una.
+      </p>
+      <figure id="grafico-tareas"></figure>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="contenedor">
+    <div class="destacado">
+      <div>
+        <span class="tema">Caso real</span>
+        <h3><a href="caso.html">De un Excel de 165 MB a un P&amp;L automatizado</a></h3>
+        <p>
+          Un libro de Control de Gestión con treinta hojas y 428.589 apuntes
+          contables, convertido en un estado de resultados que se reconstruye en
+          dos minutos y cuadra al céntimo con el reporte oficial. El recorrido
+          completo: qué se automatizó primero, dónde aceleró la IA, dónde no la
+          dejé entrar y qué falló por el camino.
+        </p>
+        <p style="margin-bottom:0">
+          <a href="caso.html">Leer el caso</a> &middot;
+          <a href="caso.html#dashboard">ir directo al dashboard en vivo</a>
+        </p>
+      </div>
+      <div class="prueba" id="prueba-viva">
+        <div>
+          <span class="numero">36 de 36</span>
+          <span class="glosa">periodos reconciliados contra la maqueta oficial</span>
+        </div>
+        <div>
+          <span class="numero">0,02</span>
+          <span class="glosa">peor descuadre acumulado de un escenario, sobre millones</span>
+        </div>
+        <div>
+          <span class="numero">55</span>
+          <span class="glosa">controles de calidad, 227 pruebas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Empieza por aquí</h2>
+      <p>
+        Tres lecturas pensadas para quien trabaja en control de gestión, costes
+        o FP&amp;A y quiere usar estas herramientas sin perder el rigor que le
+        exigen sus cifras.
+      </p>
+    </div>
+
+    <div class="rejilla-articulos">
+      <article class="tarjeta-articulo">
+        <span class="tema">Caso real</span>
+        <h3><a href="caso.html">De un Excel de 165 MB a un P&amp;L automatizado</a></h3>
+        <p>
+          El recorrido entero, por capas: extraer sin morir en el intento, llevar
+          el modelo a una base de datos que impide los errores, modelar para
+          analizar y publicar con los controles por delante.
+        </p>
+        <div class="pie-tarjeta">
+          <span>12 min</span><span>&middot;</span><span>Con dashboard en vivo</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-articulo">
+        <span class="tema">Método</span>
+        <h3><a href="ia-en-el-cierre.html">Qué puede y qué no puede hacer la IA en un cierre</a></h3>
+        <p>
+          Cinco tareas en las que un asistente acelera de verdad y cuatro en las
+          que falla con aplomo. El sesgo de automatización, por qué la fluidez no
+          es exactitud, y la regla de las tres capas que acabé aplicando.
+        </p>
+        <div class="pie-tarjeta">
+          <span>9 min</span><span>&middot;</span><span>Con pasos para empezar</span>
+        </div>
+      </article>
+
+      <article class="tarjeta-articulo">
+        <span class="tema">Controles</span>
+        <h3><a href="defender-las-cifras.html">El problema no es generar el informe, es poder defenderlo</a></h3>
+        <p>
+          Reconciliar contra la cifra oficial, derivar la tolerancia en vez de
+          elegirla, escribir controles que puedan fallar y llegar hasta la fila.
+          Con los cinco fallos reales que estos controles encontraron.
+        </p>
+        <div class="pie-tarjeta">
+          <span>10 min</span><span>&middot;</span><span>Con lista de verificación</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Por qué este sitio existe</h2>
+    </div>
+    <div class="lectura">
+      <p>
+        Busca «IA para análisis financiero» y encontrarás páginas que prometen un
+        90% de ahorro de tiempo y diez veces más velocidad. Casi ninguna dice
+        sobre qué base calcula ese porcentaje, y casi todas las publica quien
+        vende la herramienta.
+      </p>
+      <p>
+        Mientras tanto, la literatura seria de la profesión señala el mismo punto
+        débil una y otra vez: los modelos <strong>escriben con fluidez pero no
+        calculan de forma fiable</strong>, no conocen tu libro mayor, y el rastro
+        de auditoría es justo lo que peor resuelven. Son críticas acertadas, y
+        son exactamente el problema que un profesional de finanzas tiene que
+        resolver antes de poder usar nada de esto en serio.
+      </p>
+      <p>
+        Este sitio aborda ese hueco desde el otro lado: no desde el producto,
+        sino desde un caso construido de principio a fin, con las cifras
+        publicadas, los controles a la vista y los fallos contados. Las cifras
+        que verás no están escritas en estas páginas: salen de una base de datos
+        por un script, y ese script se niega a publicar si algo no cuadra.
+      </p>
+      <figure class="figura">
+        <div id="grafico-reconciliacion"></div>
+        <figcaption>
+          <strong>Así se ve una cifra defendible.</strong> Cada punto es un mes
+          del caso comparado con el reporte que la organización ya publica. La
+          banda verde es el margen que admite el redondeo: un punto fuera
+          detendría la publicación.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>El detalle técnico, abierto</h2>
+      <p>
+        Todo el proyecto es público y revisable. Si quieres bajar al código, las
+        consultas o las medidas, están aquí.
+      </p>
+    </div>
+    <div class="rejilla cuatro">
+      <a class="tarjeta" href="proceso.html" style="text-decoration:none">
+        <h3>El proceso</h3>
+        <p style="font-size:14px;margin:8px 0 0">
+          Las cuatro capas, de la extracción a la publicación, con el código real.
+        </p>
+      </a>
+      <a class="tarjeta" href="datos.html" style="text-decoration:none">
+        <h3>Modelo de datos</h3>
+        <p style="font-size:14px;margin:8px 0 0">
+          Esquema en estrella, el DDL con las reglas dentro y las consultas.
+        </p>
+      </a>
+      <a class="tarjeta" href="powerbi.html" style="text-decoration:none">
+        <h3>Power BI y DAX</h3>
+        <p style="font-size:14px;margin:8px 0 0">
+          Modelo semántico en texto, 48 medidas y el informe en capturas.
+        </p>
+      </a>
+      <a class="tarjeta" href="explorador.html" style="text-decoration:none">
+        <h3>Explorador de datos</h3>
+        <p style="font-size:14px;margin:8px 0 0">
+          Las siete tablas del modelo, con filtros y ordenación. Compruébalo tú.
+        </p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <aside class="caja-autor" style="margin-top:0">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Quién escribe</p>
+        <h2 style="margin-top:0">Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional especializado en Control de Gestión, Planeamiento
+          Financiero, Análisis de Datos y Costos con +7 años de experiencia en
+          análisis integral de estructuras de gastos. He tenido a cargo el
+          P&amp;L, el presupuesto y el forecast de operaciones de hasta USD 8
+          millones mensuales y 5 unidades de negocio, en los sectores de
+          logística, minería, construcción y transporte.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Ver el repositorio</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="filas">
+      <div>
+        <p>
+          <strong>Moisés Retuerto Espinoza</strong> &middot; Control de Gestión,
+          Planeamiento Financiero y Análisis de Datos. El caso procede de un
+          extracto real de SAP CO; los importes están escalados por un factor
+          global y los centros de coste llevan pseudónimo, de modo que márgenes,
+          pesos y variaciones se conservan intactos y ninguna cifra identifica a
+          la empresa.
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#anonimizacion">Cómo se anonimiza</a>.
+        </p>
+        <p>
+          El ejercicio 2026 no tenía real cerrado cuando se extrajo el libro: su
+          escenario de ejecución se genera a partir del perfil mensual observado
+          para poder plantear la comparación objetivo contra ejecución, y el
+          modelo lo marca como tal. No es una previsión.
+        </p>
+      </div>
+      <div class="enlaces-pie">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+        <a href="explorador.html">Explorador de datos</a>
+        <a href="cifras.json">cifras.json</a>
+      </div>
+    </div>
+    <p id="sello"></p>
+  </div>
+</footer>
+
+<script type="module">
+import { cargarDatos, dosDecimales } from "./assets/comun.js";
+import { mapaDeTareas, reconciliacionPorPeriodo } from "./assets/figuras.js";
+
+// La portada no calcula nada: lee las mismas cifras que el resto del sitio para
+// que ni el grafico ni la prueba del caso sean numeros escritos a mano. Si el
+// modelo cambia, la portada cambia con el.
+async function arrancar() {
+  const datos = await cargarDatos("cifras.json", null);
+  if (!datos) return;
+
+  document.getElementById("grafico-tareas").replaceChildren(mapaDeTareas());
+  document.getElementById("grafico-reconciliacion")
+    .replaceChildren(reconciliacionPorPeriodo(datos.reconciliacion_periodo));
+
+  const bloques = document.getElementById("prueba-viva").querySelectorAll("div");
+  const peor = Math.max(...datos.reconciliacion.map((r) => Math.abs(r.diferencia)));
+  const periodos = datos.reconciliacion.reduce((s, r) => s + r.periodos, 0);
+  bloques[0].querySelector(".numero").textContent = `${periodos} de ${periodos}`;
+  bloques[1].querySelector(".numero").textContent = dosDecimales(peor);
+
+  const marca = datos.generado_utc;
+  const sello = document.getElementById("sello");
+  if (sello && marca) {
+    sello.textContent =
+      "Las cifras de este sitio se generan desde PostgreSQL por un script versionado. " +
+      `Última generación: ${marca.slice(0, 10)}.`;
+  }
+}
+
+arrancar();
+</script>
+</body>
+</html>

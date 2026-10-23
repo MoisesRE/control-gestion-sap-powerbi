@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ab5e7e3a76fe8a4c5666",
+  "displayName": "Estado de resultados",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

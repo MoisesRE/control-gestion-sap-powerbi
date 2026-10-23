@@ -1,0 +1,24 @@
+/// Resultado financiero de una unidad de transporte de carga: el P&L por escenario, su ejecucion presupuestaria y el detalle de apuntes, sobre el modelo en estrella de PostgreSQL. Las medidas reconcilian contra la maqueta oficial de Control de Gestion.
+model ResultadoFinanciero
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-ES
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["Escenario","Periodo Contable","Cuenta","Centro de Coste","Resultado","Apuntes","Reconciliacion Oficial","Servidor","BaseDatos"]
+
+annotation PBI_ProTooling = ["DevMode","MCP-PBIModeling"]
+
+ref table Escenario
+ref table 'Periodo Contable'
+ref table Cuenta
+ref table 'Centro de Coste'
+ref table Resultado
+ref table Apuntes
+ref table 'Reconciliacion Oficial'
+ref table 'Linea PL Oficial'

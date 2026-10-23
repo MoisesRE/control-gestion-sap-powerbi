@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El proceso técnico, capa a capa — anexo del caso</title>
+<meta name="description" content="Las cuatro etapas que llevan un extracto de costes SAP CO hasta un estado de resultados publicado: ETL en Python, PostgreSQL, Power BI y web.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%2314355f%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%224.5%22%20height%3D%227%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%2213%22%20width%3D%224.5%22%20height%3D%2212%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%221.2%22%20fill%3D%22%236ea3e8%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="marca-sitio" href="index.html">
+      <span class="nombre">Moisés Retuerto Espinoza</span>
+      <span class="cargo">Control de Gestión &middot; Planeamiento Financiero &middot; Análisis de Datos</span>
+    </a>
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="caso.html">El caso</a>
+      <a href="ia-en-el-cierre.html">La IA en el cierre</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qué automatizar</a>
+      <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+      <span class="separador" role="presentation"></span>
+      <a href="proceso.html">Proceso</a>
+      <a href="datos.html">Datos</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="explorador.html">Explorador</a>
+      <span class="separador" role="presentation"></span>
+      <a class="externo" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+      <a class="externo" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="contenedor">
+  <div class="portada portada-grafico">
+    <div>
+      <p class="rotulo"><span class="tema">Cómo se hace</span></p>
+      <h1>Cómo se automatiza un reporte financiero, paso a paso</h1>
+      <p class="entradilla">
+        Primero el método, que sirve para cualquier reporte recurrente: qué se
+        hace en cada paso y qué tiene que demostrar antes de pasar al
+        siguiente. Después, cómo se aplicó en un caso concreto, con el código
+        que lo resuelve.
+      </p>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">Lo que de verdad cambia</p>
+      <h2>El trabajo se desplaza, no desaparece</h2>
+      <p class="glosa-grafico">
+        Automatizar la preparación del dato no quita trabajo: cambia en qué se
+        gasta. Lo que crece es la parte que nadie puede delegar.
+      </p>
+      <figure id="figura-antes-despues"></figure>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>El método, antes del caso</h2>
+      <p>
+        Esto no depende de las herramientas que uses. Son los cinco pasos que
+        tiene cualquier automatización de un reporte recurrente, y lo que cada
+        uno debe demostrar para que el siguiente se pueda apoyar en él.
+      </p>
+    </div>
+
+    <div class="rejilla tres">
+      <div class="tarjeta">
+        <p class="rotulo" style="margin-bottom:8px">Paso 1</p>
+        <h3>Traer el dato sin tocarlo a mano</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Nada de copiar y pegar. Si el origen es una exportación del sistema
+          contable, el proceso tiene que leerla solo.
+          <strong>Demuestra:</strong> que puedes repetirlo mañana sin ti.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <p class="rotulo" style="margin-bottom:8px">Paso 2</p>
+        <h3>Decidir qué entra y qué no</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Declarar las columnas que necesitas y descartar el resto con el
+          motivo escrito. <strong>Demuestra:</strong> que sabes qué información
+          usas y cuál estás dejando fuera a propósito.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <p class="rotulo" style="margin-bottom:8px">Paso 3</p>
+        <h3>Cuadrar contra la cifra oficial</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Comparar con el reporte que la empresa ya publica, antes de seguir.
+          <strong>Demuestra:</strong> que lo que has extraído es lo mismo que
+          la organización reconoce como suyo.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <p class="rotulo" style="margin-bottom:8px">Paso 4</p>
+        <h3>Guardarlo con las reglas dentro</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Que el propio almacén impida lo que no puede ocurrir: una línea
+          duplicada, un centro que no existe. <strong>Demuestra:</strong> que
+          un dato mal formado se rechaza en vez de entrar.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <p class="rotulo" style="margin-bottom:8px">Paso 5</p>
+        <h3>Calcular y presentar</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Las medidas, los acumulados y el informe. <strong>Demuestra:</strong>
+          que la cifra se reproduce por un camino distinto del que la generó.
+        </p>
+      </div>
+      <div class="tarjeta" style="border-color: var(--marca)">
+        <p class="rotulo" style="margin-bottom:8px">En todo momento</p>
+        <h3>Que se detenga si no cuadra</h3>
+        <p style="font-size:14.5px;margin:8px 0 0">
+          Un proceso que avisa pero continúa se convierte en un aviso que todo
+          el mundo ignora en tres meses. <strong>Demuestra:</strong> que puedes
+          confiar en lo que publica.
+        </p>
+      </div>
+    </div>
+
+    <div class="aviso" style="margin-top:24px">
+      <p>
+        <strong>El orden importa más que las herramientas.</strong> El error más
+        caro es empezar por el informe, porque es lo que se ve. Cada capa que
+        construyes encima de otra que todavía no cuadra hay que rehacerla
+        entera. El paso 3 va antes que el 4 a propósito: es donde el proyecto
+        puede fallar barato.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Y ahora el caso concreto</h2>
+      <p>
+        Lo que sigue es cómo se resolvió cada paso en un proyecto real, con el
+        código. Si solo te interesaba el método, ya lo tienes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>El recorrido completo</h2>
+      <p>
+        Cada caja transforma y cada rombo comprueba. El pipeline se detiene en
+        el primer control que falla, antes de escribir nada: un modelo a medio
+        cargar es peor que no tener modelo.
+      </p>
+    </div>
+    <div class="tarjeta">
+      <figure id="diagrama-flujo"></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Etapa 1 &middot; El ETL en Python</h2>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <h3>Leer un XLSX que no cabe en memoria</h3>
+        <p>
+          La hoja de datos son 919 MB de XML con una fórmula en cada celda.
+          <code>pandas.read_excel</code> no la abre: materializa la hoja entera
+          antes de construir el DataFrame. El proyecto lleva su propio lector
+          incremental, que emite una fila cada vez con memoria constante.
+        </p>
+        <div class="codigo">
+          <header><span class="ruta">src/finanzas_etl/extract/xlsx_stream.py</span><span class="lengua">Python</span></header>
+<pre><code>def filas(self, hoja: str, ancho: int) -&gt; Iterator[list[str | None]]:
+    """Emite una fila por vez, sin materializar la hoja.
+
+    Las celdas vacias se omiten del XML, de modo que la posicion se lee
+    de la referencia -- C1 cae en el indice 2 -- y no del orden de
+    aparicion. Una celda con formula entrega su valor cacheado.
+    """</code></pre>
+        </div>
+      </div>
+
+      <div class="paso">
+        <h3>Decidir que columnas entran, y dejarlo escrito</h3>
+        <p>
+          El extracto trae 54 columnas, varias con datos personales y de
+          terceros. El contrato declara las 20 que entran y <strong>las 30 que
+          se descartan con el motivo</strong>. Minimizar en origen es mas
+          barato y mas seguro que anonimizar después lo que nunca hizo falta.
+        </p>
+      </div>
+
+      <div class="paso">
+        <h3>Reconciliar antes de seguir</h3>
+        <p>
+          Los ingresos calculados se comparan mes a mes contra la línea
+          INGRESOS de la maqueta oficial. La tolerancia no se elige: escalar y
+          redondear <em>n</em> importes puede desviar su suma hasta <em>n</em>
+          medias centésimas, de modo que es función del número de apuntes del
+          periodo.
+        </p>
+        <div class="codigo">
+          <header><span class="ruta">src/finanzas_etl/quality/checks.py</span><span class="lengua">Python</span></header>
+<pre><code># La tolerancia de cada periodo se deriva del numero de apuntes que lo
+# componen. Un umbral fijo seria arbitrario y, con 30.000 apuntes al
+# mes, inevitablemente erroneo.
+comparacion["tolerancia"] = (
+    comparacion.index.map(apuntes).to_series(index=comparacion.index).fillna(0)
+    * ERROR_REDONDEO_APUNTE
+).clip(lower=TOLERANCIA_IMPORTE)
+descuadres = comparacion[
+    comparacion["diferencia"].abs() &gt; comparacion["tolerancia"]
+]</code></pre>
+        </div>
+      </div>
+
+      <div class="paso">
+        <h3>Anonimizar sin romper el modelo</h3>
+        <p>
+          Los centros de coste reciben un pseudónimo derivado por HMAC-SHA256
+          con clave fija. Determinista, para que las uniones del modelo sigan
+          funcionando; inyectivo, para que dos centros distintos no colapsen en
+          uno y cambien los agregados. Los importes se escalan por un factor
+          global único, que <strong>se cancela en todo cociente</strong>: los
+          margenes, los pesos y las variaciones interanuales quedan intactos.
+        </p>
+      </div>
+
+      <div class="paso">
+        <h3>Buscar la fuga en sentido contrario</h3>
+        <p>
+          Comprobar que la anonimización se ejecuto no demuestra nada. El
+          control que lo demuestra toma los valores reales del libro original y
+          los busca uno a uno en los ficheros de salida. Es un control
+          adversario, y encontro lo que los otros veintidós no vieron.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Etapa 2 &middot; La capa PostgreSQL</h2>
+      <p>
+        El modelo se carga en tres esquemas que separan el almacen, la
+        presentación y el diagnóstico. El detalle completo está en
+        <a href="datos.html">Modelo de datos</a>.
+      </p>
+    </div>
+    <div class="rejilla tres">
+      <div class="tarjeta">
+        <h3>core</h3>
+        <p style="font-size:14px">
+          Las seis tablas del esquema en estrella. Solo lo consumen el cargador
+          y las vistas.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <h3>pl</h3>
+        <p style="font-size:14px">
+          Seis vistas que reconstruyen la cuenta de resultados. Es lo que lee
+          quien analiza.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <h3>qa</h3>
+        <p style="font-size:14px">
+          El patrón oficial y seis vistas de control que devuelven cero filas
+          cuando el modelo está sano.
+        </p>
+      </div>
+    </div>
+    <div class="aviso" style="margin-top:20px">
+      <p>
+        <strong>Una vista se ejecuta con los permisos de su propietario, no con
+        los de quien la consulta.</strong> El rol que sirve el P&amp;L lee la
+        cuenta de resultados entera sin tener un solo permiso sobre el detalle
+        de 428.589 apuntes, que nunca sale de su esquema.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Etapa 3 &middot; El modelo semántico</h2>
+      <p>
+        El informe se versiona en formato PBIP: el modelo en TMDL y las páginas
+        en PBIR, todo texto. Un <code>.pbix</code> es un binario que no se puede
+        revisar, comparar ni fusionar. El detalle está en
+        <a href="powerbi.html">Power BI y DAX</a>.
+      </p>
+    </div>
+    <div class="aviso">
+      <p>
+        <strong>La misma cifra por dos caminos independientes.</strong> El DAX
+        agrega el esquema en estrella en VertiPaq y el SQL lo agrega en
+        PostgreSQL. Si las dos coinciden al céntimo, un error de modelado
+        tendría que haberse repetido idéntico en los dos sitios para pasar
+        desapercibido. Esta web añade un tercer camino: recompone el estado de
+        resultados en el navegador desde las siete líneas de importe.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="publicacion">
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Etapa 4 &middot; La publicación</h2>
+      <p>
+        Publicar datos financieros de un empleador es la parte donde un error no
+        se puede deshacer. Tres decisiones gobiernan esta capa.
+      </p>
+    </div>
+
+    <div class="rejilla dos">
+      <div class="tarjeta">
+        <h3>Ninguna cifra escrita a mano</h3>
+        <p style="font-size:14.5px">
+          El HTML no contiene un solo importe: los lee de
+          <a href="cifras.json">cifras.json</a>, que genera un script desde
+          PostgreSQL. Ese script es además una puerta: ejecuta antes las vistas
+          de control y <strong>se niega a escribir</strong> si alguna devuelve
+          filas o si la reconciliación no cuadra.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <h3>Sin dependencias externas</h3>
+        <p style="font-size:14.5px">
+          Los gráficos son SVG construidos en JavaScript plano. Una librería
+          habría sido menos código, pero un portafolio tiene que seguir
+          funcionando dentro de unos años, y un script traido de un CDN puede
+          caducar o estar bloqueado. Además no estaría en el repositorio, de
+          modo que sería la única parte del sitio sin auditar.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <h3>El repositorio se publica sin historial</h3>
+        <p style="font-size:14.5px">
+          Los commits del repositorio de trabajo contienen valores reales que la
+          auditoría encontro después, y <code>git log -S</code> los recupera
+          aunque el arbol este limpio. Se midio en lugar de suponerlo: de 294
+          valores sensibles, el repositorio de trabajo expone 13 y la copia
+          publicada, cero.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <h3>El informe va en capturas, no en un PBIX</h3>
+        <p style="font-size:14.5px">
+          Un <code>.pbix</code> lleva los 428.589 apuntes dentro y VertiPaq
+          comprime sus diccionarios: una busqueda literal no encuentra en el ni
+          los valores que si contiene. Sería lo único publicado que ninguna
+          auditoría puede revisar.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Lo que salio mal</h2>
+      <p>
+        Los controles de este pipeline no son decorativos: cada uno existe
+        porque algo fallo. Estos son tres de los más instructivos; la lista
+        completa esta en la
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#lo-que-salio-mal">memoria técnica</a>.
+      </p>
+    </div>
+    <ul class="lista-limpia">
+      <li>
+        <span><strong>El patrón de reconciliación equivocado.</strong> La primera
+        versión comparaba los ingresos contra una fila que era el presupuesto con
+        enero sobrescrito por el real, y descuadraron once de doce meses. El
+        control detuvo el pipeline antes de escribir nada, que es su trabajo.</span>
+      </li>
+      <li>
+        <span><strong>El nulo y la cadena vacía eran el mismo campo.</strong> El
+        cargador usaba el convenio por defecto de <code>COPY</code>, y el
+        generador de CSV escribe igual un nulo que una cadena vacía. Los
+        veintidós controles pasaban porque hoy ninguna columna trae cadenas
+        vacias: el fallo era latente y no se habría manifestado hasta meses
+        después, lejos de su causa.</span>
+      </li>
+      <li>
+        <span><strong>Tres medidas devolvian cifras donde no había nada que
+        medir.</strong> DAX trata el vacio como cero en una resta, y eso basta
+        para inventarse datos: la variación interanual daba al primer ejercicio
+        del modelo una subida desde la nada.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="filas">
+      <div>
+        <p>
+          <strong>Moisés Retuerto Espinoza</strong> &middot; Control de Gestión,
+          Planeamiento Financiero y Análisis de Datos. El caso procede de un
+          extracto real de SAP CO; los importes están escalados por un factor
+          global y los centros de coste llevan pseudónimo, de modo que márgenes,
+          pesos y variaciones se conservan intactos y ninguna cifra identifica a
+          la empresa.
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#anonimizacion">Cómo se anonimiza</a>.
+        </p>
+        <p>
+          El ejercicio 2026 no tenía real cerrado cuando se extrajo el libro: su
+          escenario de ejecución se genera a partir del perfil mensual observado
+          para poder plantear la comparación objetivo contra ejecución, y el
+          modelo lo marca como tal. No es una previsión.
+        </p>
+      </div>
+      <div class="enlaces-pie">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+        <a href="explorador.html">Explorador de datos</a>
+        <a href="cifras.json">cifras.json</a>
+      </div>
+    </div>
+    <p id="sello"></p>
+  </div>
+</footer>
+
+<script type="module">
+import { lienzo, nodo } from "./assets/comun.js";
+import { antesYDespues } from "./assets/figuras.js";
+document.getElementById("figura-antes-despues").replaceChildren(antesYDespues());
+
+// El diagrama se dibuja y no se escribe como imagen: un SVG generado hereda los
+// colores del tema, se lee igual en claro y en oscuro, y pesa menos que un PNG.
+const ETAPAS = [
+  { titulo: "Excel", glosa: "30 hojas, 165 MB", control: "Contrato de columnas" },
+  { titulo: "ETL", glosa: "Python", control: "32 controles + reconciliacion" },
+  { titulo: "Parquet", glosa: "esquema en estrella", control: "Auditoria de fugas" },
+  { titulo: "PostgreSQL", glosa: "core / pl / qa", control: "23 controles de carga" },
+  { titulo: "Power BI", glosa: "TMDL + PBIR", control: "7 consultas DAX" },
+  { titulo: "Web", glosa: "esta pagina", control: "46 pruebas sin base" },
+];
+
+function dibujar() {
+  const ancho = 1060, alto = 230;
+  const svg = lienzo(ancho, alto, "Flujo del pipeline: Excel, ETL en Python, Parquet, PostgreSQL, Power BI y web, con el control que verifica cada paso");
+  const paso = ancho / ETAPAS.length;
+  const cajaAncho = paso - 26;
+
+  ETAPAS.forEach((etapa, i) => {
+    const x = i * paso + 13;
+    const y = 54;
+
+    svg.appendChild(nodo("rect", {
+      x, y, width: cajaAncho, height: 62, rx: 8,
+      fill: "var(--marca-tinte)", stroke: "var(--marca)", "stroke-width": 1.2,
+    }));
+    svg.appendChild(nodo("text", {
+      x: x + cajaAncho / 2, y: y + 26, "text-anchor": "middle",
+      fill: "var(--marca)", "font-size": 15, "font-weight": 600,
+      "font-family": "var(--texto)",
+    }, etapa.titulo));
+    svg.appendChild(nodo("text", {
+      x: x + cajaAncho / 2, y: y + 46, "text-anchor": "middle",
+      fill: "var(--tinta-media)", "font-size": 11.5, "font-family": "var(--texto)",
+    }, etapa.glosa));
+
+    // El control cuelga de cada caja: el mensaje es que ningun paso avanza sin
+    // haber demostrado algo.
+    svg.appendChild(nodo("line", {
+      x1: x + cajaAncho / 2, x2: x + cajaAncho / 2, y1: y + 62, y2: y + 84,
+      stroke: "var(--linea-fuerte)", "stroke-width": 1, "stroke-dasharray": "3 3",
+    }));
+    const palabras = etapa.control.split(" ");
+    const lineas = palabras.length > 2
+      ? [palabras.slice(0, 2).join(" "), palabras.slice(2).join(" ")]
+      : [etapa.control];
+    lineas.forEach((texto, j) => {
+      svg.appendChild(nodo("text", {
+        x: x + cajaAncho / 2, y: y + 100 + j * 14, "text-anchor": "middle",
+        fill: "var(--tinta-suave)", "font-size": 11, "font-family": "var(--texto)",
+      }, texto));
+    });
+
+    if (i < ETAPAS.length - 1) {
+      const desde = x + cajaAncho + 2;
+      svg.appendChild(nodo("path", {
+        d: `M ${desde} ${y + 31} L ${desde + 20} ${y + 31} M ${desde + 14} ${y + 26} L ${desde + 20} ${y + 31} L ${desde + 14} ${y + 36}`,
+        stroke: "var(--linea-fuerte)", "stroke-width": 1.5, fill: "none",
+        "stroke-linecap": "round", "stroke-linejoin": "round",
+      }));
+    }
+  });
+
+  svg.appendChild(nodo("text", {
+    x: 13, y: 26, fill: "var(--tinta-suave)", "font-size": 11.5,
+    "font-family": "var(--texto)", "letter-spacing": "0.08em",
+  }, "TRANSFORMACION"));
+  svg.appendChild(nodo("text", {
+    x: 13, y: 196, fill: "var(--tinta-suave)", "font-size": 11.5,
+    "font-family": "var(--texto)", "letter-spacing": "0.08em",
+  }, "LO QUE DEMUESTRA CADA PASO"));
+
+  document.getElementById("diagrama-flujo").replaceChildren(svg);
+}
+
+dibujar();
+</script>
+</body>
+</html>

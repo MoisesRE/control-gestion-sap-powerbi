@@ -1,0 +1,64 @@
+/// Las cuatro versiones del resultado que el modelo compara: presupuesto y real de 2025 y 2026. El real de 2026 esta generado y no observado, y Es Simulado lo marca.
+table Escenario
+	lineageTag: ca201670-5ad8-473f-aa24-2af6e2336a85
+
+	/// Clave natural del escenario: inicial del tipo mas ejercicio, p. ej. R2025. Oculta porque solo sirve para las relaciones.
+	column 'Clave Escenario'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: ee2242b7-8b30-40f0-bf8a-b0e1735d1556
+		sourceColumn: escenario_clave
+
+	/// Etiqueta legible del escenario, con la marca (simulado) cuando las cifras estan generadas.
+	column Escenario
+		dataType: string
+		lineageTag: db5887ff-df96-47aa-bfe3-8c21197202dd
+		sourceColumn: escenario
+		sortByColumn: 'Orden Escenario'
+
+	/// Real (resultado observado) o Presupuesto (objetivo aprobado). Es la columna sobre la que giran las medidas de ejecucion presupuestaria.
+	column 'Tipo Escenario'
+		dataType: string
+		lineageTag: 828d6894-b944-467d-8184-a4bd5bbca3e4
+		sourceColumn: tipo_escenario
+
+	/// Ejercicio contable al que corresponde el escenario.
+	column Ejercicio
+		dataType: int64
+		lineageTag: 23333c20-4d01-46fe-acdf-663f91c2d308
+		summarizeBy: none
+		sourceColumn: ejercicio
+
+	/// Verdadero si las cifras estan generadas y no observadas. Visible a proposito: cualquier visual que muestre el escenario puede advertirlo.
+	column 'Es Simulado'
+		dataType: boolean
+		lineageTag: 25900e4b-e191-47d7-af9d-46e6d7771517
+		sourceColumn: es_simulado
+
+	/// Periodos con datos. El real de 2026 cubre diez, y comparar doce meses contra diez sin tenerlo en cuenta es el error clasico de la variacion interanual: las medidas usan esta columna para recortar.
+	column 'Periodos Cubiertos'
+		dataType: int64
+		lineageTag: a78f022c-9f65-46c5-b02e-764575a9c071
+		summarizeBy: none
+		sourceColumn: periodos_cubiertos
+
+	/// Orden de presentacion. Oculta pero disponible en MDX porque ordena la columna Escenario.
+	column 'Orden Escenario'
+		dataType: int64
+		isHidden
+		lineageTag: c794aab9-d287-4ce4-bec8-3495f9b1fbc9
+		summarizeBy: none
+		sourceColumn: orden_escenario
+
+	partition Escenario = m
+		mode: import
+		source =
+				let
+				    // Se enumeran las columnas en el SQL en lugar de traer la tabla entera:
+				    // la proyeccion la hace PostgreSQL y el repositorio deja ver exactamente
+				    // que sale de la base.
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select escenario_clave, escenario, tipo_escenario, ejercicio, es_simulado, periodos_cubiertos, orden_escenario from core.dim_escenario"])
+				in
+				    Origen
+

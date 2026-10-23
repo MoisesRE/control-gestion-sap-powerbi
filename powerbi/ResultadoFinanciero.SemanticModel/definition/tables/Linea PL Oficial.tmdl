@@ -1,0 +1,87 @@
+/// Las lineas del estado de resultados en el orden en que las presenta Control de Gestion. Es una tabla de presentacion y no una dimension: no se relaciona con ningun hecho, sus filas solo dan el eje y el orden del informe, y la medida Importe PL resuelve el valor de cada una. Es el patron habitual de un P&L con subtotales, porque las lineas de subtotal y de margen no existen como dato y no pueden salir de una jerarquia de cuentas.
+table 'Linea PL Oficial'
+	lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7a601
+
+	/// Orden de presentacion de arriba abajo. Oculta pero disponible en MDX porque ordena la columna Linea.
+	column Orden
+		dataType: int64
+		isHidden
+		isAvailableInMdx: true
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7a602
+		summarizeBy: none
+		sourceColumn: [Orden]
+
+	/// Rotulo de la linea, tal y como aparece en el P&L oficial de la empresa.
+	column Linea
+		dataType: string
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7a603
+		summarizeBy: none
+		sourceColumn: [Linea]
+		sortByColumn: Orden
+
+	/// Que clase de fila es: Importe suma cuentas, Subtotal acumula lineas anteriores y Margen divide entre los ingresos. Gobierna el formato -- soles o porcentaje -- y el sombreado de los subtotales.
+	column Tipo
+		dataType: string
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7a604
+		summarizeBy: none
+		sourceColumn: [Tipo]
+
+	partition 'Linea PL Oficial' = calculated
+		mode: import
+		source =
+				// El mapeo de los grupos del extracto a estas lineas esta verificado contra el
+				// libro de Control de Gestion: la hoja que consolida la unidad de negocio,
+				// calcula el P&L oficial, agrupa en las mismas secciones, y separa el coste
+				// del gasto con la clasificacion COSTO/GASTO de la hoja Maestro Costo Gasto.
+				// Vive en Cuenta[Linea Oficial].
+				//
+				// Las siete lineas de importe forman una particion exhaustiva y disjunta del
+				// hecho: su suma es el resultado neto al centimo, comprobado en los cuatro
+				// escenarios contra PostgreSQL.
+				//
+				// Tres lineas de la plantilla salen en cero porque este extracto no las tiene.
+				// La depreciacion por uso y la venta de unidades quedan fuera del perimetro, y
+				// el soporte corporativo es el reparto de costes de otras unidades que el
+				// proyecto documenta como fuera del extracto desde la etapa 1. Se conservan
+				// para que el informe coincida fila a fila con la plantilla de la empresa.
+				DATATABLE(
+				    "Orden", INTEGER,
+				    "Linea", STRING,
+				    "Tipo", STRING,
+				    {
+				        { 10,  "Ingresos",                                 "Importe"  },
+				        { 20,  "Costos Ventas",                            "Importe"  },
+				        { 30,  "Utilidad Bruta",                           "Subtotal" },
+				        { 40,  "% Margen Bruto",                           "Margen"   },
+				        { 50,  "Gastos Adm/Ventas",                        "Importe"  },
+				        { 60,  "% Gastos Adm/Ventas",                      "Margen"   },
+				        { 70,  "Depreciacion",                             "Importe"  },
+				        { 80,  "% Gastos Depreciacion",                    "Margen"   },
+				        { 90,  "Depreciacion por Uso",                     "Importe"  },
+				        { 100, "% Depreciacion por Uso",                   "Margen"   },
+				        { 110, "I/E. Excepcionales",                       "Importe"  },
+				        { 120, "% I/E. Excepcionales",                     "Margen"   },
+				        { 130, "Utilidad Operativa",                       "Subtotal" },
+				        { 140, "% Margen operativo",                       "Margen"   },
+				        { 150, "I/E. Financieros",                         "Importe"  },
+				        { 160, "% I/E. Financieros",                       "Margen"   },
+				        { 170, "Utilidad Neta Negocio (s/vta. Unidades)",  "Subtotal" },
+				        { 180, "% Margen Neto Negocio",                    "Margen"   },
+				        { 190, "Venta de Unidades (inc. Enaj.)",           "Importe"  },
+				        { 200, "Utilidad Neta Negocio",                    "Subtotal" },
+				        { 210, "% Margen negocio",                         "Margen"   },
+				        { 220, "Gastos Soporte Directo - Corporativo",     "Importe"  },
+				        { 230, "% Gastos Soporte Directo / U. Neta Neg.",  "Margen"   },
+				        { 240, "Utilidad Neta Negocio Total (antes T.C)",  "Subtotal" },
+				        { 250, "% Margen negocio total",                   "Margen"   },
+				        { 260, "Tipo de Cambio",                           "Importe"  },
+				        { 270, "% TC / U. Neta Neg.",                      "Margen"   },
+				        { 280, "Utilidad Neta Negocio Total",              "Subtotal" },
+				        { 290, "% Margen Neto",                            "Margen"   },
+				        { 300, "Ebitda Negocio",                           "Subtotal" },
+				        { 310, "% Margen Ebitda",                          "Margen"   }
+				    }
+				)
+
+	annotation PBI_Id = 7c1a9e523b644d189f205e8c41d7a601
+

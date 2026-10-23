@@ -1,0 +1,113 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1031.8139415010892,
+            "y": 213.31522426317673
+          },
+          "nodeIndex": "Reconciliacion Oficial",
+          "nodeLineageTag": "0efded6f-fbaa-47a5-ac6c-5680002632f4",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 440.05893858744435,
+            "y": 305.10626637363674
+          },
+          "nodeIndex": "Resultado",
+          "nodeLineageTag": "213f7647-95ef-4a28-93ed-a0af0e33cbb0",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 334.16912776074719,
+            "y": -44.992910379648833
+          },
+          "nodeIndex": "Apuntes",
+          "nodeLineageTag": "1d7fde49-f159-4768-aaaf-968854aa7207",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": -50
+          },
+          "nodeIndex": "Centro de Coste",
+          "nodeLineageTag": "5ce52629-b6bc-4ef5-88a7-a248088953fe",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 121.35942784861572,
+            "y": 305.20466587646814
+          },
+          "nodeIndex": "Cuenta",
+          "nodeLineageTag": "44f0a54d-8313-495d-ac89-84402b1c5ab6",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 747.6291673387675,
+            "y": 370.16256753709717
+          },
+          "nodeIndex": "Escenario",
+          "nodeLineageTag": "ca201670-5ad8-473f-aa24-2af6e2336a85",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 724.229368499489,
+            "y": 71.994558742936078
+          },
+          "nodeIndex": "Periodo Contable",
+          "nodeLineageTag": "8afe86f3-6579-401f-bcf6-820f3a527574",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas las tablas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas las tablas",
+  "defaultDiagram": "Todas las tablas"
+}

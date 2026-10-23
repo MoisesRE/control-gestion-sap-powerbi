@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ad1f33440f9faf6d5442",
+  "position": {
+    "x": 768,
+    "y": 440,
+    "z": 1000,
+    "height": 272,
+    "width": 496,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Periodo Contable"
+                    }
+                  },
+                  "Property": "Mes Abrev"
+                }
+              },
+              "queryRef": "Periodo Contable.Mes Abrev",
+              "nativeQueryRef": "Mes Abrev"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Resultado Neto"
+                }
+              },
+              "queryRef": "Resultado.Resultado Neto",
+              "nativeQueryRef": "Resultado Neto"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Resultado neto por periodo'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

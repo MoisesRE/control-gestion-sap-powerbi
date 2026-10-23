@@ -1,0 +1,157 @@
+/// Detalle transaccional del real observado: una fila por apunte contable (428.589 filas). Existe aparte de Resultado porque el real tiene grano de apunte y el presupuesto grano de centro por cuenta y mes. CUIDADO: una medida que sume Resultado y Apuntes a la vez cuenta el real dos veces. No se importan apunte_id ni documento_id, que son las dos columnas de mayor cardinalidad y no aportan analisis.
+table Apuntes
+	lineageTag: 1d7fde49-f159-4768-aaaf-968854aa7207
+
+	/// Numero de apuntes contables del detalle. Solo existe para el real observado de 2025: el presupuesto y el simulado no tienen detalle transaccional.
+	measure 'Apuntes Contabilizados' = COUNTROWS('Apuntes')
+		formatString: #,##0
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: f4f601cf-8f85-43dd-8c57-0acb714f91bd
+
+	/// Suma del detalle transaccional. No debe mezclarse con Resultado Neto en la misma cifra: el real esta en las dos tablas y sumarlas lo contaria dos veces.
+	measure 'Importe Apuntes' = SUM('Apuntes'[Importe])
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: c14cca45-c72f-42ad-9372-78c08cad8f93
+
+	/// Diferencia entre el detalle de apuntes y el hecho comparativo para el real observado. Es el control de que las dos tablas de hechos no han divergido: debe ser cero al centimo. Vacia donde el real observado no esta en contexto, porque alli no hay nada que cuadrar.
+	measure 'Cuadre de Hechos' =
+			// El real observado vive en las dos tablas de hechos, con granos distintos:
+			// apunte contable en Apuntes, centro por cuenta y mes en Resultado. Esta medida
+			// comprueba que suman lo mismo, que es el control que en PostgreSQL hace
+			// qa.v_control_cuadre_hechos. Debe dar cero.
+			//
+			// Solo se evalua cuando el real observado esta en el contexto. Sin esa guarda,
+			// una tarjeta filtrada por el presupuesto restaba el real completo de un detalle
+			// vacio y mostraba un descuadre de 2,39 millones que no significaba nada.
+			// KEEPFILTERS y no REMOVEFILTERS: el control tiene que seguir fallando si el
+			// detalle desaparece mientras el comparativo sigue ahi.
+			VAR _hayRealObservado =
+			    CALCULATE(
+			        COUNTROWS('Escenario'),
+			        KEEPFILTERS('Escenario'[Tipo Escenario] = "Real"),
+			        KEEPFILTERS('Escenario'[Es Simulado] = FALSE())
+			    ) > 0
+			VAR _detalle = SUM('Apuntes'[Importe])
+			VAR _comparativo =
+			    CALCULATE(
+			        SUM('Resultado'[Importe]),
+			        REMOVEFILTERS('Escenario'),
+			        'Escenario'[Tipo Escenario] = "Real",
+			        'Escenario'[Es Simulado] = FALSE()
+			    )
+			RETURN
+			    IF(_hayRealObservado, _detalle - _comparativo)
+		formatString: #,##0.00
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: e76f59d5-85a4-4829-9497-4d3d9daf1628
+
+	/// Clave foranea al escenario. Siempre el real observado.
+	column 'Clave Escenario'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 1282e02e-51b1-42b1-b75e-b93197465b33
+		sourceColumn: escenario_clave
+
+	/// Clave foranea al periodo contable.
+	column 'Clave Periodo'
+		dataType: int64
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: d1ca54ed-a23a-403f-9f75-521764a13b33
+		summarizeBy: none
+		sourceColumn: fecha_clave
+
+	/// Clave foranea al centro de coste.
+	column 'Codigo Centro'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 1b6a19f1-5e04-4c0f-be25-4d2780e0514b
+		sourceColumn: ceco_codigo
+
+	/// Clave foranea a la cuenta.
+	column 'Codigo Cuenta'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 10902ea0-6d05-44a9-97e0-d25b24353e22
+		sourceColumn: cuenta_codigo
+
+	/// Importe del apunte, con el signo de SAP. Oculta porque se agrega en medidas explicitas. Decimal fijo: sumar 428.589 importes en coma flotante desplazaba el total lo suficiente para que el control de cuadre no diera cero exacto.
+	column Importe
+		dataType: decimal
+		isHidden
+		formatString: #,##0.00
+		isAvailableInMdx: false
+		lineageTag: d8749df6-0e30-4702-b61d-ac7ff26f0377
+		summarizeBy: sum
+		sourceColumn: importe
+
+	/// Fecha de contabilizacion, que determina el periodo. Nula en 2.455 apuntes.
+	column 'Fecha Contable'
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 33894b04-37d7-43c6-b0e2-08a39786b93b
+		sourceColumn: fecha_contable
+
+	/// Origen del apunte: F.01, Intercompany o Provision ExtraContable.
+	column Origen
+		dataType: string
+		lineageTag: c3b7e5ae-8c02-4637-9f71-b3b047103e98
+		sourceColumn: origen_tipo
+
+	/// Desglose del origen: FBL3N, KSB1, Intercompany, Provision CARGO.
+	column 'Origen Detalle'
+		dataType: string
+		lineageTag: 8a473870-61ca-4441-8d62-43691c50f434
+		sourceColumn: origen_detalle
+
+	/// Operacion original: HRP1 nomina, RFBU contabilidad, RMRP logistica, RFT1 tesoreria.
+	column 'Transaccion SAP'
+		dataType: string
+		lineageTag: 4315c048-4c90-4f56-8f09-3889fe5fd25d
+		sourceColumn: transaccion_sap
+
+	/// Clase de cuenta de contrapartida: A activo, D deudor, K acreedor, M material.
+	column 'Tipo Contrapartida'
+		dataType: string
+		lineageTag: 42c348d0-966d-4ea4-b8b4-91a6f9a2778c
+		sourceColumn: tipo_contrapartida
+
+	/// Marca de la columna Documento anulacion del extracto, presente en el 37,5% de los apuntes. Es informativa y NO debe filtrarse: no afecta a ningun apunte de ingresos y el reporte oficial se reproduce sumando todo. Visible para que la decision sea auditable en lugar de invisible.
+	column 'Marca Reverso'
+		dataType: boolean
+		lineageTag: 112f0016-0740-406b-b9e6-ee6b0aa20e69
+		sourceColumn: marca_reverso
+
+	/// Centro de coste crudo de SAP, antes de la reasignacion. Atributo y no clave: tiene 101 valores frente a los 88 de la dimension, porque la reasignacion consolida centros.
+	column 'Centro Origen SAP'
+		dataType: string
+		lineageTag: a652fa15-5564-4646-820d-a487c0ea2d0f
+		sourceColumn: ceco_origen_codigo
+
+	/// Clase de coste cruda de SAP. Atributo por el mismo motivo: 243 valores frente a los 152 de la dimension.
+	column 'Cuenta Origen SAP'
+		dataType: string
+		lineageTag: 0810b4f7-e6ea-4ae0-a933-927a2b470b27
+		sourceColumn: cuenta_origen_codigo
+
+	partition Apuntes = m
+		mode: import
+		source =
+				let
+				    // Sin apunte_id ni documento_id: con 428.589 valores distintos cada una
+				    // serian los dos mayores diccionarios del modelo, y el drill-through ya
+				    // identifica el apunte por centro, cuenta, periodo, origen e importe.
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select escenario_clave, fecha_clave, ceco_codigo, cuenta_codigo, importe, fecha_contable, origen_tipo, origen_detalle, transaccion_sap, tipo_contrapartida, marca_reverso, ceco_origen_codigo, cuenta_origen_codigo from core.fact_resultado"]),
+				    // Currency y no coma flotante. Es la tabla donde mas se nota: el total sale de
+				    // sumar 428.589 importes, y en Double el control de cuadre contra el hecho
+				    // comparativo se quedaba a siete diezmillonesimas de cero en lugar de clavarlo.
+				    Tipado = Table.TransformColumnTypes(Origen, {{"importe", Currency.Type}})
+				in
+				    Tipado
+
+	annotation PBI_ResultType = Table
+

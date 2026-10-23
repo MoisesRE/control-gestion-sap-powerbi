@@ -1,0 +1,12 @@
+/// Host y puerto de PostgreSQL. Centralizado como parametro para que mover el informe a otro servidor no obligue a editar el M de las siete particiones.
+expression Servidor = "localhost:5432" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 63bd74a7-3d01-40f5-abed-ee0cce26595b
+
+	annotation PBI_ResultType = Text
+
+/// Base de datos que contiene los esquemas core, pl y qa.
+expression BaseDatos = "finanzas_analytics" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 909fd0af-36e8-4fc5-9d4d-ee5ab38e91e5
+
+	annotation PBI_ResultType = Text
+

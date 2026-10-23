@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "dfc80fabfaf8795ee9c0",
+  "position": {
+    "x": 768,
+    "y": 162,
+    "z": 1000,
+    "height": 550,
+    "width": 496,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Apuntes"
+                    }
+                  },
+                  "Property": "Importe Apuntes"
+                }
+              },
+              "queryRef": "Apuntes.Importe Apuntes",
+              "nativeQueryRef": "Importe Apuntes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Apuntes"
+                    }
+                  },
+                  "Property": "Cuadre de Hechos"
+                }
+              },
+              "queryRef": "Apuntes.Cuadre de Hechos",
+              "nativeQueryRef": "Cuadre de Hechos"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Periodo Contable"
+                    }
+                  },
+                  "Property": "Mes Abrev"
+                }
+              },
+              "queryRef": "Periodo Contable.Mes Abrev",
+              "nativeQueryRef": "Mes Abrev"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle de apuntes contra el hecho comparativo'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

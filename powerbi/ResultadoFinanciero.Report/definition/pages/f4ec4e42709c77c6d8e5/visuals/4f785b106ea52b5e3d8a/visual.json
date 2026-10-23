@@ -1,0 +1,124 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "4f785b106ea52b5e3d8a",
+  "position": {
+    "x": 16,
+    "y": 162,
+    "z": 1000,
+    "height": 550,
+    "width": 744,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Importe Presentacion"
+                }
+              },
+              "queryRef": "Resultado.Importe Presentacion",
+              "nativeQueryRef": "Importe Presentacion"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cuenta"
+                    }
+                  },
+                  "Property": "Linea PL"
+                }
+              },
+              "queryRef": "Cuenta.Linea PL",
+              "nativeQueryRef": "Linea PL"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Periodo Contable"
+                    }
+                  },
+                  "Property": "Mes Abrev"
+                }
+              },
+              "queryRef": "Periodo Contable.Mes Abrev",
+              "nativeQueryRef": "Mes Abrev"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Resultado por linea y periodo'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

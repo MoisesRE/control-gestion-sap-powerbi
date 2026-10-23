@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De un Excel de 165 MB a un P&amp;L automatizado — caso real</title>
+<meta name="description" content="Caso real: un libro de Control de Gestion de 165 MB convertido en un estado de resultados automatizado y reconciliado al centimo. Donde acelero la IA y donde no.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%2314355f%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%224.5%22%20height%3D%227%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%2213%22%20width%3D%224.5%22%20height%3D%2212%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%221.2%22%20fill%3D%22%236ea3e8%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="marca-sitio" href="index.html">
+      <span class="nombre">Moisés Retuerto Espinoza</span>
+      <span class="cargo">Control de Gestión &middot; Planeamiento Financiero &middot; Análisis de Datos</span>
+    </a>
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="caso.html">El caso</a>
+      <a href="ia-en-el-cierre.html">La IA en el cierre</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qué automatizar</a>
+      <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+      <span class="separador" role="presentation"></span>
+      <a href="proceso.html">Proceso</a>
+      <a href="datos.html">Datos</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="explorador.html">Explorador</a>
+      <span class="separador" role="presentation"></span>
+      <a class="externo" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+      <a class="externo" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<article>
+
+<div class="contenedor">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo"><span class="tema">Caso real</span></p>
+    <h1>De un Excel de 165 MB a un P&amp;L automatizado</h1>
+    <p class="entradilla">
+      El punto de partida era un libro de Control de Gestión con treinta hojas y
+      428.589 apuntes contables, que se consolidaba a mano cada mes. El punto de
+      llegada es un estado de resultados que se reconstruye en dos minutos,
+      cuadra al céntimo con el reporte oficial y se puede auditar línea a línea.
+      Esto es lo que hubo entre medias.
+    </p>
+    <div class="meta-articulo">
+      <span>Lectura de 12 minutos</span>
+      <span>&middot;</span>
+      <span>Python, PostgreSQL, Power BI</span>
+      <span>&middot;</span>
+      <span>Con el dashboard en vivo al final</span>
+    </div>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El recorrido</p>
+      <h2>Cinco pasos, cinco comprobaciones</h2>
+      <p class="glosa-grafico">
+        De la hoja de cálculo al informe publicado. Entre cada par de pasos hay
+        una comprobación que detiene el proceso si algo no cuadra.
+      </p>
+      <figure id="figura-recorrido"></figure>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="lectura">
+
+    <div class="sumario">
+      <h2>En esta página</h2>
+      <ol>
+        <li><a href="#punto-de-partida">El punto de partida: cuatro días de cierre</a></li>
+        <li><a href="#que-automatizar">Qué automatizar primero, y por qué en ese orden</a></li>
+        <li><a href="#donde-acelero">Dónde aceleró la IA y dónde no la dejé entrar</a></li>
+        <li><a href="#resultado">El resultado, con las cifras delante</a></li>
+        <li><a href="#dashboard">El estado de resultados, en vivo</a></li>
+        <li><a href="#lecciones">Lo que me llevo</a></li>
+      </ol>
+    </div>
+
+    <h2 id="punto-de-partida">El punto de partida: cuatro días de cierre</h2>
+
+    <p>
+      Cualquiera que haya trabajado en control de gestión reconoce la escena. El
+      extracto de costes sale del ERP, alguien lo pega en el libro de siempre,
+      las fórmulas se recalculan durante un par de minutos y empieza lo de
+      verdad: cuadrar. La cifra del sistema no coincide con la del reporte del
+      mes pasado, hay una cuenta nueva que no está mapeada, y alguien pregunta
+      por qué el margen de una unidad se movió tres puntos.
+    </p>
+
+    <p>
+      En este caso el libro pesaba 165 MB. La hoja de datos sola son 919 MB de
+      XML cuando se descomprime, con una fórmula en cada celda. No es un
+      problema de desorden: es el tamaño que alcanza un extracto de SAP CO con
+      el detalle de un ejercicio completo.
+    </p>
+
+    <blockquote>
+      El trabajo no era hacer un gráfico bonito. Era conseguir que la cifra del
+      gráfico fuese defendible delante de quien firma.
+    </blockquote>
+
+    <p>
+      Ese matiz cambia todo lo que viene después. Un reporte que se presenta en
+      un comité no se valida porque el proceso termine sin errores, sino porque
+      la cifra coincide con lo que la organización ya publica. Si no cuadra con
+      el P&amp;L oficial, no importa lo elegante que sea el pipeline.
+    </p>
+
+    <h2 id="que-automatizar">Qué automatizar primero, y por qué en ese orden</h2>
+
+    <p>
+      La tentación es empezar por el dashboard, porque es lo que se ve. Es el
+      orden equivocado. Lo hice en cuatro capas, y cada una tenía que demostrar
+      algo antes de que la siguiente pudiera apoyarse en ella.
+    </p>
+
+    <h3>1. Extraer y limpiar, con un contrato explícito</h3>
+    <p>
+      Lo primero fue dejar de abrir el Excel a mano. El extracto trae 54
+      columnas, y varias contienen datos personales y de terceros que no
+      necesito para analizar costes. En lugar de llevármelas todas y filtrar
+      después, declaré un contrato: <strong>20 columnas entran y 30 se descartan
+      con el motivo escrito</strong>. Minimizar en origen es más barato y más
+      seguro que anonimizar después lo que nunca hizo falta.
+    </p>
+    <p>
+      Aquí apareció el primer control que importa: antes de escribir ningún
+      resultado, el proceso compara los ingresos calculados mes a mes contra la
+      línea de la maqueta oficial. Si no cuadran, se detiene. En la primera
+      versión descuadraron once de doce meses, y el motivo resultó ser que yo
+      estaba comparando contra la fila equivocada del libro.
+    </p>
+
+    <h3>2. Llevarlo a una base de datos con las reglas dentro</h3>
+    <p>
+      Un Excel permite cualquier cosa: duplicar una combinación, escribir un
+      texto donde va un importe, dejar una cuenta sin mapear. Una base de datos
+      bien declarada, no. El grano del modelo es la clave primaria, de modo que
+      una carga que duplicase un centro por cuenta y mes es rechazada en lugar
+      de inflar el resultado en silencio.
+    </p>
+    <p>
+      Esta es la parte que más cuesta explicar y más valor tiene: buena parte de
+      lo que en otros proyectos vive en una lista de comprobaciones posteriores
+      aquí está declarado en el esquema, <strong>donde no se puede
+      incumplir</strong>. El detalle está en
+      <a href="datos.html">Modelo de datos</a>.
+    </p>
+
+    <h3>3. Modelar para analizar, no para presentar</h3>
+    <p>
+      En Power BI importé el modelo en estrella y no las vistas ya agregadas del
+      P&amp;L. Una vista agregada es cómoda —la conectas y sale la tabla— pero
+      mata el drill-down y te hace heredar decisiones que ya no puedes discutir.
+      Importando el detalle, el cálculo queda libre y se habilita el contraste
+      que de verdad vale: <strong>la misma cifra calculada en SQL y en DAX por
+      caminos independientes</strong>. Si coinciden al céntimo, un error de
+      modelado tendría que haberse repetido idéntico en los dos sitios.
+    </p>
+
+    <h3>4. Publicar, con los controles por delante</h3>
+    <p>
+      La última capa es esta misma web. Las cifras que ves no están escritas en
+      el HTML: las genera un script desde la base de datos, y ese script
+      <strong>se niega a escribir</strong> si alguno de los controles del
+      esquema devuelve filas o si la reconciliación no cuadra. Un dashboard no
+      debería poder publicarse desde un modelo descuadrado.
+    </p>
+
+    <h2 id="donde-acelero">Dónde aceleró la IA y dónde no la dejé entrar</h2>
+
+    <p>
+      Este proyecto se construyó con asistencia de IA, y conviene ser preciso
+      sobre qué significa eso, porque el mercado está lleno de promesas sin
+      denominador.
+    </p>
+
+    <p><strong>Donde aceleró de verdad:</strong></p>
+    <ul>
+      <li>
+        Escribir el lector incremental de XLSX. Es código de infraestructura,
+        tedioso y bien documentado: exactamente donde un asistente rinde.
+      </li>
+      <li>
+        Traducir reglas de negocio que yo ya tenía en la cabeza a restricciones
+        de base de datos y a DAX. Yo sé qué significa «el grano es escenario por
+        centro, cuenta y mes»; escribirlo como clave primaria es mecánico.
+      </li>
+      <li>
+        Redactar las pruebas. No las que comprueban que todo va bien, sino las
+        que <strong>rompen el modelo a propósito</strong> para ver si el control
+        lo detecta.
+      </li>
+      <li>
+        Discutir decisiones de diseño. Plantear la alternativa y obligarme a
+        justificar por qué la descarto me hizo cambiar de opinión más de una vez.
+      </li>
+    </ul>
+
+    <p><strong>Donde no la dejé entrar:</strong></p>
+    <ul>
+      <li>
+        <strong>En el cálculo de las cifras.</strong> Ninguna cifra de este sitio
+        la produce un modelo de lenguaje. Las calcula PostgreSQL y las verifica
+        DAX por otro camino. Un modelo escribe con fluidez; no es una
+        calculadora fiable.
+      </li>
+      <li>
+        <strong>En el criterio contable.</strong> Qué entra en el perímetro de
+        ingresos, cómo se mapea un grupo de gasto a su línea del P&amp;L, cuándo
+        una desviación es favorable: eso sale del libro de Control de Gestión y
+        de saber leerlo.
+      </li>
+      <li>
+        <strong>En decidir qué es un error.</strong> Más de una vez el asistente
+        propuso subir una tolerancia para que un control pasara. Esa es
+        exactamente la decisión que no se puede delegar.
+      </li>
+    </ul>
+
+    <div class="aviso">
+      <p>
+        <strong>La regla que acabé aplicando:</strong> la IA escribe el proceso,
+        el motor calcula la cifra y el control decide si se publica. En cuanto
+        se invierte ese orden, lo que obtienes es un informe fluido que no
+        puedes defender. Lo desarrollo en
+        <a href="ia-en-el-cierre.html">La IA en el cierre</a>.
+      </p>
+    </div>
+
+    <h2 id="resultado">El resultado, con las cifras delante</h2>
+
+    <p>
+      Un pipeline financiero no se valida porque termine sin error. Estas son
+      las cifras que lo validan:
+    </p>
+
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="rejilla cuatro" style="margin: 26px 0 34px">
+    <div class="kpi">
+      <p class="etiqueta">Periodos reconciliados</p>
+      <p class="valor">36 de 36</p>
+      <p class="pie">tres escenarios contra la maqueta oficial</p>
+    </div>
+    <div class="kpi">
+      <p class="etiqueta">Diferencia máxima</p>
+      <p class="valor">0,01</p>
+      <p class="pie">por periodo; dos céntimos en el peor ejercicio</p>
+    </div>
+    <div class="kpi">
+      <p class="etiqueta">Controles de calidad</p>
+      <p class="valor">55</p>
+      <p class="pie">y 227 pruebas automáticas</p>
+    </div>
+    <div class="kpi">
+      <p class="etiqueta">Tiempo de reproceso</p>
+      <p class="valor">~2 min</p>
+      <p class="pie">del Excel al modelo cargado</p>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="lectura">
+    <p>
+      La tolerancia de esos controles no se eligió a ojo, y es un detalle que
+      separa un control de verdad de uno decorativo: escalar y redondear
+      <em>n</em> importes puede desviar su suma hasta <em>n</em> medias
+      centésimas, de modo que la tolerancia <strong>se deriva del número de
+      apuntes de cada periodo</strong>. Nunca al revés.
+    </p>
+
+    <h2 id="dashboard">El estado de resultados, en vivo</h2>
+    <p>
+      Esto no es una captura. Son las 31 líneas de la plantilla de Control de
+      Gestión, compuestas en tu navegador desde las siete líneas de importe que
+      publica el modelo. Cambia el ejercicio y el periodo y mira cómo responde.
+    </p>
+  </div>
+</div>
+
+<div id="cargando" class="contenedor cargando">Cargando las cifras&hellip;</div>
+
+<div id="contenido" hidden>
+  <section style="padding-top: 20px">
+    <div class="contenedor">
+      <div class="controles">
+        <div class="control">
+          <span id="r-ejercicio">Ejercicio</span>
+          <div class="grupo-botones" id="ejercicios" role="group" aria-labelledby="r-ejercicio"></div>
+        </div>
+        <label class="control">
+          <span>Periodo</span>
+          <select id="periodo"></select>
+        </label>
+        <div class="control">
+          <span id="r-vista">Vista</span>
+          <div class="grupo-botones" id="vista" role="group" aria-labelledby="r-vista">
+            <button type="button" data-vista="mes" aria-pressed="false">Mes</button>
+            <button type="button" data-vista="acumulado" aria-pressed="true">Acumulado</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="aviso-perimetro"></div>
+      <div class="rejilla cuatro" id="kpis" style="margin-bottom: 20px"></div>
+
+      <div class="marco-tabla">
+        <table class="pl" id="tabla-pl">
+          <caption class="solo-lectores">Estado de resultados por línea, con la variación contra el presupuesto y contra el ejercicio anterior.</caption>
+        </table>
+      </div>
+      <p style="font-size:13px;margin-top:12px">
+        Cifras en miles de soles. El negativo va entre paréntesis, como en la
+        plantilla original. Verde y rojo marcan la variación favorable y la
+        desfavorable: una desviación es favorable cuando sale positiva tanto en
+        ingresos como en costes, porque los importes conservan el signo de SAP.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <h2>El ejercicio mes a mes</h2>
+      </div>
+      <div class="tarjeta">
+        <div class="leyenda">
+          <span><i class="muestra" style="background: var(--serie-1)"></i>Ingresos</span>
+          <span><i class="muestra" style="background: var(--serie-2)"></i>Costes</span>
+          <span><i class="muestra trazo" style="background: var(--serie-3)"></i>Resultado acumulado</span>
+        </div>
+        <figure id="grafico-mensual"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <h2>La prueba de que cuadra</h2>
+        <p>
+          Los ingresos del modelo contra la maqueta que Control de Gestión ya
+          publica, con la tolerancia derivada del proceso.
+        </p>
+      </div>
+      <div class="tarjeta">
+        <div class="marco-tabla" style="border:0">
+          <table class="datos" id="tabla-reconciliacion"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="contenedor">
+  <div class="lectura">
+    <h2 id="lecciones">Lo que me llevo</h2>
+
+    <p>
+      <strong>El cuello de botella nunca fue la herramienta.</strong> Power BI
+      lleva años pudiendo hacer esto. Lo que faltaba era un modelo de datos en
+      el que apoyarse y una definición de cada línea que resistiera que alguien
+      preguntara de dónde sale.
+    </p>
+
+    <p>
+      <strong>Automatizar obliga a decidir.</strong> Mientras el cierre se hace
+      a mano, las ambigüedades se resuelven sobre la marcha y nadie las escribe.
+      En cuanto lo automatizas tienes que fijarlas: qué cuentas son coste y
+      cuáles gasto, qué pasa con los periodos que el real todavía no cubre. Ese
+      ejercicio vale por sí solo, aunque el dashboard no se llegue a construir.
+    </p>
+
+    <p>
+      <strong>Los controles son el entregable, no el adorno.</strong> La parte
+      que de verdad me permite presentar esto es que, si algo se descuadra, el
+      proceso se detiene y dice dónde. Es lo que convierte un informe bonito en
+      un informe que puedo firmar.
+    </p>
+
+    <p>
+      Si quieres el detalle técnico, está entero y abierto: el
+      <a href="proceso.html">proceso completo</a>, el
+      <a href="datos.html">modelo de datos</a> con el esquema y las consultas, la
+      <a href="powerbi.html">capa de Power BI</a> con las medidas DAX, y el
+      <a href="explorador.html">explorador</a> para mirar las tablas por tu
+      cuenta.
+    </p>
+
+    <aside class="caja-autor">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Sobre el autor</p>
+        <h2 style="margin-top:0">Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional especializado en Control de Gestión, Planeamiento
+          Financiero, Análisis de Datos y Costos con +7 años de experiencia en
+          análisis integral de estructuras de gastos. He tenido a cargo el
+          P&amp;L, el presupuesto y el forecast de operaciones de hasta USD 8
+          millones mensuales y 5 unidades de negocio, en los sectores de
+          logística, minería, construcción y transporte.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Ver el repositorio</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="siguiente">
+      <a href="ia-en-el-cierre.html">
+        <p class="rotulo">Siguiente</p>
+        <strong>Qué puede y qué no puede hacer la IA en un cierre</strong>
+      </a>
+      <a href="defender-las-cifras.html">
+        <p class="rotulo">También</p>
+        <strong>El problema no es generar el informe, es poder defenderlo</strong>
+      </a>
+    </div>
+  </div>
+</div>
+
+</article>
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="filas">
+      <div>
+        <p>
+          <strong>Moisés Retuerto Espinoza</strong> &middot; Control de Gestión,
+          Planeamiento Financiero y Análisis de Datos. El caso procede de un
+          extracto real de SAP CO; los importes están escalados por un factor
+          global y los centros de coste llevan pseudónimo, de modo que márgenes,
+          pesos y variaciones se conservan intactos y ninguna cifra identifica a
+          la empresa.
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#anonimizacion">Cómo se anonimiza</a>.
+        </p>
+        <p>
+          El ejercicio 2026 no tenía real cerrado cuando se extrajo el libro: su
+          escenario de ejecución se genera a partir del perfil mensual observado
+          para poder plantear la comparación objetivo contra ejecución, y el
+          modelo lo marca como tal. No es una previsión.
+        </p>
+      </div>
+      <div class="enlaces-pie">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+        <a href="explorador.html">Explorador de datos</a>
+        <a href="cifras.json">cifras.json</a>
+      </div>
+    </div>
+    <p id="sello"></p>
+  </div>
+</footer>
+
+<script type="module" src="assets/panel-pl.js"></script>
+<script type="module">
+import { recorridoDelDato } from "./assets/figuras.js";
+document.getElementById("figura-recorrido").replaceChildren(recorridoDelDato());
+</script>
+</body>
+</html>

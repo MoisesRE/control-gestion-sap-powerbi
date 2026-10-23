@@ -1,0 +1,162 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "f02048a775e9d8e598f4",
+  "position": {
+    "x": 644,
+    "y": 162,
+    "z": 1000,
+    "height": 276,
+    "width": 620,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Resultado Real"
+                }
+              },
+              "queryRef": "Resultado.Resultado Real",
+              "nativeQueryRef": "Resultado Real"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Resultado Presupuesto"
+                }
+              },
+              "queryRef": "Resultado.Resultado Presupuesto",
+              "nativeQueryRef": "Resultado Presupuesto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Desviacion"
+                }
+              },
+              "queryRef": "Resultado.Desviacion",
+              "nativeQueryRef": "Desviacion"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Ejecucion %"
+                }
+              },
+              "queryRef": "Resultado.Ejecucion %",
+              "nativeQueryRef": "Ejecucion %"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Centro de Coste"
+                    }
+                  },
+                  "Property": "Ambito"
+                }
+              },
+              "queryRef": "Centro de Coste.Ambito",
+              "nativeQueryRef": "Ambito"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Centro de Coste"
+                    }
+                  },
+                  "Property": "Centro de Coste"
+                }
+              },
+              "queryRef": "Centro de Coste.Centro de Coste",
+              "nativeQueryRef": "Centro de Coste"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Real contra presupuesto, por ambito y centro'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

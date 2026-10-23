@@ -1,0 +1,112 @@
+/// Cuenta del plan contable general empresarial peruano, con la jerarquia de presentacion del P&L. Los codigos se conservan en claro porque son un estandar publico que no identifica a la empresa.
+table Cuenta
+	lineageTag: 44f0a54d-8313-495d-ac89-84402b1c5ab6
+
+	/// Cuenta agrupada por Control de Gestion (Cta Agrupada), no la clase de coste cruda de SAP.
+	column 'Codigo Cuenta'
+		dataType: string
+		lineageTag: 83ea0d4c-2059-45b6-9688-9e2fbc9af8f9
+		sourceColumn: cuenta_codigo
+
+	/// Denominacion de la cuenta agrupada.
+	column Cuenta
+		dataType: string
+		lineageTag: d5bf70f7-effb-407a-9cd2-c91a1bceee36
+		sourceColumn: cuenta_nombre
+
+	/// Una de las 27 agrupaciones en que el reporte oficial presenta el resultado. El grupo Ingresos, a secas, es el perimetro de la medida Ingresos: no incluye Ingresos Diversos, igual que la fila INGRESOS de la maqueta.
+	column Grupo
+		dataType: string
+		lineageTag: 1b1fba1b-d03e-421f-8c2c-4805cd2e9330
+		sourceColumn: grupo
+
+	/// Clasificacion COSTO o GASTO del extracto. Vacia en doce cuentas, que el origen no clasifica.
+	column Clase
+		dataType: string
+		lineageTag: 24c84da6-dda3-44b6-9ab7-aa4854a9fa15
+		sourceColumn: clase_costo_gasto
+
+	/// Primer caracter del codigo, que en el plan contable peruano codifica la naturaleza: 6 gastos por naturaleza, 7 ingresos.
+	column 'Clase PCGE'
+		dataType: string
+		lineageTag: f3ec7469-4a3c-4257-882e-de9e10b15e77
+		sourceColumn: clase_pcge
+
+	/// Verdadero para los dos grupos de ingreso. Oculta porque es el perimetro amplio: la medida Costes la usa por complemento, pero Ingresos filtra por Grupo.
+	column 'Es Ingreso'
+		dataType: boolean
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: c97502f6-b6d4-4602-8aec-c8529e2c6da4
+		sourceColumn: es_ingreso
+
+	/// Linea en que la cuenta aparece en el P&L. Ordenada por Orden PL, o el estado de resultados saldria alfabetico.
+	column 'Linea PL'
+		dataType: string
+		lineageTag: ffd08d57-3969-401c-bf1d-62edcda3a070
+		sourceColumn: linea_pl
+		sortByColumn: 'Orden PL'
+
+	/// Orden de presentacion de arriba abajo. Oculta pero disponible en MDX porque ordena la columna Linea PL.
+	column 'Orden PL'
+		dataType: int64
+		isHidden
+		lineageTag: 00551013-b962-486b-a606-50921cede2aa
+		summarizeBy: none
+		sourceColumn: orden_pl
+
+
+	/// Orden de la linea del P&L oficial a la que la cuenta aporta, y donde vive el mapeo. El criterio esta verificado contra el libro de Control de Gestion: la hoja que consolida la unidad de negocio agrupa en estas mismas secciones y separa el coste del gasto con la clasificacion de Maestro Costo Gasto.
+	column 'Orden Linea Oficial' =
+			// El mapeo esta AQUI y no en Linea Oficial, que se limita a traducir el
+			// numero a su rotulo. Puesto al reves -- el nombre clasificando y el orden
+			// leyendo el nombre -- el modelo entra en dependencia circular en cuanto
+			// Linea Oficial se ordena por esta columna, y el refresco falla.
+			//
+			// El orden de las condiciones importa: los grupos con linea propia se
+			// resuelven primero, y solo lo que queda se reparte entre coste y gasto
+			// segun la clase de la cuenta. Asi ninguna cuenta cae en dos lineas ni se
+			// queda sin ninguna, que es lo que hace que la suma cuadre con el resultado.
+			SWITCH(
+			    TRUE(),
+			    'Cuenta'[Grupo] = "Ingresos",                                  1,
+			    'Cuenta'[Grupo] IN { "Ingresos Diversos", "Egresos Diversos" }, 5,
+			    'Cuenta'[Grupo] = "Depreciacion",                              4,
+			    'Cuenta'[Grupo] = "Gasto Financiero",                          6,
+			    'Cuenta'[Grupo] = "Diferencia de Cambio",                      7,
+			    'Cuenta'[Clase] = "COSTO",                                     2,
+			    3
+			)
+		dataType: int64
+		isHidden
+		isAvailableInMdx: true
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7b002
+		summarizeBy: none
+
+	/// Linea del P&L oficial a la que la cuenta aporta. Las siete lineas forman una particion exhaustiva y disjunta del hecho: su suma es el resultado neto al centimo. Se ordena por Orden Linea Oficial para que una matriz agrupada por ella salga en el orden del estado de resultados y no en el alfabetico, que pondria los ingresos en medio de los costes.
+	column 'Linea Oficial' =
+			// Solo traduce el numero a su rotulo. El criterio de clasificacion vive en
+			// Orden Linea Oficial, de modo que cambiar el mapeo se hace en un sitio.
+			SWITCH(
+			    'Cuenta'[Orden Linea Oficial],
+			    1, "Ingresos",
+			    2, "Costos Ventas",
+			    3, "Gastos Adm/Ventas",
+			    4, "Depreciacion",
+			    5, "I/E. Excepcionales",
+			    6, "I/E. Financieros",
+			    7, "Tipo de Cambio"
+			)
+		dataType: string
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7b001
+		summarizeBy: none
+		sortByColumn: 'Orden Linea Oficial'
+
+	partition Cuenta = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select cuenta_codigo, cuenta_nombre, grupo, clase_costo_gasto, clase_pcge, es_ingreso, linea_pl, orden_pl from core.dim_cuenta"])
+				in
+				    Origen
+

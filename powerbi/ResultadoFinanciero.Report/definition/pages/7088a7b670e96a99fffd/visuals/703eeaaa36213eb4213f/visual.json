@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "703eeaaa36213eb4213f",
+  "position": {
+    "x": 16,
+    "y": 162,
+    "z": 1000,
+    "height": 276,
+    "width": 744,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Periodo Contable"
+                    }
+                  },
+                  "Property": "Mes Abrev"
+                }
+              },
+              "queryRef": "Periodo Contable.Mes Abrev",
+              "nativeQueryRef": "Mes Abrev"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Ingresos Real"
+                }
+              },
+              "queryRef": "Resultado.Ingresos Real",
+              "nativeQueryRef": "Ingresos Real"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Ingresos Presupuesto"
+                }
+              },
+              "queryRef": "Resultado.Ingresos Presupuesto",
+              "nativeQueryRef": "Ingresos Presupuesto"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ingresos: real contra presupuesto, por periodo'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explorador de datos — Moisés Retuerto Espinoza</title>
+<meta name="description" content="Las siete tablas que publica el modelo, navegables con filtros, busqueda y ordenacion. Son las mismas cifras que alimentan el estado de resultados.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%2314355f%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%2218%22%20width%3D%224.5%22%20height%3D%227%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2213.75%22%20y%3D%2213%22%20width%3D%224.5%22%20height%3D%2212%22%20rx%3D%221.2%22%20fill%3D%22%23ffffff%22%2F%3E%3Crect%20x%3D%2220.5%22%20y%3D%227%22%20width%3D%224.5%22%20height%3D%2218%22%20rx%3D%221.2%22%20fill%3D%22%236ea3e8%22%2F%3E%3C%2Fsvg%3E">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="contenedor">
+    <a class="marca-sitio" href="index.html">
+      <span class="nombre">Moisés Retuerto Espinoza</span>
+      <span class="cargo">Control de Gestión &middot; Planeamiento Financiero &middot; Análisis de Datos</span>
+    </a>
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+    <nav class="menu" id="menu" aria-label="Principal">
+      <a href="index.html">Inicio</a>
+      <a href="caso.html">El caso</a>
+      <a href="ia-en-el-cierre.html">La IA en el cierre</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qué automatizar</a>
+      <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+      <span class="separador" role="presentation"></span>
+      <a href="proceso.html">Proceso</a>
+      <a href="datos.html">Datos</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="explorador.html">Explorador</a>
+      <span class="separador" role="presentation"></span>
+      <a class="externo" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+      <a class="externo" href="https://github.com/MoisesRE/control-gestion-sap-powerbi">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="contenedor">
+  <div class="portada">
+    <p class="rotulo">Explorador de datos</p>
+    <h1>Las mismas cifras, sin intermediario</h1>
+    <p class="entradilla">
+      Todo lo que publica el modelo, tabla por tabla, con filtros y ordenación.
+      Son exactamente los datos que alimentan el estado de resultados: no hay
+      una copia para enseñar y otra para calcular. Si nunca has visto este
+      modelo, empieza por el recuadro de abajo.
+    </p>
+  </div>
+</div>
+
+<div id="cargando" class="contenedor cargando">Cargando los datos&hellip;</div>
+
+<div id="contenido" hidden>
+  <section style="padding-top: 20px">
+    <div class="contenedor">
+
+      <div class="contexto">
+        <div class="icono" aria-hidden="true">i</div>
+        <div>
+          <h2>Antes de mirar: qué son estos datos</h2>
+          <p>
+            Son el modelo de un caso de ejemplo, no las cuentas de ninguna
+            empresa. Proceden de un extracto real de costes, pero
+            <strong>todos los importes están multiplicados por un factor</strong>
+            y los centros de coste llevan nombres inventados, de modo que los
+            márgenes y las proporciones son realistas y las cifras no
+            corresponden a nadie.
+          </p>
+          <p>Lo que vas a encontrar son cuatro escenarios:</p>
+          <ul>
+            <li><strong>Presupuesto 2025 y 2026</strong>, los doce meses de cada uno.</li>
+            <li><strong>Real 2025</strong>, el ejercicio cerrado completo.</li>
+            <li><strong>Real 2026</strong>, de enero a octubre. Este último está generado
+                a partir del comportamiento observado en 2025, porque cuando se
+                tomó el extracto el ejercicio todavía no tenía cierre.</li>
+          </ul>
+        </div>
+      </div>
+
+      <figure class="figura" style="margin-top:0">
+        <div id="figura-tablas"></div>
+        <figcaption>
+          <strong>Cómo está organizado.</strong> Tres bloques: lo que se
+          presenta, lo que demuestra que cuadra y el detalle de dónde se
+          consume el coste. Pulsa cualquiera de los botones de abajo para abrir
+          esa tabla.
+        </figcaption>
+      </figure>
+
+      <div class="selector-tablas">
+        <p>Elige una tabla</p>
+        <div class="pestanas-datos" id="pestanas" role="tablist" aria-label="Tablas del modelo"></div>
+      </div>
+
+      <div class="cabecera-seccion">
+        <h2 id="titulo-tabla"></h2>
+        <p id="glosa-tabla"></p>
+      </div>
+
+      <div class="controles">
+        <label class="control">
+          <span>Escenario</span>
+          <select id="filtro-escenario"></select>
+        </label>
+        <label class="control">
+          <span>Buscar</span>
+          <input type="search" id="buscar" placeholder="Filtrar por cualquier valor&hellip;" autocomplete="off">
+        </label>
+        <div class="control">
+          <span id="r-filas">Filas</span>
+          <div class="grupo-botones" role="group" aria-labelledby="r-filas">
+            <button type="button" data-limite="50" aria-pressed="true">50</button>
+            <button type="button" data-limite="200" aria-pressed="false">200</button>
+            <button type="button" data-limite="0" aria-pressed="false">Todas</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="marco-tabla">
+        <table class="datos" id="tabla">
+          <caption class="solo-lectores">Contenido de la tabla seleccionada del modelo publicado.</caption>
+        </table>
+        <div id="sin-resultados" class="sin-resultados" hidden>Ningún registro coincide con el filtro.</div>
+      </div>
+
+      <div class="resumen-tabla" id="resumen"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor">
+      <div class="cabecera-seccion">
+        <h2>De dónde sale cada tabla</h2>
+        <p>
+          Ninguna se escribe a mano. Las genera
+          <code>scripts/generar_cifras_web.py</code> desde PostgreSQL, y ese
+          script se niega a escribir si alguna vista de control devuelve filas o
+          si la reconciliación contra la maqueta no cuadra. El fichero completo
+          está en <a href="cifras.json">cifras.json</a>.
+        </p>
+      </div>
+      <div class="marco-tabla">
+        <table class="datos" id="procedencia"></table>
+      </div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<footer class="pie">
+  <div class="contenedor">
+    <div class="filas">
+      <div>
+        <p>
+          <strong>Moisés Retuerto Espinoza</strong> &middot; Control de Gestión,
+          Planeamiento Financiero y Análisis de Datos. El caso procede de un
+          extracto real de SAP CO; los importes están escalados por un factor
+          global y los centros de coste llevan pseudónimo, de modo que márgenes,
+          pesos y variaciones se conservan intactos y ninguna cifra identifica a
+          la empresa.
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#anonimizacion">Cómo se anonimiza</a>.
+        </p>
+        <p>
+          El ejercicio 2026 no tenía real cerrado cuando se extrajo el libro: su
+          escenario de ejecución se genera a partir del perfil mensual observado
+          para poder plantear la comparación objetivo contra ejecución, y el
+          modelo lo marca como tal. No es una previsión.
+        </p>
+      </div>
+      <div class="enlaces-pie">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+        <a href="explorador.html">Explorador de datos</a>
+        <a href="cifras.json">cifras.json</a>
+      </div>
+    </div>
+    <p id="sello"></p>
+  </div>
+</footer>
+
+<script type="module">
+import { cargarDatos, crear, dosDecimales, entero, porcentaje } from "./assets/comun.js";
+import { queHayEnLasTablas } from "./assets/figuras.js";
+
+// Cada bloque del JSON con su nombre de negocio y la vista de la que sale. Las
+// columnas no se declaran: se derivan de los propios datos, de modo que anadir
+// una columna al generador la hace aparecer aqui sin tocar esta pagina.
+const TABLAS = {
+  escenarios: {
+    nombre: "Escenarios",
+    glosa: "La cuenta de resultados agregada de cada escenario: ingresos, costes, resultado y margen del ejercicio completo.",
+    origen: "pl.v_pl_resumen",
+  },
+  pl_oficial: {
+    nombre: "P&L oficial",
+    glosa: "Las siete líneas de importe del estado de resultados, por escenario y periodo. Son una partición exhaustiva del hecho: su suma es el resultado neto al céntimo, y con ellas se componen las treinta y una filas de la plantilla.",
+    origen: "core.fact_escenario + core.dim_cuenta",
+  },
+  mensual: {
+    nombre: "Detalle mensual",
+    glosa: "Ingresos, costes y resultado de cada periodo, con el acumulado del ejercicio.",
+    origen: "pl.v_pl_resumen",
+  },
+  reconciliacion: {
+    nombre: "Reconciliación",
+    glosa: "Los ingresos del modelo contra la maqueta oficial de Control de Gestión, con la tolerancia derivada del redondeo del escalado. Es el control que importa.",
+    origen: "qa.control_reconciliacion",
+  },
+  ejecucion: {
+    nombre: "Ejecución presupuestaria",
+    glosa: "Real contra presupuesto, con el recorte a los periodos realmente cubiertos y sin él. La diferencia entre las dos columnas es la trampa que el proyecto documenta.",
+    origen: "pl.v_ejecucion_presupuestaria",
+  },
+  coste_por_grupo: {
+    nombre: "Coste por grupo",
+    glosa: "En qué se consume el coste, por grupo de gasto. La diferencia de cambio puede salir negativa porque es el neto de un resultado, no un gasto.",
+    origen: "pl.v_pl_mensual",
+  },
+  centros: {
+    nombre: "Centros de coste",
+    glosa: "Los doce centros de mayor coste de cada escenario. Los códigos son pseudónimos derivados por HMAC y los nombres salen de un catálogo ficticio.",
+    origen: "pl.v_resultado_por_centro",
+  },
+};
+
+const ROTULOS = {
+  escenario_clave: "Clave", escenario: "Escenario", tipo_escenario: "Tipo",
+  es_simulado: "Generado", periodos: "Periodos", ingresos: "Ingresos",
+  ingresos_diversos: "Ingresos diversos", costes: "Costes", resultado: "Resultado",
+  margen_pct: "Margen", periodo: "Periodo", etiqueta_mes: "Mes",
+  resultado_acumulado: "Resultado acumulado", ejercicio: "Ejercicio",
+  orden: "Orden", linea: "Línea", importe: "Importe", maqueta: "Maqueta oficial",
+  pipeline: "Pipeline", diferencia: "Diferencia", tolerancia: "Tolerancia",
+  periodos_comparables: "Periodos comparables", periodos_totales: "Periodos totales",
+  real_comparable: "Real comparable", presupuesto_comparable: "Ppto comparable",
+  real_total: "Real total", presupuesto_total: "Ppto total",
+  ejecucion_pct: "Ejecución", ejecucion_pct_sin_recorte: "Ejecución sin recorte",
+  grupo: "Grupo de gasto", puesto: "Puesto", ceco_codigo: "Código",
+  ceco_nombre: "Centro de coste", ambito: "Ámbito",
+};
+
+const estado = { datos: null, tabla: "escenarios", escenario: "", busqueda: "", limite: 50, orden: null, sentido: 1 };
+
+const esPorcentaje = (clave) => clave.endsWith("_pct");
+const esEntero = (clave) => ["periodo", "periodos", "ejercicio", "orden", "puesto",
+                             "periodos_comparables", "periodos_totales"].includes(clave);
+
+function columnasDe(filas) {
+  return filas.length ? Object.keys(filas[0]) : [];
+}
+
+function formatear(valor, clave) {
+  if (valor === null || valor === undefined) return "—";
+  if (typeof valor === "boolean") return valor ? "Sí" : "No";
+  if (typeof valor !== "number") return String(valor);
+  if (esPorcentaje(clave)) return `${dosDecimales(valor)} %`;
+  if (esEntero(clave)) return String(valor);
+  return dosDecimales(valor);
+}
+
+const esNumerica = (valor) => typeof valor === "number";
+
+function filasVisibles() {
+  const todas = estado.datos[estado.tabla] ?? [];
+  const texto = estado.busqueda.trim().toLowerCase();
+  let filas = todas.filter((fila) => {
+    if (estado.escenario && fila.escenario_clave && fila.escenario_clave !== estado.escenario) return false;
+    if (!texto) return true;
+    return Object.values(fila).some((v) => String(v).toLowerCase().includes(texto));
+  });
+  if (estado.orden) {
+    const clave = estado.orden;
+    filas = [...filas].sort((a, b) => {
+      const x = a[clave], y = b[clave];
+      if (typeof x === "number" && typeof y === "number") return (x - y) * estado.sentido;
+      return String(x).localeCompare(String(y), "es") * estado.sentido;
+    });
+  }
+  return filas;
+}
+
+function pintarPestanas() {
+  const caja = document.getElementById("pestanas");
+  caja.replaceChildren();
+  for (const [clave, meta] of Object.entries(TABLAS)) {
+    const filas = estado.datos[clave] ?? [];
+    const boton = crear("button");
+    boton.type = "button";
+    boton.role = "tab";
+    boton.setAttribute("aria-selected", String(clave === estado.tabla));
+    boton.append(crear("span", null, meta.nombre), crear("span", "recuento", entero(filas.length)));
+    boton.addEventListener("click", () => {
+      estado.tabla = clave;
+      estado.orden = null;
+      estado.busqueda = "";
+      document.getElementById("buscar").value = "";
+      pintarTodo();
+    });
+    caja.appendChild(boton);
+  }
+}
+
+function pintarFiltroEscenario() {
+  const select = document.getElementById("filtro-escenario");
+  const filas = estado.datos[estado.tabla] ?? [];
+  const aplica = filas.length && "escenario_clave" in filas[0];
+  select.disabled = !aplica;
+  select.replaceChildren();
+
+  const todos = crear("option", null, aplica ? "Todos" : "No aplica");
+  todos.value = "";
+  select.appendChild(todos);
+  if (!aplica) { estado.escenario = ""; return; }
+
+  for (const escenario of estado.datos.escenarios) {
+    const opcion = crear("option", null, escenario.escenario);
+    opcion.value = escenario.escenario_clave;
+    select.appendChild(opcion);
+  }
+  select.value = estado.escenario;
+}
+
+function pintarTabla() {
+  const tabla = document.getElementById("tabla");
+  const leyenda = tabla.querySelector("caption");
+  tabla.replaceChildren(leyenda);
+
+  const filas = filasVisibles();
+  const columnas = columnasDe(estado.datos[estado.tabla] ?? []);
+  document.getElementById("sin-resultados").hidden = filas.length > 0;
+
+  const cabeza = tabla.createTHead().insertRow();
+  for (const clave of columnas) {
+    const th = crear("th", "ordenable", ROTULOS[clave] ?? clave);
+    th.scope = "col";
+    th.tabIndex = 0;
+    if (estado.orden === clave) th.setAttribute("aria-sort", estado.sentido === 1 ? "ascending" : "descending");
+    const ordenar = () => {
+      // Al reordenar por la misma columna se invierte; al cambiar de columna se
+      // empieza por descendente en las numericas, que es lo que se busca al
+      // ordenar importes.
+      if (estado.orden === clave) estado.sentido *= -1;
+      else {
+        estado.orden = clave;
+        const muestra = (estado.datos[estado.tabla] ?? [])[0]?.[clave];
+        estado.sentido = esNumerica(muestra) ? -1 : 1;
+      }
+      pintarTabla();
+    };
+    th.addEventListener("click", ordenar);
+    th.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); ordenar(); } });
+    cabeza.appendChild(th);
+  }
+
+  const cuerpo = tabla.createTBody();
+  const mostradas = estado.limite ? filas.slice(0, estado.limite) : filas;
+  for (const fila of mostradas) {
+    const tr = cuerpo.insertRow();
+    for (const clave of columnas) {
+      const td = tr.insertCell();
+      const valor = fila[clave];
+      td.textContent = formatear(valor, clave);
+      if (esNumerica(valor)) td.className = "cifra";
+      if (esNumerica(valor) && !esEntero(clave) && valor < 0) td.classList.add("var-mal");
+    }
+  }
+
+  // El resumen cierra el bucle: ensena cuantas filas se ven de cuantas hay y
+  // suma las columnas de importe, de modo que un filtro mal entendido se nota.
+  const resumen = document.getElementById("resumen");
+  resumen.replaceChildren();
+  const total = (estado.datos[estado.tabla] ?? []).length;
+  resumen.appendChild(crear("span", null, `Mostrando ${entero(mostradas.length)} de ${entero(filas.length)} filas filtradas (${entero(total)} en la tabla).`));
+
+  const sumables = columnas.filter((c) => !esPorcentaje(c) && !esEntero(c) && esNumerica(filas[0]?.[c]));
+  for (const clave of sumables) {
+    const suma = filas.reduce((s, f) => s + (f[clave] ?? 0), 0);
+    const nodo = crear("span");
+    nodo.append(`${ROTULOS[clave] ?? clave}: `, crear("strong", null, dosDecimales(suma)));
+    resumen.appendChild(nodo);
+  }
+}
+
+function pintarProcedencia() {
+  const tabla = document.getElementById("procedencia");
+  tabla.replaceChildren();
+  const cabeza = tabla.createTHead().insertRow();
+  for (const titulo of ["Tabla", "Filas", "Vista de origen", "Qué contiene"]) {
+    const th = crear("th", null, titulo);
+    th.scope = "col";
+    cabeza.appendChild(th);
+  }
+  const cuerpo = tabla.createTBody();
+  for (const [clave, meta] of Object.entries(TABLAS)) {
+    const fila = cuerpo.insertRow();
+    fila.insertCell().textContent = meta.nombre;
+    const n = fila.insertCell();
+    n.className = "cifra";
+    n.textContent = entero((estado.datos[clave] ?? []).length);
+    const origen = fila.insertCell();
+    origen.style.textAlign = "left";
+    origen.appendChild(crear("code", null, meta.origen));
+    const glosa = fila.insertCell();
+    glosa.style.textAlign = "left";
+    glosa.style.whiteSpace = "normal";
+    glosa.textContent = meta.glosa;
+  }
+}
+
+function pintarTodo() {
+  const meta = TABLAS[estado.tabla];
+  document.getElementById("titulo-tabla").textContent = meta.nombre;
+  document.getElementById("glosa-tabla").textContent = meta.glosa;
+  pintarPestanas();
+  pintarFiltroEscenario();
+  pintarTabla();
+}
+
+async function arrancar() {
+  estado.datos = await cargarDatos("cifras.json", "cargando");
+  if (!estado.datos) return;
+
+  document.getElementById("filtro-escenario").addEventListener("change", (e) => {
+    estado.escenario = e.target.value;
+    pintarTabla();
+  });
+  document.getElementById("buscar").addEventListener("input", (e) => {
+    estado.busqueda = e.target.value;
+    pintarTabla();
+  });
+  for (const boton of document.querySelectorAll("[data-limite]")) {
+    boton.addEventListener("click", () => {
+      estado.limite = Number(boton.dataset.limite);
+      for (const otro of document.querySelectorAll("[data-limite]")) {
+        otro.setAttribute("aria-pressed", String(otro === boton));
+      }
+      pintarTabla();
+    });
+  }
+
+  document.getElementById("contenido").hidden = false;
+  document.getElementById("figura-tablas").replaceChildren(queHayEnLasTablas());
+  pintarTodo();
+  pintarProcedencia();
+  void porcentaje;
+}
+
+arrancar();
+</script>
+</body>
+</html>

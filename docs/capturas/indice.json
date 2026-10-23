@@ -1,0 +1,30 @@
+{
+  "capturado_utc": "2026-10-22T15:45:18+00:00",
+  "paginas": [
+    {
+      "fichero": "estado-de-resultados.png",
+      "nombre": "Estado de resultados",
+      "oculta": false
+    },
+    {
+      "fichero": "cuenta-de-resultados.png",
+      "nombre": "Cuenta de resultados",
+      "oculta": false
+    },
+    {
+      "fichero": "ejecucion-presupuestaria.png",
+      "nombre": "Ejecucion presupuestaria",
+      "oculta": false
+    },
+    {
+      "fichero": "analisis-por-centro.png",
+      "nombre": "Analisis por centro",
+      "oculta": false
+    },
+    {
+      "fichero": "control-y-reconciliacion.png",
+      "nombre": "Control y reconciliacion",
+      "oculta": true
+    }
+  ]
+}

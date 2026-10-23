@@ -1,0 +1,40 @@
+[project]
+name = "finanzas-etl"
+version = "1.0.0"
+description = "Pipeline analitico sobre un extracto de costes SAP CO: Excel -> esquema estrella -> PostgreSQL -> Power BI"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2",
+    "pyarrow>=16",
+    "SQLAlchemy>=2.0",
+    "psycopg2-binary>=2.9",
+    "python-dotenv>=1.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6"]
+
+[project.scripts]
+finanzas-etl = "finanzas_etl.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM", "PD"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "postgres: necesita una base PostgreSQL con el modelo cargado; se salta si no la hay",
+]
