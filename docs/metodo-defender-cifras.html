@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>El problema no es generar el informe, es poder defenderlo</title>
+<meta name="description" content="Conciliación, tolerancias, controles y trazabilidad para respaldar un informe financiero.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="tira-nav" aria-label="Principal">
+  <div class="contenedor">
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qu&eacute; automatizar</a>
+      <a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a>
+      <details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navegacion-articulos" aria-label="Artículos de Defender las cifras"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="defender-las-cifras.html">Defender las cifras</a></div><span class="navegacion-articulos-contador">Artículo 04 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="calidad-datos-financieros.html" title="Antes del cuadre: integridad del dato financiero"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Calidad de datos</span></a><a class="navegacion-articulos-opcion" href="trazabilidad-cifras-financieras.html" title="Del indicador al asiento: una cifra que se puede reconstruir"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Trazabilidad</span></a><a class="navegacion-articulos-opcion" href="analitica-excepciones.html" title="Analítica de excepciones: dónde investigar primero"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Excepciones</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="El problema no es generar el informe, es poder defenderlo"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Defender el informe</span></span></div></div></nav>
+<main>
+<article>
+<div class="contenedor" id="articulo-controles">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo"><span class="tema">Artículo 04 · Caso práctico</span></p>
+    <h1>El problema no es generar el informe, es poder defenderlo</h1>
+    <p class="entradilla">
+      Automatizar un reporte es la parte fácil. La difícil llega en la reunión,
+      cuando alguien señala una celda y pregunta de dónde sale. Estos son los
+      cuatro controles que hacen que esa pregunta tenga respuesta, con lo que
+      encontraron al aplicarlos a un caso real.
+    </p>
+    <div class="meta-articulo">
+      <span>Lectura de 10 minutos</span>
+      <span>&middot;</span>
+      <span>Control de gestión, auditoría y reporting</span>
+    </div>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">La cadena</p>
+      <h2>De la cifra al apunte contable</h2>
+      <p class="glosa-grafico">La trazabilidad útil no termina en el informe del que salió el número: baja hasta el asiento que lo compone.</p>
+      <figure id="figura-trazabilidad"></figure>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="articulo">
+    <div class="lectura">
+
+
+    <h2 id="la-pregunta">La pregunta que desarma un dashboard</h2>
+
+    <p>
+      Hay un momento concreto en el que se decide si un reporte automatizado
+      sirve o no. No es cuando se presenta: es treinta segundos después, cuando
+      alguien con años de oficio mira una cifra, frunce el ceño y dice que no le
+      cuadra con lo que tenía en la cabeza.
+    </p>
+
+    <p>
+      En ese momento solo hay dos posibilidades. O puedes recorrer el camino
+      hacia atrás —de la cifra del gráfico al apunte contable que la
+      compone— o no puedes, y entonces el reporte queda en suspenso
+      indefinidamente por mucho que esté bien.
+    </p>
+
+    <blockquote>
+      Un informe financiero que no enseña su cuadre pide un acto de fe.
+    </blockquote>
+
+    <p>
+      Esto se ha vuelto más urgente, no menos, con las herramientas actuales.
+      Generar un informe de aspecto profesional es hoy cuestión de minutos.
+      Lo que no ha cambiado de precio es poder sostenerlo.
+    </p>
+
+    <h2 id="reconciliar">1. Reconciliar contra la cifra que ya se publica</h2>
+
+    <p>
+      Es el control que lo ordena todo, y el que más se salta. Un pipeline no se
+      valida porque termine sin error: se valida porque sus cifras coinciden con
+      el reporte que la organización ya publica.
+    </p>
+
+    <p>
+      En mi caso eso significó comparar, en cada ejecución, los ingresos
+      calculados mes a mes contra la línea correspondiente de la maqueta oficial
+      de Control de Gestión. Treinta y seis periodos, tres escenarios. Si
+      cualquiera de ellos se sale de tolerancia, <strong>el proceso se detiene
+      antes de escribir nada</strong>.
+    </p>
+
+    <p>
+      Detenerse es lo importante. Un control que avisa pero deja pasar la carga
+      se convierte en un aviso que todo el mundo aprende a ignorar en tres
+      meses.
+    </p>
+
+    <h3>Un detalle que cuesta caro: localizar por rótulo, no por posición</h3>
+    <p>
+      La maqueta tiene las columnas de cada escenario en una banda concreta de
+      la hoja. La primera versión del control las leía por posición. Basta con
+      que un analista inserte una columna para que el control empiece a leer el
+      escenario de al lado <strong>sin dar ningún error</strong>: sigue
+      cuadrando contra algo, solo que contra lo que no es. Ahora la banda se
+      localiza por su rótulo.
+    </p>
+
+    <h2 id="tolerancias">2. Derivar la tolerancia, no elegirla</h2>
+
+    <p>
+      Toda comparación de importes necesita una tolerancia, porque el redondeo
+      existe. La pregunta es de dónde sale ese número.
+    </p>
+
+    <p>
+      La respuesta habitual —«pongamos cien soles, que parece razonable»— tiene
+      un problema estructural: cuando un día el control falla, la tentación es
+      subirla. Y un umbral que se ajusta hasta que el control pase ya no mide
+      nada; solo documenta que alguien quería publicar.
+    </p>
+
+    <p>
+      La alternativa es derivarla del proceso. En mi pipeline los importes se
+      redondean a céntimos, de modo que cada uno se desvía como máximo medio
+      céntimo de su valor exacto. Sumar <em>n</em> importes puede desviar el
+      total hasta <em>n</em> medias centésimas. Por tanto:
+    </p>
+
+    <div class="aviso">
+      <p>
+        <strong>tolerancia del periodo = número de apuntes &times; 0,005</strong>,
+        con un suelo para los periodos de muy pocas filas.
+      </p>
+      <p>
+        No es un número elegido: es una cota. Si el control falla, no se puede
+        subir sin cambiar el proceso que la genera, que es justo el efecto que
+        se busca.
+      </p>
+    </div>
+
+    <p>
+      El mismo razonamiento aplica al revés. Donde el proceso <strong>no</strong>
+      pierde precisión, la tolerancia debe ser cero. El trayecto de mi fichero
+      intermedio a la base de datos no redondea nada, así que ese control exige
+      igualdad estricta: cualquier diferencia sería un fallo de transferencia y
+      una tolerancia solo serviría para esconderlo.
+    </p>
+
+    <h2 id="fallar">3. Controles que puedan fallar de verdad</h2>
+
+    <p>
+      Esta es la idea que más me ha cambiado la forma de trabajar.
+      <strong>Un control que no puede fallar no es un control</strong>: es
+      decoración que da una falsa sensación de rigor.
+    </p>
+
+    <p>
+      Hay dos formas de caer en ello. La primera es comprobar algo que el
+      sistema ya impide por construcción. En mi modelo, las claves foráneas
+      están declaradas en la base de datos, de modo que una referencia huérfana
+      no puede llegar a existir; una comprobación que las buscara sería incapaz
+      de devolver una sola fila. Suena a rigor y no mide nada.
+    </p>
+
+    <p>
+      La segunda es más sutil: comprobar que el proceso funciona cuando los
+      datos están bien. Eso es lo fácil. Lo que demuestra algo es lo contrario:
+    </p>
+
+    <ul>
+      <li>Alterar un importe y comprobar que la reconciliación lo detecta.</li>
+      <li>Declarar mal los periodos cubiertos y ver si salta el control.</li>
+      <li>Insertar un periodo de otro ejercicio y comprobar que se rechaza.</li>
+      <li>Cambiar el perímetro de ingresos y verificar que el cuadre se rompe.</li>
+    </ul>
+
+    <p>
+      En mi proyecto esas pruebas rompen el modelo a propósito dentro de una
+      transacción que después se deshace. Son dieciséis, y existen porque un
+      control del que no sabes si salta cuando debe no te protege de nada.
+    </p>
+
+    <h2 id="trazabilidad">4. Trazabilidad hasta la fila, no hasta el gráfico</h2>
+
+    <p>
+      Mucha herramienta de reporting promete trazabilidad y lo que ofrece es
+      saber de qué <em>dashboard</em> salió el número. Eso no responde la
+      pregunta de la reunión.
+    </p>
+
+    <p>
+      La trazabilidad útil llega hasta el apunte. En este modelo, cualquier
+      cifra del estado de resultados se puede descomponer hacia abajo: línea del
+      P&amp;L, grupo de gasto, cuenta contable, centro de coste, periodo y, al
+      final, los apuntes individuales que la forman. Y esa descomposición es
+      exhaustiva: las siete líneas de importe del P&amp;L oficial
+      <strong>suman el resultado neto al céntimo</strong>, de modo que no hay
+      ninguna partida refugiada en un «otros» sin etiquetar.
+    </p>
+
+    <p>
+      Lo puedes comprobar tú mismo. En el
+      <a href="explorador.html">explorador de datos</a>, filtra la tabla del
+      P&amp;L oficial por un escenario: la suma de los importes que aparece
+      abajo es exactamente el resultado de ese ejercicio.
+    </p>
+    <h3>El contraste por dos caminos</h3>
+    <p>
+      Hay un control más que vale su peso: calcular la misma cifra dos veces por
+      vías independientes. En mi caso la base de datos agrega el detalle con
+      SQL y el modelo de Power BI lo recompone con DAX en su propio motor. Si
+      las dos coinciden al céntimo, un error de modelado tendría que haberse
+      repetido idéntico en los dos sitios para pasar desapercibido. Esta web
+      añade un tercer camino, recomponiendo el estado de resultados en el
+      navegador.
+    </p>
+
+    <h2 id="encontro">Lo que encontraron estos controles</h2>
+
+    <p>
+      La prueba de que un control sirve es lo que encuentra. Estos son fallos
+      reales de mi propio trabajo, detectados por los controles y no por una
+      revisión:
+    </p>
+
+    <ul>
+      <li>
+        <strong>El patrón de comparación equivocado.</strong> Comparaba los
+        ingresos contra una fila que era el presupuesto con enero sobrescrito
+        por el real. Once de doce meses descuadraron y el proceso se detuvo
+        antes de escribir nada.
+      </li>
+      <li>
+        <strong>El nulo y la cadena vacía eran el mismo campo.</strong> El
+        cargador los escribía igual. Ningún control falló, porque hoy ninguna
+        columna trae cadenas vacías: era un fallo latente que habría aparecido
+        meses después, lejos de su causa. Lo encontré escribiendo la prueba, no
+        ejecutando el proceso.
+      </li>
+      <li>
+        <strong>Tres medidas que inventaban datos.</strong> Al restar, un valor
+        ausente se trata como cero, y eso basta: la variación interanual daba al
+        primer ejercicio del modelo una subida desde la nada.
+      </li>
+      <li>
+        <strong>El total decía DESCUADRE.</strong> La tarjeta que existe para
+        demostrar que todo cuadra comparaba cuatro escenarios contra un patrón
+        que solo cubre tres. Un escenario que nadie presupuestó no descuadra
+        contra la maqueta: es que no está en ella.
+      </li>
+      <li>
+        <strong>Una afirmación falsa en mi propia documentación.</strong> Había
+        escrito que el escalado conservaba los ratios «exactamente». Dos pruebas
+        demostraron que no. Corregí la afirmación, no la prueba.
+      </li>
+    </ul>
+
+    <p>
+      Ninguno de estos fallos era visible mirando el informe terminado. Todos
+      habrían llegado a una reunión.
+    </p>
+
+    <h2 id="checklist">La lista que uso antes de publicar</h2>
+
+    <ol>
+      <li>
+        <strong>¿Contra qué cifra ya publicada cuadra esto?</strong> Si no hay
+        ninguna, todavía no es un reporte: es una propuesta.
+      </li>
+      <li>
+        <strong>¿De dónde sale la tolerancia?</strong> Si la respuesta es «nos
+        pareció razonable», no es una tolerancia.
+      </li>
+      <li>
+        <strong>¿He visto fallar este control alguna vez?</strong> Si nunca ha
+        fallado, rómpelo a propósito y comprueba que salta.
+      </li>
+      <li>
+        <strong>¿Puedo llegar desde la cifra hasta el apunte?</strong> Hasta la
+        fila, no hasta el informe.
+      </li>
+      <li>
+        <strong>¿Suman las partes el total?</strong> Sin «otros» sin etiquetar.
+      </li>
+      <li>
+        <strong>¿Puedo reproducirlo desde el origen?</strong> Si no sabes
+        regenerar la cifra, has escondido el trabajo manual, no lo has
+        eliminado.
+      </li>
+    </ol>
+
+    <p>
+      Seis preguntas. En mi experiencia, la primera y la tercera son las que más
+      incomodan, y por eso son las que más valen.
+    </p>
+
+    <aside class="caja-autor">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Sobre el autor</p>
+        <h2>Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional con m&aacute;s de 7 a&ntilde;os de experiencia en Control de Gesti&oacute;n y
+          Planeamiento Financiero en los sectores de servicios, log&iacute;stica,
+          miner&iacute;a y construcci&oacute;n. Experto en transformar grandes vol&uacute;menes de
+          datos en insights accionables (Power BI, SQL, Python) para optimizar
+          costos y potenciar la rentabilidad del negocio.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="explorador.html">Explorar los datos</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="siguiente">
+      <a href="caso.html">
+        <p class="rotulo">El caso</p>
+        <strong>De un Excel de 165 MB a un P&amp;L automatizado</strong>
+      </a>
+      <a href="metodo-ia-en-cierre.html">
+        <p class="rotulo">También</p>
+        <strong>Qué puede y qué no puede hacer la IA en un cierre</strong>
+      </a>
+    </div>
+    </div>
+
+    <aside class="rail">
+      <div class="bloque">
+        <h2>En esta página</h2>
+        <ol>
+          <li><a href="#la-pregunta">La pregunta que desarma un dashboard</a></li>
+          <li><a href="#reconciliar">1. Reconciliar contra la cifra oficial</a></li>
+          <li><a href="#tolerancias">2. Derivar la tolerancia</a></li>
+          <li><a href="#fallar">3. Controles que puedan fallar</a></li>
+          <li><a href="#trazabilidad">4. Trazabilidad hasta la fila</a></li>
+          <li><a href="#encontro">Lo que encontraron estos controles</a></li>
+          <li><a href="#checklist">La lista antes de publicar</a></li>
+        </ol>
+      </div>
+      <div class="bloque">
+        <h2>Del caso real</h2>
+        <div class="dato">
+          <span class="numero">36 de 36</span>
+          <span class="glosa">periodos dentro de tolerancia</span>
+        </div>
+        <div class="dato">
+          <span class="numero">0,005</span>
+          <span class="glosa">la media centésima que deriva el umbral</span>
+        </div>
+        <div class="dato">
+          <span class="numero">16</span>
+          <span class="glosa">pruebas que rompen el modelo a propósito</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+
+</article>
+</main>
+
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { trazabilidad } from "./assets/figuras.js";
+document.getElementById("figura-trazabilidad").replaceChildren(trazabilidad());
+</script>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

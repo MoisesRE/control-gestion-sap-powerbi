@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Refresh correcto, reporte desactualizado | Qué puede salir mal</title>
+<meta name="description" content="Cómo revisar vigencia, advertencias e historial de actualización antes de usar un reporte financiero en Power BI.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; puede salir mal"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-puede-salir-mal.html">Qu&#233; puede salir mal</a></div><span class="navegacion-articulos-contador">Artículo 01 de 04</span></div><div class="navegacion-articulos-lista"><span class="navegacion-articulos-opcion" aria-current="page" title="Refresh correcto, reporte desactualizado"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Refresh ≠ listo</span></span><a class="navegacion-articulos-opcion" href="revisar-finanzas-antes-publicar.html" title="El reporte cuadra, pero algo está mal"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Revisión previa</span></a><a class="navegacion-articulos-opcion" href="corregir-error-reporte-publicado.html" title="Se publicó un error: cómo contenerlo y corregirlo"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Corregir un error</span></a><a class="navegacion-articulos-opcion" href="postmortem-errores-reporte-financiero.html" title="Qué puede salir mal al automatizar un reporte financiero"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Postmortem</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 01 · Señales · 27 de octubre de 2026</span></p><h1>Refresh correcto, reporte desactualizado</h1><p class="entradilla">En Power BI, ver una actualización reciente no demuestra por sí sola que el reporte esté listo para una decisión. Hay que confirmar qué se actualizó, hasta qué fecha llegan los datos y si el proceso dejó advertencias que afecten cálculos o visuales.</p><div class="meta-articulo"><span>Lectura de 5 minutos</span><span>&middot;</span><span>Para usuarios y responsables de reportes</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>“Completado” describe el proceso, no valida la cifra</h2><p>Un refresh carga datos o sincroniza un modelo. No confirma que el origen contenga el cierre esperado, que el último periodo esté completo ni que las reglas del reporte sigan representando el negocio. La fecha y el contenido del dato se revisan aparte.</p></div></div>
+<figure class="tarjeta" aria-labelledby="flujo-caption"><svg viewBox="0 0 1000 340" role="img" aria-labelledby="flujo-title flujo-desc"><title id="flujo-title">Comprobar una actualización de Power BI antes de usar el reporte</title><desc id="flujo-desc">El dato de origen pasa por la actualización del modelo y llega al reporte. El estado técnico debe acompañarse de una revisión de fecha de corte, cobertura, advertencias y conciliación.</desc><defs><marker id="flecha-refresh" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="72" width="190" height="95" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="120" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Origen</text><text x="120" y="137" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">archivo · ERP · SQL</text><path d="M220 120 H275" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-refresh)"/><rect x="290" y="72" width="195" height="95" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="387" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Refresh del modelo</text><text x="387" y="137" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">estado + hora + alertas</text><path d="M490 120 H545" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-refresh)"/><rect x="560" y="72" width="185" height="95" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="652" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Reporte</text><text x="652" y="137" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">modelo y visuales</text><path d="M750 120 H805" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-refresh)"/><rect x="820" y="72" width="155" height="95" rx="15" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="897" y="108" text-anchor="middle" font-size="16" font-weight="700" fill="var(--diagrama-cobre-texto)">¿Está listo?</text><text x="897" y="137" text-anchor="middle" font-size="13" fill="var(--diagrama-cobre-texto)">validación funcional</text><rect x="178" y="220" width="644" height="68" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="500" y="248" text-anchor="middle" font-size="15" font-weight="700" fill="var(--cabecera)">Confirmar fecha de corte · filas esperadas · advertencias · totales de control</text><text x="500" y="273" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">La señal técnica y la revisión financiera responden preguntas distintas</text><path d="M387 173 V203 H500 V215" fill="none" stroke="var(--diagrama-conector)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#flecha-refresh)"/><path d="M652 173 V203 H500" fill="none" stroke="var(--diagrama-conector)" stroke-width="2" stroke-dasharray="6 5"/></svg><figcaption id="flujo-caption">Flujo original de revisión. Verifica por separado el resultado técnico de la carga y la integridad del periodo presentado.</figcaption></figure>
+</div>
+<div class="contenedor"><div class="lectura">
+<h2>Cuatro comprobaciones antes de compartir</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Señal</th><th>Qué puede significar</th><th>Qué revisar</th></tr></thead><tbody><tr><td>Hora de actualización reciente</td><td>El modelo ejecutó un refresh, pero puede haber cargado un corte anterior o un origen parcial</td><td>Fecha máxima de transacción y periodo esperado en el origen</td></tr><tr><td>Estado “Completado” con advertencias</td><td>Una medida, columna, relación o tipo de dato puede fallar o devolver blancos inesperados</td><td>Detalle de advertencias y visuales o cálculos afectados</td></tr><tr><td>Visual antiguo abierto en navegador</td><td>La consulta o la página puede no haber actualizado junto con el modelo</td><td>Recargar los visuales y confirmar hora visible de corte</td></tr><tr><td>Caída brusca de filas o importes</td><td>Filtro, archivo, permiso, esquema o periodo puede haber cambiado</td><td>Conteos, totales de control y diferencias frente a la fuente</td></tr></tbody></table></div>
+<p>La documentación de Microsoft explica que los modelos en modo Import almacenan una copia del dato y requieren actualizarse para recoger los cambios del origen. También describe casos de refresh completado con advertencias: el estado puede ser “Completed” y, a la vez, una medida afectada puede devolver errores o resultados en blanco. Por eso el estado de ejecución es una señal útil, pero no sustituye las validaciones funcionales.</p>
+<h2>Marca la vigencia dentro del propio reporte</h2>
+<p>Muestra una fecha de corte entendible para quien decide: por ejemplo, “movimientos recibidos hasta el 26 de octubre, 18:00”. Si hay varias fuentes, indica la fecha máxima de cada una o utiliza una regla común y explícita. Evita mostrar solo “actualizado hoy”: la fecha del refresh no equivale necesariamente a la fecha de los datos.</p>
+<p>Para reportes de cierre, define antes qué cobertura debe estar completa: sociedades, centros, cuentas, monedas y periodos. Un control de filas o un total de cuadre ayuda a detectar pérdidas inesperadas, pero debe compararse con una fuente de control y con el corte acordado.</p>
+<h2>Si aparece una advertencia</h2>
+<ol><li>Abre el historial de actualización y revisa los detalles de cada intento, no solo el último estado.</li><li>Identifica si la advertencia afecta una tabla, medida, relación o visual usado para decidir.</li><li>Compara el periodo y los totales con la fuente o con una salida de control.</li><li>Si no puedes confirmar integridad y cobertura, marca el reporte como pendiente de validación y comunica qué dato está en revisión.</li><li>Registra la causa y vuelve a ejecutar las comprobaciones después de corregirla.</li></ol>
+<blockquote>La fecha del último refresh responde cuándo corrió el proceso. La fecha de corte y los controles responden si el reporte sirve para decidir.</blockquote>
+<div class="fuentes"><h2>Fuentes</h2><ol><li><a href="https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-data">Microsoft Learn, “Data refresh in Power BI”</a>. Documentación oficial consultada el 27 de octubre de 2026 sobre modo Import, historial de refresh, intentos fallidos y advertencias.</li><li><a href="https://learn.microsoft.com/en-us/power-bi/connect-data/refresh-troubleshooting-refresh-scenarios">Microsoft Learn, “Troubleshoot refresh scenarios”</a>. Guía técnica oficial para diagnosticar fallos de actualización.</li></ol><p class="glosa-grafico">Diagrama y matriz de revisión originales. Las comprobaciones se adaptan al modelo, al modo de conexión y a los controles del proceso.</p></div>
+<div class="siguiente"><a href="que-puede-salir-mal.html"><p class="rotulo">Sección</p><strong>Volver a Qué puede salir mal</strong></a><a href="revisar-finanzas-antes-publicar.html"><p class="rotulo">Artículo 02</p><strong>Revisar clasificación y supuestos</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

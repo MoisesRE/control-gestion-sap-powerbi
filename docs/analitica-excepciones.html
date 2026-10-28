@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Analítica de excepciones: dónde investigar primero</title>
+<meta name="description" content="Cómo aplicar pruebas analíticas a movimientos financieros, priorizar excepciones y conservar evidencia sin confundir una alerta con una conclusión.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Defender las cifras"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="defender-las-cifras.html">Defender las cifras</a></div><span class="navegacion-articulos-contador">Artículo 03 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="calidad-datos-financieros.html" title="Antes del cuadre: integridad del dato financiero"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Calidad de datos</span></a><a class="navegacion-articulos-opcion" href="trazabilidad-cifras-financieras.html" title="Del indicador al asiento: una cifra que se puede reconstruir"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Trazabilidad</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Analítica de excepciones: dónde investigar primero"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Excepciones</span></span><a class="navegacion-articulos-opcion" href="metodo-defender-cifras.html" title="El problema no es generar el informe, es poder defenderlo"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Defender el informe</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 03 · Revisión · 27 de octubre de 2026</span></p><h1>Analítica de excepciones: dónde investigar primero</h1><p class="entradilla">Los equipos financieros manejan más movimientos de los que pueden revisar uno por uno. Las pruebas analíticas ayudan a ordenar la atención; la evidencia determina si un movimiento es correcto, un error o requiere escalarse.</p><div class="meta-articulo"><span>Lectura de 5 minutos</span><span>&middot;</span><span>Para contabilidad, control interno y auditoría</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>Una excepción es una señal para revisar</h2><p>Un registro fuera del patrón puede tener una explicación legítima: cierre tardío, compra extraordinaria o cambio de proveedor. El propósito del análisis es encontrar dónde preguntar y guardar el resultado de la revisión, no asignar una causa sin investigar.</p></div></div>
+<figure class="tarjeta" aria-labelledby="excepciones-caption"><svg viewBox="0 0 1000 340" role="img" aria-labelledby="excepciones-title excepciones-desc"><title id="excepciones-title">Del universo de movimientos a una revisión documentada</title><desc id="excepciones-desc">Las transacciones completas pasan por pruebas de reglas y patrones. El resultado son excepciones priorizadas que una persona contrasta con documentos y clasifica como justificadas, corregibles o escalables.</desc><defs><marker id="flecha-excepciones" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="88" width="200" height="130" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="125" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="var(--cabecera)">Movimientos</text><text x="125" y="159" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">población del periodo</text><text x="125" y="184" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">fuentes conciliadas</text><path d="M231 153 H287" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-excepciones)"/><rect x="302" y="65" width="215" height="176" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="409" y="105" text-anchor="middle" font-size="18" font-weight="700" fill="var(--cabecera)">Pruebas</text><text x="409" y="137" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">reglas y umbrales</text><text x="409" y="162" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">duplicados · corte</text><text x="409" y="187" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">tendencias · valores</text><text x="409" y="215" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">criterios versionados</text><path d="M523 153 H579" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-excepciones)"/><rect x="594" y="88" width="165" height="130" rx="16" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="676" y="128" text-anchor="middle" font-size="18" font-weight="700" fill="var(--diagrama-cobre-texto)">Alertas</text><text x="676" y="159" text-anchor="middle" font-size="14" fill="var(--diagrama-cobre-texto)">ordenadas por</text><text x="676" y="184" text-anchor="middle" font-size="14" fill="var(--diagrama-cobre-texto)">importe y riesgo</text><path d="M765 153 H821" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-excepciones)"/><rect x="836" y="65" width="140" height="176" rx="16" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="906" y="105" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-verde-fuerte)">Revisión</text><text x="906" y="137" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">documento</text><text x="906" y="162" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">causa</text><text x="906" y="187" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">acción</text><text x="500" y="292" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">La alerta no decide: el resultado final necesita contexto, evidencia y responsable.</text></svg><figcaption id="excepciones-caption">Proceso original de revisión. La priorización puede combinar reglas determinísticas y modelos, con explicación y resultado documentado por cada alerta.</figcaption></figure></div>
+<div class="contenedor"><div class="lectura">
+<h2>Pruebas que suelen encontrar preguntas útiles</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Señal</th><th>Qué podría estar ocurriendo</th><th>Qué revisar</th></tr></thead><tbody><tr><td>Mismo proveedor, número e importe repetidos</td><td>Duplicado, anticipo o factura corregida</td><td>Documento, referencia, fecha de contabilización y reversa</td></tr><tr><td>Asiento manual cerca del cierre</td><td>Ajuste previsto, reclasificación o corrección tardía</td><td>Usuario, soporte, aprobación, cuenta y contrapartida</td></tr><tr><td>Importe o margen fuera de su rango habitual</td><td>Operación atípica, mezcla de productos o imputación errónea</td><td>Base de comparación, volumen, precio, centro y fuente original</td></tr><tr><td>Movimiento con fecha fuera del periodo esperado</td><td>Corte incorrecto o documento registrado después del cierre</td><td>Fecha de servicio, factura, recepción y periodo contable</td></tr></tbody></table></div>
+<h2>Cómo ordenar una cola de alertas</h2>
+<p>Una alerta puede tomar en cuenta el importe, el riesgo de la cuenta, el momento del registro, el historial del usuario y la posibilidad de reversa. Los criterios deben quedar visibles y tener una versión conocida; si se cambia el umbral, hay que conservar qué versión evaluó cada corrida.</p>
+<p>Un primer prototipo puede usar reglas sencillas y reproducibles: coincidencia exacta de campos para duplicados, fecha de contabilización posterior al corte, importe por encima de un umbral o variación contra la media del mismo mes en años anteriores. Luego se revisa una muestra de alertas y también una muestra de registros que no fueron señalados. Así se descubre si la regla produce ruido o está dejando pasar casos que deberían salir.</p>
+<h2>De la anomalía a una conclusión defendible</h2>
+<ol><li><strong>Confirmar la cobertura.</strong> La población analizada debe conciliar con el total del sistema fuente.</li><li><strong>Aplicar y registrar las reglas.</strong> Guardar el periodo, versión, filtros y número de excepciones.</li><li><strong>Revisar por prioridad.</strong> Empezar por el riesgo y el impacto potencial, no por el orden del archivo.</li><li><strong>Clasificar con evidencia.</strong> Justificada, corregida o escalada; cada decisión enlazada con su respaldo.</li><li><strong>Mejorar la prueba.</strong> Analizar causas de falsos positivos y errores que la regla no detectó.</li></ol>
+<p>La IA puede ayudar a agrupar descripciones parecidas, encontrar documentos relacionados o resumir casos largos. La decisión sobre una alerta sensible debe apoyarse en los documentos y las reglas del negocio. El FRC encontró que en reportes corporativos la detección de anomalías y la preparación de información son usos de IA centrados en tareas concretas; también destaca la necesidad de calidad de datos y controles de gobierno.</p>
+<p>La IAASB publicó en agosto de 2026 borradores de revisión de ISA 500 y ISA 520 para consulta pública. Las propuestas tratan la evaluación de evidencia y los procedimientos analíticos en entornos con mayor uso de tecnología. Son propuestas, todavía no requisitos finales.</p>
+<blockquote>Más alertas no significan mejor control. El control mejora cuando cada señal tiene una regla explicable y una resolución documentada.</blockquote>
+<div class="fuentes"><h2>Fuentes recientes</h2><ol><li><a href="https://www.iaasb.org/publications/proposed-revisions-audit-evidence-risk-response-isa-330-isa-500-isa-520">IAASB, Proposed Revisions for Audit Evidence &amp; Risk Response</a>, 5 de agosto de 2026. Borradores de ISA 330, ISA 500 y ISA 520, abiertos a comentarios hasta diciembre.</li><li><a href="https://www.frc.org.uk/library/research-and-insights/the-use-of-artificial-intelligence-technologies-in-corporate-reporting/">Financial Reporting Council y Lancaster University, The use of AI technologies in corporate reporting</a>, investigación publicada en 2026 sobre usos concretos, datos, controles y responsabilidad.</li><li><a href="https://www.gao.gov/financial-audit-manual">U.S. GAO y CIGIE, Financial Audit Manual</a>, revisiones de junio y julio de 2026. Incluye procedimientos de riesgo, evaluación de controles y documentación de muestreo para auditorías federales.</li></ol><p class="glosa-grafico">Diagrama, pruebas y ejemplos originales. Una alerta indica dónde revisar; no prueba por sí sola error, incumplimiento o fraude.</p></div>
+<div class="siguiente"><a href="trazabilidad-cifras-financieras.html"><p class="rotulo">Artículo 02</p><strong>Seguir la cifra hasta su asiento</strong></a><a href="metodo-defender-cifras.html"><p class="rotulo">Artículo 04</p><strong>Aplicar los controles al caso</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

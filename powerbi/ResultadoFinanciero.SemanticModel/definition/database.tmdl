@@ -1,0 +1,6 @@
+/// Resultado financiero de una unidad de transporte de carga: el P&L por escenario, su ejecucion presupuestaria y el detalle de apuntes, sobre el modelo en estrella de PostgreSQL.
+database ResultadoFinanciero
+	compatibilityLevel: 1702
+	compatibilityMode: powerBI
+	language: 1033
+

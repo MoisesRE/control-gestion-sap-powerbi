@@ -1,0 +1,218 @@
+// ===========================================================================
+// validacion.dax -- Las medidas contra la cifra oficial.
+//
+// Un informe financiero no se valida porque se abra sin error, sino porque sus
+// cifras coinciden con el reporte que la organizacion ya publica. Estas seis
+// consultas comparan cada familia de medidas contra el valor que la capa SQL
+// devuelve por un camino independiente: el DAX agrega el esquema en estrella en
+// VertiPaq, el SQL lo agrega en PostgreSQL, y las dos cifras tienen que ser la
+// misma. Si coinciden, ninguna de las dos esta mal.
+//
+// Las siete se han ejecutado contra el modelo refrescado y las cifras de los
+// comentarios son las que devolvio el motor, no las que se esperaban al
+// escribirlas. Cuatro fallos de modelado salieron de aqui y estan contados en
+// la seccion "Lo que salio mal" del README.
+//
+// Como ejecutarlas
+// ----------------
+// Abrir powerbi/ResultadoFinanciero.pbip en Power BI Desktop, refrescar, y
+// conectar DAX Studio a esa instancia (Advanced > Connect > Power BI Desktop).
+// DAX Studio ejecuta la consulta seleccionada: seleccionar un bloque y F5.
+//
+// El valor esperado de cada columna va en el comentario de su consulta. Los
+// importes estan escalados por el factor de anonimizacion (1,3742), que al ser
+// global deja margenes, ratios y variaciones intactos.
+//
+// Las dos tolerancias, y por que son distintas
+// ---------------------------------------------
+// Las consultas 1 a 5 exigen IGUALDAD EXACTA al centimo. DAX y SQL agregan las
+// mismas filas de la misma tabla y ninguno de los dos pasos pierde precision,
+// de modo que cualquier diferencia seria un error de modelado y una tolerancia
+// solo serviria para esconderlo.
+//
+// La consulta 6 compara contra la maqueta, no contra el modelo, y ahi si hay
+// una tolerancia: escalar y redondear n importes puede desviar su suma hasta n
+// medias centesimas. La tolerancia es funcion del numero de importes agregados
+// y no un umbral elegido a ojo, que es la misma regla que aplica
+// qa.v_control_reconciliacion_ingresos.
+// ===========================================================================
+
+
+// --- 1. La cuenta de resultados por escenario ------------------------------
+//
+// Es la tabla contra la que se valida todo lo demas.
+//
+//   Escenario           Ingresos         Costes      Resultado    Margen
+//   Presupuesto 2025  80.553.599,56  -72.670.331,15  8.612.210,85  10,6913%
+//   Real 2025         71.341.366,94  -69.556.781,55  2.390.986,16   3,3515%
+//   Presupuesto 2026  71.737.307,25  -62.853.717,06  9.205.222,84  12,8318%
+//   Real 2026 (sim.)  61.403.600,49  -56.112.588,73  5.695.917,93   9,2762%
+//
+// Resultado Neto no es Ingresos mas Costes: la diferencia es Ingresos
+// Diversos, que la fila INGRESOS de la maqueta no cuenta como ingreso.
+// Contrastar con:  SELECT * FROM pl.v_pl_resumen
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Escenario'[Escenario],
+    "Ingresos",          [Ingresos],
+    "Ingresos Diversos", [Ingresos Diversos],
+    "Costes",            [Costes],
+    "Resultado Neto",    [Resultado Neto],
+    "Margen %",          [Margen %]
+)
+ORDER BY 'Escenario'[Escenario]
+
+
+// --- 2. La identidad del perimetro -----------------------------------------
+//
+// Resultado Neto - Ingresos - Ingresos Diversos - Costes debe dar CERO EXACTO en
+// los cuatro escenarios. Si no, alguna medida se dejo fuera un grupo del P&L.
+//
+// El cero exacto depende de que las columnas de importe sean decimal fijo. Con
+// coma flotante esta consulta devolvia 7,45e-09, que es el epsilon de la doble
+// precision y la primera senal de que el tipo no era el declarado.
+//
+//   Ingresos Diversos esperado: P2025 728.942,44 | R2025 606.400,77
+//                               P2026 321.632,65 | R2026 404.906,17
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Escenario'[Escenario],
+    "Descuadre del perimetro",
+        [Resultado Neto] - [Ingresos] - [Ingresos Diversos] - [Costes]
+)
+ORDER BY 'Escenario'[Escenario]
+
+
+// --- 3. El acumulado del ejercicio -----------------------------------------
+//
+// El acumulado del ultimo periodo cubierto tiene que igualar el total del
+// ejercicio. Es la comprobacion de que la aritmetica explicita sobre Periodo
+// hace lo que TOTALYTD haria con una tabla de fechas.
+//
+//   Real 2025, periodo 12 -> 2.390.986,16
+//   Real 2026, periodo 10 -> 5.695.917,93   (no hay periodos 11 y 12)
+// Contrastar con:  SELECT escenario_clave, periodo, resultado_acumulado
+//                    FROM pl.v_pl_resumen
+// Cuidado al escribir esta comprobacion: MAX('Periodo Contable'[Periodo]) dentro
+// de un contexto de escenario NO devuelve el ultimo periodo con datos, sino el
+// mayor de la dimension. Filtrar el escenario filtra el hecho, pero no la
+// dimension de tiempo, que no tiene por que seguirlo. Lo que se compara aqui es
+// el acumulado del ultimo periodo contra el total, que es lo que importa.
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Escenario'[Escenario],
+    'Periodo Contable'[Periodo],
+    "Resultado Neto",      [Resultado Neto],
+    "Resultado Acumulado", [Resultado Acumulado]
+)
+ORDER BY 'Escenario'[Escenario], 'Periodo Contable'[Periodo]
+
+
+// --- 4. La ejecucion presupuestaria ----------------------------------------
+//
+// El presupuesto se recorta a los periodos que el real cubre. Sin ese recorte,
+// 2026 mediria diez meses de real contra doce de presupuesto y daria un 85%
+// inventado en lugar del 104,8% real.
+//
+//   Ejercicio  Ingresos Real   Ingresos Ppto   Ejecucion  Periodos
+//   2025       71.341.366,94   80.553.599,56     88,6%      12
+//   2026       61.403.600,49   58.576.280,49    104,8%      10
+//
+// Cuidado al leer: el 88,6% de 2025 es de doce meses. El margen de 1,91% que
+// aparece en el README es de los diez primeros periodos, y el del ejercicio
+// cerrado es 3,35%. Mezclar los dos perimetros ya costo una correccion.
+// Contrastar con:  SELECT * FROM pl.v_ejecucion_presupuestaria
+//                   WHERE periodo_comparable
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Periodo Contable'[Ejercicio],
+    "Ingresos Real",         [Ingresos Real],
+    "Ingresos Presupuesto",  [Ingresos Presupuesto],
+    "Ejecucion Ingresos %",  [Ejecucion Ingresos %],
+    "Desviacion Ingresos",   [Desviacion Ingresos],
+    "Periodos Cubiertos",    [Periodos Cubiertos Real]
+)
+ORDER BY 'Periodo Contable'[Ejercicio]
+
+
+// --- 5. La variacion interanual --------------------------------------------
+//
+// Recortada a los diez periodos que ambos reales cubren. Comparar los totales
+// sin recortar inventaria una caida de dos meses de actividad.
+//
+//   Ejercicio 2026, sobre periodos 1-10:
+//     Resultado Real Comparable      5.695.917,93
+//     Resultado Ejercicio Anterior   1.141.629,26
+//     Variacion Interanual           4.554.288,67
+//     Variacion Interanual %               398,9%
+//     Ingresos Real Comparable      61.403.600,49
+//     Ingresos Ejercicio Anterior   59.769.106,89
+//     Variacion Ingresos %                   2,7%
+//     Periodos Comparables                     10
+//
+//   Ejercicio 2025: ejercicio anterior, variacion y porcentaje EN BLANCO, porque
+//   2024 no esta en el modelo. Blanco y no cero: no hay dato, no hay caida.
+//   Que la variacion salga en blanco y no igual al resultado de 2025 es el
+//   arreglo de uno de los fallos que esta consulta encontro.
+// Contrastar con:  SELECT * FROM pl.v_variacion_interanual
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Periodo Contable'[Ejercicio],
+    "Real Comparable",        [Resultado Real Comparable],
+    "Ejercicio Anterior",     [Resultado Ejercicio Anterior],
+    "Variacion Interanual",   [Variacion Interanual],
+    "Variacion Interanual %", [Variacion Interanual %],
+    "Ingresos Comparables",   [Ingresos Real Comparable],
+    "Ingresos Anteriores",    [Ingresos Ejercicio Anterior],
+    "Variacion Ingresos %",   [Variacion Ingresos %],
+    "Periodos Comparables",   [Periodos Comparables]
+)
+ORDER BY 'Periodo Contable'[Ejercicio]
+
+
+// --- 6. Los dos controles --------------------------------------------------
+//
+// Reconciliacion contra la maqueta de Control de Gestion, mes a mes:
+//
+//   Presupuesto 2025    80.553.599,56   diferencia  0,00
+//   Real 2025           71.341.366,95   diferencia -0,01
+//   Presupuesto 2026    71.737.307,27   diferencia -0,02
+//   Real 2026 (sim.)    sin patron      Reconciliacion Cuadra en blanco
+//
+// Las diferencias de uno y dos centimos son el redondeo del escalado y caen
+// muy por debajo de la tolerancia derivada, de modo que Reconciliacion Cuadra
+// debe decir "Cuadra" en los tres escenarios observados.
+//
+// El TOTAL tambien tiene que cuadrar, y da -0,03: la suma de los tres centimos.
+// La medida mide solo sobre los escenarios que tienen patron, de modo que el
+// simulado no entra. Antes de ese arreglo, el total de esta consulta decia
+// DESCUADRE por 61,4 millones.
+//
+// Cuadre de Hechos compara el detalle de 428.589 apuntes contra el hecho
+// comparativo del real observado y debe dar 0,00 EXACTO: es la medida que
+// impide que las dos tablas de hechos divierjan en silencio.
+// Contrastar con:  SELECT * FROM qa.v_control_reconciliacion_ingresos
+//                  SELECT * FROM qa.v_control_cuadre_hechos
+//                  (las dos devuelven cero filas cuando el modelo esta sano)
+EVALUATE
+SUMMARIZECOLUMNS(
+    'Escenario'[Escenario],
+    "Ingresos del modelo",     [Ingresos],
+    "Ingresos Oficiales",      [Ingresos Oficiales],
+    "Diferencia",              [Diferencia Reconciliacion],
+    "Veredicto",               [Reconciliacion Cuadra],
+    "Cuadre de Hechos",        [Cuadre de Hechos],
+    "Apuntes Contabilizados",  [Apuntes Contabilizados]
+)
+ORDER BY 'Escenario'[Escenario]
+
+
+// --- 7. Las medidas no tienen errores --------------------------------------
+//
+// Devuelve una fila por medida con su mensaje de error. Debe salir vacia.
+EVALUATE
+SELECTCOLUMNS(
+    FILTER( INFO.MEASURES(), NOT ISBLANK([ErrorMessage]) ),
+    "Medida", [Name],
+    "Error",  [ErrorMessage]
+)

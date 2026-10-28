@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------------------
+# Datos de origen: NUNCA se publican. Contienen cifras reales identificables.
+# ---------------------------------------------------------------------------
+*.xlsx
+*.xlsb
+*.xls
+data/raw/
+data/interim/
+
+# El salt de pseudonimizacion y las credenciales son secretos.
+.env
+*.key
+
+# El mapa de reversion (pseudonimo -> valor real) permite deshacer la
+# anonimizacion. Se conserva en local para auditoria, jamas en el repositorio.
+data/processed/_mapa_reversion*.csv
+data/processed/_mapa_reversion*.json
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Power BI
+# ---------------------------------------------------------------------------
+*.pbix.bak
+.pbi/localSettings.json
+**/.pbi/cache/
+
+# Power BI Desktop deja el modelo importado en cache.abf al guardar el PBIP.
+# Es un binario que contiene LOS DATOS, no metadatos: el PBIP se versiona por su
+# TMDL y su PBIR, que son texto, y el cache se reconstruye al refrescar.
+**/.pbi/
+*.abf
+
+# Ajustes locales de Power BI Desktop: rutas y credenciales de la maquina.
+**/localSettings.json
+
+# Logs de ejecucion: cambian en cada run y no aportan al repositorio.
+reports/*.log
+
+# Configuracion local de herramientas: rutas y puertos de esta maquina.
+# No forma parte del proyecto y la auditoria de lo publicable no la cubre.
+.claude/
+
+# Documentos de traspaso entre sesiones de trabajo: notas internas de
+# continuidad, no documentacion del proyecto. El README ya explica cada
+# decision de diseno y las alternativas descartadas, que es lo que un
+# lector del repositorio necesita.
+docs/handoff-*.md

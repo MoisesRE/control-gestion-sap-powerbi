@@ -1,0 +1,103 @@
+/// Ingresos mensuales segun la maqueta de Control de Gestion, escalados por el mismo factor que el resto del modelo. Es el patron contra el que se reconcilia: permite que el informe lleve dentro su propia prueba de cuadre en lugar de remitirla a un control externo. La clave del periodo se deriva en el SQL porque la tabla de origen guarda el periodo y no la clave.
+table 'Reconciliacion Oficial'
+	lineageTag: 0efded6f-fbaa-47a5-ac6c-5680002632f4
+
+	/// Ingresos segun la fila INGRESOS de la maqueta de Control de Gestion. Es la cifra que la organizacion publica, y el patron contra el que se mide el modelo.
+	measure 'Ingresos Oficiales' =
+			// La columna se llama Importe Oficial y no Ingresos Oficiales: una medida y la
+			// columna que agrega no pueden compartir nombre en la misma tabla, y el nombre
+			// bueno es el de la medida, que es la que se ve.
+			SUM('Reconciliacion Oficial'[Importe Oficial])
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: eec6e785-fde8-40b0-8a0a-5f52f70cce51
+
+	/// Diferencia entre los ingresos del modelo y los de la maqueta oficial, medida solo sobre los escenarios que tienen patron. Un informe financiero no se valida porque se abra sin error, sino porque esta diferencia es cero. Vacia donde no hay patron contra el que medir.
+	measure 'Diferencia Reconciliacion' =
+			// Modelo menos maqueta. Debe ser cero, o del orden de los centimos que el
+			// escalado de la anonimizacion puede desplazar.
+			//
+			// Los ingresos del modelo se restringen a los escenarios que TIENEN patron
+			// oficial. Sin esa restriccion, el total de una tabla que incluya el escenario
+			// simulado comparaba los ingresos de los cuatro escenarios contra el patron de
+			// los tres que lo tienen, y presentaba los 61,4 millones del simulado como si
+			// fueran un descuadre. Un escenario que nadie presupuesto no descuadra contra
+			// la maqueta: es que no esta en ella.
+			VAR _oficiales = [Ingresos Oficiales]
+			VAR _escenariosConPatron = VALUES('Reconciliacion Oficial'[Clave Escenario])
+			VAR _ingresosComparables =
+			    CALCULATE(
+			        [Ingresos],
+			        KEEPFILTERS( TREATAS(_escenariosConPatron, 'Escenario'[Clave Escenario]) )
+			    )
+			RETURN
+			    IF( NOT ISBLANK(_oficiales), _ingresosComparables - _oficiales )
+		formatString: #,##0.00
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: 783ea070-9579-4477-9b29-320cd2fa4ca0
+
+	/// Veredicto del control de reconciliacion, con la tolerancia derivada del numero de importes agregados en lugar de fijada a ojo. Vacio donde la maqueta no tiene patron, como en el escenario simulado.
+	measure 'Reconciliacion Cuadra' =
+			// La tolerancia se deriva del proceso y no se elige a ojo: escalar y redondear
+			// n importes puede desviar su suma hasta n medias centesimas, de modo que el
+			// umbral es funcion del numero de filas agregadas. El suelo de 0,05 cubre los
+			// periodos con muy pocas filas. Es la misma regla que
+			// qa.v_control_reconciliacion_ingresos aplica en PostgreSQL.
+			//
+			// Las filas se cuentan sobre los mismos escenarios que entran en la diferencia,
+			// no sobre todos los del contexto: una tolerancia calculada sobre mas filas de
+			// las que se comparan seria mas laxa de lo que el proceso justifica.
+			VAR _escenariosConPatron = VALUES('Reconciliacion Oficial'[Clave Escenario])
+			VAR _filas =
+			    CALCULATE(
+			        COUNTROWS('Resultado'),
+			        KEEPFILTERS('Cuenta'[Grupo] = "Ingresos"),
+			        KEEPFILTERS( TREATAS(_escenariosConPatron, 'Escenario'[Clave Escenario]) )
+			    )
+			VAR _tolerancia = MAX(0.05, _filas * 0.005)
+			VAR _diferencia = ABS([Diferencia Reconciliacion])
+			RETURN
+			    IF(
+			        ISBLANK([Ingresos Oficiales]),
+			        BLANK(),
+			        IF(_diferencia <= _tolerancia, "Cuadra", "DESCUADRE")
+			    )
+		displayFolder: 05 Control y reconciliacion
+		lineageTag: 450df035-8985-44fd-9785-f8e2390a2309
+
+	/// Clave foranea al escenario.
+	column 'Clave Escenario'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 3849e25a-649d-4d30-922d-ecfabe350551
+		sourceColumn: escenario_clave
+
+	/// Clave foranea al periodo contable, derivada en el SQL como ejercicio*100+periodo.
+	column 'Clave Periodo'
+		dataType: int64
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 2c6c81ad-3bf9-4f20-8d8d-03c307d3528c
+		summarizeBy: none
+		sourceColumn: fecha_clave
+
+	/// Ingresos de la fila INGRESOS de la maqueta. Oculta porque se agrega en la medida Ingresos Oficiales, que es la que lleva el nombre de negocio: una medida y su columna base no pueden llamarse igual.
+	column 'Importe Oficial'
+		dataType: decimal
+		isHidden
+		formatString: #,##0.00
+		isAvailableInMdx: false
+		lineageTag: 500cdb02-f885-4088-be62-6a15c8f606ae
+		summarizeBy: sum
+		sourceColumn: ingresos_oficiales
+
+	partition 'Reconciliacion Oficial' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select r.escenario_clave, e.ejercicio * 100 + r.periodo as fecha_clave, r.ingresos_oficiales from qa.control_reconciliacion r join core.dim_escenario e on e.escenario_clave = r.escenario_clave"]),
+				    Tipado = Table.TransformColumnTypes(Origen, {{"ingresos_oficiales", Currency.Type}})
+				in
+				    Tipado
+

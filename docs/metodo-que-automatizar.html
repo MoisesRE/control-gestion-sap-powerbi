@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Cómo decidir qué automatizar, y en qué orden</title>
+<meta name="description" content="Tres preguntas para decidir si automatizar un reporte y el orden de capas para construirlo de forma comprobable.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="tira-nav" aria-label="Principal">
+  <div class="contenedor">
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qu&eacute; automatizar</a>
+      <a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a>
+      <details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; automatizar"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-automatizar.html">Qu&#233; automatizar</a></div><span class="navegacion-articulos-contador">Artículo 04 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="priorizar-automatizacion-financiera.html" title="Qué automatizar primero: valor, volumen y riesgo"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Priorizar tareas</span></a><a class="navegacion-articulos-opcion" href="preparar-proceso-automatizacion.html" title="Antes de automatizar: reglas, responsables y excepciones"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Preparar proceso</span></a><a class="navegacion-articulos-opcion" href="medir-automatizacion-financiera.html" title="Del piloto a la operación: medir y mantener la automatización"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Medir resultados</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Cómo decidir qué automatizar, y en qué orden"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Orden de decisión</span></span></div></div></nav>
+<main>
+<article>
+<div class="contenedor" id="articulo-automatizacion">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo"><span class="tema">Artículo 04 · Método</span></p>
+    <h1>Cómo decidir qué automatizar, y en qué orden</h1>
+    <p class="entradilla">
+      No todo reporte merece automatizarse, y el que lo merece casi nunca se
+      empieza por donde apetece. Tres preguntas para decidir si vale la pena, y
+      un orden de capas que evita el error más caro: construir el dashboard
+      sobre un modelo que todavía no existe.
+    </p>
+    <div class="meta-articulo">
+      <span>Lectura de 8 minutos</span>
+      <span>&middot;</span>
+      <span>Aplicable a cualquier reporte recurrente</span>
+    </div>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El criterio</p>
+      <h2>Tres preguntas antes de empezar</h2>
+      <p class="glosa-grafico">Cada «no» señala un trabajo distinto que hay que hacer antes de que automatizar tenga sentido.</p>
+      <figure id="figura-criterio"></figure>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="articulo">
+    <div class="lectura">
+
+    <h2 id="tentacion">La tentación de empezar por el final</h2>
+
+    <p>
+      Cuando alguien decide modernizar su reporting, lo primero que construye
+      casi siempre es el dashboard. Es comprensible: es la parte que se ve, la
+      que se enseña en una reunión y la que da la sensación de haber avanzado.
+      También es la parte que se tira a la basura en cuanto alguien pregunta de
+      dónde sale un número.
+    </p>
+
+    <p>
+      El dashboard es la capa más visible y la menos estructural. Debajo tiene
+      que haber un modelo de datos donde cada cifra tenga un lugar, y debajo de
+      ese modelo una extracción fiable. Si construyes de arriba abajo, cada
+      capa nueva obliga a rehacer la anterior.
+    </p>
+
+    <blockquote>
+      Automatizar un reporte malo te da un reporte malo que ahora además se
+      genera solo.
+    </blockquote>
+
+    <h2 id="tres-preguntas">Las tres preguntas que deciden</h2>
+
+    <p>
+      Antes de escribir una línea, tres preguntas. Si alguna responde que no,
+      el trabajo no es automatizar: es otro.
+    </p>
+
+    <h3>1. ¿Se repite lo suficiente?</h3>
+    <p>
+      Automatizar cuesta. Ese coste se recupera en repeticiones, de modo que un
+      reporte mensual lo amortiza en meses y uno anual puede no amortizarlo
+      nunca. La pregunta práctica no es «¿sería bonito automatizarlo?» sino
+      <strong>cuántas veces lo voy a volver a hacer</strong>.
+    </p>
+    <p>
+      Hay una excepción que sí justifica automatizar algo poco frecuente: cuando
+      el proceso manual es tan largo que su único riesgo real es el error
+      humano. Un cierre anual de veinte pasos que nadie recuerda del todo se
+      automatiza por fiabilidad, no por ahorro.
+    </p>
+
+    <h3>2. ¿Está definida la regla?</h3>
+    <p>
+      Esta es la que más proyectos hunde, y rara vez se detecta a tiempo.
+      Mientras un reporte se hace a mano, las ambigüedades se resuelven sobre la
+      marcha: una cuenta nueva se asigna «como el mes pasado», una partida
+      dudosa se discute en el momento. Nadie lo escribe porque nadie lo necesita.
+    </p>
+    <p>
+      En cuanto automatizas, esa flexibilidad desaparece. El proceso necesita
+      una regla, y si no la tienes se la inventa alguien. En mi caso tuve que
+      fijar de qué grupo exacto salen los ingresos, qué cuentas son coste de
+      ventas y cuáles gasto administrativo, y qué pasa con los periodos que el
+      real todavía no cubre.
+    </p>
+    <div class="aviso">
+      <p>
+        <strong>Este ejercicio vale por sí solo.</strong> Aunque el dashboard no
+        llegue a construirse, obligar a la organización a escribir sus propias
+        reglas de clasificación ya mejora el reporting manual. Varias veces
+        descubrí que dos personas usaban criterios distintos para la misma línea.
+      </p>
+    </div>
+
+    <h3>3. ¿Hay una cifra contra la que cuadrar?</h3>
+    <p>
+      La tercera es la que convierte el proyecto en defendible. Si existe un
+      reporte oficial, un acta de comité o un cierre contable contra el que
+      comparar, tienes un ancla: el proceso cuadra o no cuadra, y eso se
+      comprueba sin opinar.
+    </p>
+    <p>
+      Si no existe esa cifra, lo que estás construyendo no es la automatización
+      de un reporte: es un reporte nuevo, y el primer trabajo es conseguir que
+      alguien lo valide. Son proyectos distintos y conviene no confundirlos,
+      porque el segundo necesita acuerdos y no solo técnica.
+    </p>
+
+    <h2 id="orden">El orden de las capas</h2>
+
+    <p>
+      Resueltas las tres preguntas, el orden de construcción. Cada capa tiene
+      que demostrar algo antes de que la siguiente pueda apoyarse en ella.
+    </p>
+
+    <ol>
+      <li>
+        <strong>Extracción.</strong> Dejar de copiar y pegar. Lo que demuestra:
+        que puedes volver a traer el dato de origen sin intervención manual.
+      </li>
+      <li>
+        <strong>Contrato de datos.</strong> Qué columnas entran, cuáles no y por
+        qué. Lo que demuestra: que sabes qué información necesitas y cuál estás
+        descartando a propósito.
+      </li>
+      <li>
+        <strong>Reconciliación.</strong> Comparar contra la cifra oficial antes
+        de seguir. Lo que demuestra: que lo que has extraído es lo mismo que la
+        organización reconoce.
+      </li>
+      <li>
+        <strong>Modelo.</strong> Las reglas de negocio declaradas donde no se
+        puedan incumplir. Lo que demuestra: que un dato mal formado se rechaza
+        en lugar de entrar.
+      </li>
+      <li>
+        <strong>Cálculo.</strong> Las medidas, los acumulados, las variaciones.
+        Lo que demuestra: que la cifra se reproduce por un camino distinto del
+        que la generó.
+      </li>
+      <li>
+        <strong>Presentación.</strong> Ahora sí, el dashboard. Lo que demuestra:
+        que todo lo anterior funciona.
+      </li>
+    </ol>
+
+    <p>
+      Fíjate en que la reconciliación va en tercer lugar, antes del modelo. No
+      es casualidad: es el punto donde el proyecto puede fallar barato. En mi
+      caso descuadraron once de doce meses en la primera ejecución, y descubrir
+      eso con tres días invertidos es muy distinto a descubrirlo con el
+      dashboard terminado.
+    </p>
+
+    <h2 id="senales">Señales de que vas en el orden equivocado</h2>
+
+    <ul>
+      <li>
+        <strong>Tu primer entregable es una captura de pantalla.</strong> Si lo
+        que enseñas primero es cómo va a quedar, estás diseñando la presentación
+        antes que el dato.
+      </li>
+      <li>
+        <strong>No sabes decir cuántas filas tiene tu origen.</strong> Es la
+        señal más fiable de que todavía no has mirado el dato de verdad.
+      </li>
+      <li>
+        <strong>Has escrito una cifra a mano «para probar».</strong> Esa cifra
+        sobrevive. Siempre sobrevive.
+      </li>
+      <li>
+        <strong>Tu proceso no puede fallar.</strong> Si nunca se detiene, no
+        está comprobando nada: solo transformando.
+      </li>
+      <li>
+        <strong>Nadie ha preguntado todavía de dónde sale un número.</strong>
+        No significa que esté bien; significa que aún no lo ha mirado nadie.
+      </li>
+    </ul>
+
+    <h2 id="minimo">El proyecto mínimo que merece la pena</h2>
+
+    <p>
+      Si esto parece mucho para empezar, no lo es. El proyecto más pequeño que
+      sirve de verdad tiene cuatro piezas:
+    </p>
+
+    <ol>
+      <li>Un script que trae el dato del origen sin que nadie lo toque.</li>
+      <li>Una comparación contra la cifra oficial que se ejecuta sola.</li>
+      <li>Una condición que detiene el proceso si no cuadra.</li>
+      <li>Un registro de qué se ejecutó y cuándo.</li>
+    </ol>
+
+    <p>
+      Eso no es un dashboard. Es algo mejor: un proceso en el que puedes
+      confiar, sobre el que luego se construye lo que quieras. En el
+      <a href="caso.html">caso completo</a> está cómo crecieron esas cuatro
+      piezas hasta un P&amp;L de treinta y una líneas con su modelo semántico
+      detrás.
+    </p>
+
+    <aside class="caja-autor">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Sobre el autor</p>
+        <h2>Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional con m&aacute;s de 7 a&ntilde;os de experiencia en Control de Gesti&oacute;n y
+          Planeamiento Financiero en los sectores de servicios, log&iacute;stica,
+          miner&iacute;a y construcci&oacute;n. Experto en transformar grandes vol&uacute;menes de
+          datos en insights accionables (Power BI, SQL, Python) para optimizar
+          costos y potenciar la rentabilidad del negocio.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="caso.html">Ver el caso completo</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="siguiente">
+      <a href="que-puede-salir-mal.html">
+        <p class="rotulo">Siguiente</p>
+        <strong>Qué puede salir mal al automatizar un reporte</strong>
+      </a>
+      <a href="metodo-defender-cifras.html">
+        <p class="rotulo">También</p>
+        <strong>El problema no es generar el informe, es poder defenderlo</strong>
+      </a>
+    </div>
+    </div>
+
+    <aside class="rail">
+      <div class="bloque">
+        <h2>En esta página</h2>
+        <ol>
+          <li><a href="#tentacion">La tentación de empezar por el final</a></li>
+          <li><a href="#tres-preguntas">Las tres preguntas que deciden</a></li>
+          <li><a href="#orden">El orden de las capas</a></li>
+          <li><a href="#senales">Señales de que vas en el orden equivocado</a></li>
+          <li><a href="#minimo">El proyecto mínimo que merece la pena</a></li>
+        </ol>
+      </div>
+      <div class="bloque">
+        <h2>Del caso real</h2>
+        <div class="dato">
+          <span class="numero">11 de 12</span>
+          <span class="glosa">meses descuadrados en la primera ejecución</span>
+        </div>
+        <div class="dato">
+          <span class="numero">3º</span>
+          <span class="glosa">lugar de la reconciliación, antes del modelo</span>
+        </div>
+        <div class="dato">
+          <span class="numero">30</span>
+          <span class="glosa">fallos que los controles encontraron después</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+
+</article>
+</main>
+
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { criterioAutomatizar } from "./assets/figuras.js";
+document.getElementById("figura-criterio").replaceChildren(criterioAutomatizar());
+</script>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

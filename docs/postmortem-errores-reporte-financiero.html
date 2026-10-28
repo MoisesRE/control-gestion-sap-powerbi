@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Qué puede salir mal al automatizar un reporte financiero</title>
+<meta name="description" content="Las cuatro formas de equivocarse al automatizar un reporte financiero o al apoyarse en inteligencia artificial, y los treinta fallos reales de un caso que las ilustran.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="tira-nav" aria-label="Principal">
+  <div class="contenedor">
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qu&eacute; automatizar</a>
+      <a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a>
+      <details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; puede salir mal"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-puede-salir-mal.html">Qu&#233; puede salir mal</a></div><span class="navegacion-articulos-contador">Artículo 04 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="refresh-no-es-reporte-listo.html" title="Refresh correcto, reporte desactualizado"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Refresh ≠ listo</span></a><a class="navegacion-articulos-opcion" href="revisar-finanzas-antes-publicar.html" title="El reporte cuadra, pero algo está mal"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Revisión previa</span></a><a class="navegacion-articulos-opcion" href="corregir-error-reporte-publicado.html" title="Se publicó un error: cómo contenerlo y corregirlo"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Corregir un error</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Qué puede salir mal al automatizar un reporte financiero"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Postmortem</span></span></div></div></nav>
+<main>
+<article>
+
+<div class="contenedor">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo"><span class="tema">Artículo 04 · Postmortem</span></p>
+    <h1>Qué puede salir mal al automatizar un reporte financiero</h1>
+    <p class="entradilla">
+      Los casos de éxito se publican limpios, como si el camino hubiera sido
+      recto. Nunca lo es. Aquí están las cuatro formas de equivocarse que se
+      repiten al automatizar un reporte o al apoyarse en inteligencia
+      artificial, y los treinta fallos reales de un proyecto que las ilustran.
+      Casi ninguno es un fallo técnico: son errores de criterio.
+    </p>
+    <div class="meta-articulo">
+      <span>Lectura de 11 minutos</span>
+      <span>&middot;</span>
+      <span>Primero el patrón general, después el caso</span>
+    </div>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El patrón</p>
+      <h2>Cuatro formas de equivocarse</h2>
+      <p class="glosa-grafico">Ninguna es un fallo de la herramienta: las cuatro son decisiones humanas que la herramienta ejecuta muy deprisa.</p>
+      <figure id="figura-patrones"></figure>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="articulo">
+    <div class="lectura">
+
+
+    <h2 id="general">Lo que suele salir mal, en general</h2>
+
+    <p>
+      Antes del caso concreto, el patrón. Después de automatizar un reporte
+      financiero completo y de contar cada tropiezo, los problemas no fueron
+      treinta cosas distintas: fueron cuatro formas de equivocarse que se
+      repiten, y que vas a reconocer aunque tu proyecto no se parezca en nada
+      al mío.
+    </p>
+
+    <h3>1. Tratar «no hay dato» como «el dato es cero»</h3>
+    <p>
+      Es la más frecuente y la más silenciosa. Cuando un sistema encuentra un
+      hueco y lo convierte en un cero, empieza a inventar información: una
+      variación contra un año que no existe, un margen del 0% donde en realidad
+      no hay margen que calcular, un total que incluye lo que todavía no ha
+      pasado. Nada falla, nada avisa, y la cifra está mal.
+    </p>
+    <p>
+      <strong>Cómo se evita:</strong> obligando a distinguir las dos
+      situaciones. «No aplica» y «vale cero» tienen que verse distintos en el
+      informe, porque significan cosas distintas para quien decide.
+    </p>
+
+    <h3>2. Comparar perímetros que no son comparables</h3>
+    <p>
+      El cálculo está bien; lo que está mal es qué se incluye en cada lado.
+      Comparar diez meses de ejecución contra doce de presupuesto. Sumar
+      partidas que el reporte oficial no suma. Enfrentar escenarios que miden
+      cosas distintas. El resultado es una desviación que parece un hallazgo de
+      negocio y es un error de definición.
+    </p>
+    <p>
+      <strong>Cómo se evita:</strong> escribiendo el perímetro antes que la
+      fórmula, y recortando siempre la comparación al menor de los dos lados.
+    </p>
+
+    <h3>3. Dar por buena una afirmación que nunca se midió</h3>
+    <p>
+      «Esto conserva los ratios», «aquí no hay pérdida de precisión», «ese caso
+      no se da nunca». Suenan razonables, se repiten en las reuniones y acaban
+      en la documentación sin que nadie las compruebe. Dos de las mías eran
+      falsas, y las había escrito con total convicción.
+    </p>
+    <p>
+      <strong>Cómo se evita:</strong> cada afirmación que sostiene una decisión
+      necesita una comprobación que pueda desmentirla. Si no se puede
+      comprobar, no es un argumento: es una opinión.
+    </p>
+
+    <h3>4. Poner el control donde no está el problema</h3>
+    <p>
+      Un control que vigila lo que ya es imposible da una falsa sensación de
+      rigor. Y uno que busca en el sitio equivocado es peor, porque pasa
+      siempre: en mi caso, una revisión que buscaba nombres propios mientras lo
+      que se estaba publicando eran importes.
+    </p>
+    <p>
+      <strong>Cómo se evita:</strong> preguntando de cada control cuándo fue la
+      última vez que falló. Si nunca lo ha hecho, rómpelo a propósito y
+      comprueba que salta.
+    </p>
+
+    <div class="aviso">
+      <p>
+        <strong>Y uno que aplica en especial a la IA:</strong> el exceso de
+        confianza. Una herramienta que redacta con soltura desarma la sospecha,
+        porque asociamos la buena redacción con el rigor. La defensa no es
+        desconfiar de todo —es inoperante— sino tener una cifra externa contra
+        la que contrastar.
+      </p>
+    </div>
+
+    <h2 id="el-caso">Y ahora el caso: treinta fallos reales</h2>
+
+    <p>
+      Lo anterior sale de aquí. Estos son los fallos concretos de un proyecto
+      que llevó un reporte de hoja de cálculo a un cuadro de mando
+      automatizado, agrupados por dónde aparecieron.
+    </p>
+
+    <h3 id="por-que">Por qué publico esto</h3>
+
+    <p>
+      Hay una razón práctica y una de fondo. La práctica: cada control de este
+      proyecto existe porque algo falló antes, y una lista de controles sin los
+      fallos que los motivaron se lee como burocracia. La de fondo: un proyecto
+      sin errores documentados no significa que no los tuviera, sino que nadie
+      los contó.
+    </p>
+
+    <blockquote>
+      Lo revelador de un fallo no suele ser el fallo. Es descubrir que nada de
+      lo que tenías podía detectarlo.
+    </blockquote>
+
+    <figure class="figura">
+      <div id="figura-fallos"></div>
+      <figcaption>
+        <strong>Dónde aparecieron y qué los encontró.</strong> La capa con más
+        fallos es la del modelo semántico, y no porque sea la más difícil: es la
+        única donde el error solo se ve con los datos dentro.
+      </figcaption>
+    </figure>
+
+    <h3 id="extraccion">En la extracción: comparar contra lo que no era</h3>
+
+    <p>
+      <strong>El patrón de reconciliación equivocado.</strong> La primera
+      versión comparaba los ingresos contra una fila del libro que parecía la
+      correcta y no lo era: era el presupuesto con enero sobrescrito por el
+      real. Descuadraron once de doce meses.
+    </p>
+    <p>
+      El control hizo su trabajo —detuvo el proceso antes de escribir nada— pero
+      la lección fue otra: <strong>el control estaba bien y el patrón mal</strong>.
+      Cuando algo no cuadra, la pregunta no es solo «¿está mal mi cálculo?» sino
+      también «¿estoy comparando contra lo que creo?».
+    </p>
+    <p>
+      De ahí salió una mejora que parece menor y no lo es: la banda de columnas
+      de la maqueta se localiza por su rótulo y no por su posición. Si alguien
+      inserta una columna, el control seguiría leyendo <em>algo</em> —el
+      escenario de al lado— sin dar ningún error. Un control que se desplaza en
+      silencio es peor que no tenerlo.
+    </p>
+
+    <p>
+      <strong>Una afirmación falsa en mi propia documentación.</strong> Escribí
+      que el escalado de importes conservaba los ratios «exactamente». Dos
+      pruebas fallaron: no es cierto, porque el redondeo a céntimos introduce un
+      error pequeño pero real. Corregí la afirmación, no la prueba. Es la
+      decisión que más veces hay que repetirse.
+    </p>
+
+    <h3 id="sql">En la base de datos: el fallo que no se manifestaba</h3>
+
+    <p>
+      <strong>El nulo y la cadena vacía eran el mismo campo.</strong> El
+      cargador usaba el convenio por defecto del formato CSV, donde un campo
+      vacío significa nulo. Pero el generador escribe exactamente igual un nulo
+      y una cadena vacía legítima, de modo que cualquier texto vacío real habría
+      entrado en la base convertido en nulo.
+    </p>
+    <p>
+      Lo inquietante es que <strong>los veintidós controles pasaban</strong>.
+      Hoy ninguna columna del modelo contiene cadenas vacías, así que el fallo
+      era latente: no se habría manifestado hasta que el origen trajera una,
+      meses después y lejos de su causa. Lo encontré escribiendo la prueba, no
+      ejecutando el proceso.
+    </p>
+    <div class="aviso">
+      <p>
+        <strong>La categoría de fallo que más me preocupa.</strong> No el que
+        rompe, sino el que espera. Un error que se manifiesta hoy cuesta una
+        tarde; uno que se manifiesta en seis meses cuesta la confianza en todo
+        el sistema, porque para entonces nadie recuerda qué cambió.
+      </p>
+    </div>
+
+    <p>
+      <strong>Una suposición sobre coma flotante que no comprobé.</strong>
+      Escribí una prueba afirmando que sumar diez veces 0,1 no da 1,0. Falló: en
+      ese caso concreto la librería acierta. La deriva sí aparece al volumen
+      real —428.589 importes suman <code>…,7299999</code> en lugar de
+      <code>…,73</code>— y la prueba se reescribió alrededor de ese caso. La
+      lección no es sobre aritmética: es que una afirmación plausible sin medir
+      no sirve como control, que es justo lo que este proyecto predica de las
+      tolerancias.
+    </p>
+
+    <h3 id="modelo">En el modelo: doce fallos que solo se ven con datos</h3>
+
+    <p>
+      Esta es la capa con más fallos, y la razón es estructural: el modelo
+      semántico se puede validar sin datos —hay herramientas que comprueban la
+      sintaxis, las relaciones, los nombres— pero <strong>la mayoría de sus
+      errores solo aparecen cuando se refresca con datos reales</strong>.
+    </p>
+
+    <p>
+      <strong>Tres medidas inventaban cifras donde no había nada que medir.</strong>
+      Al restar, un valor ausente se trata como cero, y eso basta:
+    </p>
+    <ul>
+      <li>
+        La variación interanual daba al primer ejercicio del modelo una
+        variación igual a su propio resultado: una subida desde la nada, porque
+        restaba un año anterior que no existe.
+      </li>
+      <li>
+        El cuadre entre las dos tablas de hechos mostraba un descuadre enorme en
+        los escenarios sin detalle, restando el total de un conjunto vacío.
+      </li>
+      <li>
+        La diferencia de reconciliación presentaba los 61 millones del escenario
+        generado como si fueran un descuadre, por compararlos contra un patrón
+        que no existe para él.
+      </li>
+    </ul>
+    <p>
+      La corrección no fue «si está vacío, no muestres nada». Fue preguntar la
+      condición correcta: ¿existe el ejercicio anterior <em>como periodo</em>?
+      ¿Tiene este escenario patrón oficial? Una línea del P&amp;L que el año
+      pasado no tuvo importe sí debe arrojar variación; un escenario que nadie
+      presupuestó no descuadra contra la maqueta, es que no está en ella.
+    </p>
+
+    <p>
+      <strong>Y la tarjeta que existe para demostrar que todo cuadra decía
+      DESCUADRE.</strong> Agregados los cuatro escenarios, comparaba los
+      ingresos de los cuatro contra el patrón de los tres que lo tienen. La
+      cifra más visible del informe, la que da confianza, mostraba un descuadre
+      de 61 millones. No era un error de cálculo: era un error de perímetro.
+    </p>
+
+    <p>
+      <strong>Los importes llegaron como coma flotante.</strong> El modelo
+      declaraba decimal, pero al refrescar, el motor reconcilia el tipo
+      declarado con el que entrega el conector, y ganó el conector. El síntoma
+      fue minúsculo y delator: un total que daba
+      <code>2.390.986,160000677</code> en lugar de <code>2.390.986,16</code>, y
+      un control de cuadre que se quedaba a siete diezmillonésimas de cero en
+      vez de clavarlo.
+    </p>
+    <p>
+      El modelo estaba contradiciendo en silencio el argumento con el que yo
+      justificaba usar decimales exactos en la base de datos. Se corrigió
+      fijando el tipo en la consulta de origen, que es lo único que sobrevive a
+      un refresco.
+    </p>
+
+    <p>
+      <strong>El formato se aplicó dos veces y dio cero.</strong> Las medidas
+      pasaron a mostrarse en miles para que las columnas cupieran, y las
+      tarjetas seguían aplicando además su abreviación automática a millones. El
+      resultado: un ingreso de 61.404 miles se mostraba como «S/. 0 mill.». La
+      cifra correcta, formateada dos veces y reducida a cero. Lo delató una
+      captura, no una consulta.
+    </p>
+
+    <p>
+      <strong>El análisis por centro medía lo que estos datos no pueden medir.</strong>
+      La página clasificaba los 88 centros por resultado y cruzaba ingresos
+      contra margen. Con los datos delante quedó claro por qué no funcionaba:
+      <strong>los ingresos se imputan a dos centros</strong> y el coste se
+      reparte entre los ochenta y ocho. El ranking salía con dos barras y el
+      gráfico de dispersión con dos puntos. La página pasó a analizar el coste,
+      que es lo que sí está repartido.
+    </p>
+
+    <h3 id="publicacion">En la publicación: el peor de todos</h3>
+
+    <p>
+      <strong>El repositorio publicaba cifras reales del empleador, y llevaba
+      haciéndolo desde el principio.</strong> La tabla de reconciliación de la
+      documentación mostraba tres importes sin escalar: la facturación anual
+      real. El informe de calidad del proceso publicaba el mismo total y se
+      regeneraba en cada ejecución. Y un ingreso mensual real llevaba meses como
+      dato de prueba de un test.
+    </p>
+
+    <p>
+      Lo estructural no es el descuido, es <strong>por qué ningún control podía
+      verlo</strong>. La auditoría que busca datos sensibles construye su lista
+      a partir del mapa de anonimización, que contiene lo que se pseudonimizó:
+      códigos, nombres, documentos. Un importe no está en ese mapa y no puede
+      estarlo, porque los importes no se pseudonimizan: se escalan por un factor.
+      El control buscaba identificadores en un sitio donde lo filtrado eran
+      cifras.
+    </p>
+
+    <p>
+      La corrección va por el lado contrario: extraer del texto todo lo que
+      parezca un número, normalizarlo y compararlo contra los importes oficiales
+      deshaciendo el escalado. Tuvo que normalizar porque los dos casos reales
+      venían en formatos opuestos —uno con el punto separando millares y el otro
+      al revés— y ninguna búsqueda literal los habría encontrado a los dos.
+    </p>
+
+    <p>
+      <strong>El comentario que explicaba la fuga la reproducía.</strong> La
+      primera versión del código que estrena ese control citaba las dos cifras
+      como ejemplo de los formatos. El fichero que implementaba la defensa
+      fallaba la defensa. Es el mismo error que se había cometido antes al
+      documentar otra fuga reproduciendo el valor fugado.
+    </p>
+
+    <p>
+      <strong>Dos ficheros no se auditaban, y la lista decía que sí.</strong> Un
+      tipo de fichero estaba declarado en la lista de extensiones a revisar
+      desde el principio, pero por un detalle de cómo se calcula la extensión de
+      un nombre que empieza por punto, esa entrada nunca casó con nada. Llevaba
+      meses sin revisar dos ficheros que sí se publican. Nada lo advertía porque
+      la auditoría informaba de cuántos ficheros recorría, no de cuántos se
+      dejaba.
+    </p>
+
+    <p>
+      <strong>Las primeras capturas del informe salieron vacías.</strong> La
+      herramienta abre el proyecto sin datos cargados, de modo que las cinco
+      páginas se capturaron con los visuales en blanco. En el listado de
+      ficheros parecían correctas —cinco imágenes, un nombre por página— y solo
+      abrirlas lo delató.
+    </p>
+
+    <h2 id="leccion">La lección que me llevo</h2>
+
+    <p>
+      Casi ninguno de estos fallos lo encontró una revisión. Los encontraron los
+      controles, las pruebas que rompen el modelo a propósito, y en dos casos
+      mirar una imagen. Revisar el propio trabajo tiene un límite conocido: uno
+      lee lo que quiso escribir.
+    </p>
+
+    <p>
+      Por eso el entregable de un proyecto así no es el dashboard. Es el
+      conjunto de mecanismos que se detienen cuando algo no cuadra, y la
+      disciplina de no subirles el umbral cuando molestan. Está desarrollado en
+      <a href="defender-las-cifras.html">Defender las cifras</a>, y el proyecto
+      completo en <a href="caso.html">el caso</a>.
+    </p>
+
+    <aside class="caja-autor">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Sobre el autor</p>
+        <h2>Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional con m&aacute;s de 7 a&ntilde;os de experiencia en Control de Gesti&oacute;n y
+          Planeamiento Financiero en los sectores de servicios, log&iacute;stica,
+          miner&iacute;a y construcci&oacute;n. Experto en transformar grandes vol&uacute;menes de
+          datos en insights accionables (Power BI, SQL, Python) para optimizar
+          costos y potenciar la rentabilidad del negocio.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="https://github.com/MoisesRE/control-gestion-sap-powerbi#lo-que-salio-mal">Leer la lista completa</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="siguiente">
+      <a href="caso.html">
+        <p class="rotulo">El caso</p>
+        <strong>De un Excel de 165 MB a un P&amp;L automatizado</strong>
+      </a>
+      <a href="que-automatizar.html">
+        <p class="rotulo">También</p>
+        <strong>Cómo decidir qué automatizar, y en qué orden</strong>
+      </a>
+    </div>
+    </div>
+
+    <aside class="rail">
+      <div class="bloque">
+        <h2>En esta página</h2>
+        <ol>
+          <li><a href="#general">Lo que suele salir mal, en general</a></li>
+          <li><a href="#el-caso">Y ahora el caso: treinta fallos</a></li>
+          <li><a href="#extraccion">En la extracción</a></li>
+          <li><a href="#sql">En la base de datos</a></li>
+          <li><a href="#modelo">En el modelo</a></li>
+          <li><a href="#publicacion">En la publicación</a></li>
+          <li><a href="#leccion">La lección que me llevo</a></li>
+        </ol>
+      </div>
+      <div class="bloque">
+        <h2>El recuento</h2>
+        <div class="dato">
+          <span class="numero">30</span>
+          <span class="glosa">fallos documentados en cuatro capas</span>
+        </div>
+        <div class="dato">
+          <span class="numero">12</span>
+          <span class="glosa">en el modelo semántico, la capa más expuesta</span>
+        </div>
+        <div class="dato">
+          <span class="numero">2</span>
+          <span class="glosa">encontrados al mirar una imagen, no una consulta</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+</article>
+</main>
+
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/comun.js"></script>
+<script type="module">
+import { cuatroPatrones, dondeAparecenLosFallos } from "./assets/figuras.js";
+document.getElementById("figura-fallos").replaceChildren(dondeAparecenLosFallos());
+document.getElementById("figura-patrones").replaceChildren(cuatroPatrones());
+</script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>El reporte cuadra, pero algo está mal | Qué puede salir mal</title>
+<meta name="description" content="Una revisión práctica de clasificaciones, supuestos y notas que pueden estar equivocadas aunque el reporte financiero cuadre.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; puede salir mal"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-puede-salir-mal.html">Qu&#233; puede salir mal</a></div><span class="navegacion-articulos-contador">Artículo 02 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="refresh-no-es-reporte-listo.html" title="Refresh correcto, reporte desactualizado"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Refresh ≠ listo</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="El reporte cuadra, pero algo está mal"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Revisión previa</span></span><a class="navegacion-articulos-opcion" href="corregir-error-reporte-publicado.html" title="Se publicó un error: cómo contenerlo y corregirlo"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Corregir un error</span></a><a class="navegacion-articulos-opcion" href="postmortem-errores-reporte-financiero.html" title="Qué puede salir mal al automatizar un reporte financiero"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Postmortem</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 02 · Revisión · 27 de octubre de 2026</span></p><h1>El reporte cuadra, pero algo está mal</h1><p class="entradilla">Una cifra puede sumar bien y estar clasificada en el periodo o rubro incorrecto. La revisión financiera debe seguir el criterio que originó el número, comprobar sus supuestos y leer las notas junto con los estados.</p><div class="meta-articulo"><span>Lectura de 6 minutos</span><span>&middot;</span><span>Para analistas y revisores de cierre</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>El cuadre aritmético no responde todas las preguntas</h2><p>Una suma puede cuadrar aunque una transacción haya ido al flujo de inversión en vez del operativo, un supuesto de deterioro esté desactualizado o una nota no cuente la misma historia que el estado financiero. La revisión útil recorre el criterio y la evidencia, además del total.</p></div></div>
+<figure class="tarjeta" aria-labelledby="revision-caption"><svg viewBox="0 0 1000 360" role="img" aria-labelledby="revision-title revision-desc"><title id="revision-title">Cuatro capas de revisión financiera antes de publicar</title><desc id="revision-desc">La revisión cruza evidencia de origen, criterio de clasificación, supuestos de medición y notas narrativas, hasta llegar a una aprobación documentada.</desc><defs><marker id="flecha-revision" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="80" width="175" height="100" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="112" y="118" text-anchor="middle" font-size="16" font-weight="700" fill="var(--cabecera)">Evidencia</text><text x="112" y="147" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">origen y soporte</text><path d="M205 130 H247" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-revision)"/><rect x="262" y="80" width="175" height="100" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="349" y="118" text-anchor="middle" font-size="16" font-weight="700" fill="var(--cabecera)">Clasificación</text><text x="349" y="147" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">periodo y rubro</text><path d="M442 130 H484" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-revision)"/><rect x="499" y="80" width="175" height="100" rx="14" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="586" y="118" text-anchor="middle" font-size="16" font-weight="700" fill="var(--diagrama-cobre-texto)">Medición</text><text x="586" y="147" text-anchor="middle" font-size="13" fill="var(--diagrama-cobre-texto)">supuestos y método</text><path d="M679 130 H721" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-revision)"/><rect x="736" y="80" width="230" height="100" rx="14" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="851" y="118" text-anchor="middle" font-size="16" font-weight="700" fill="var(--diagrama-verde-fuerte)">Presentación</text><text x="851" y="147" text-anchor="middle" font-size="13" fill="var(--diagrama-verde-texto)">estado, nota y narrativa</text><path d="M851 190 V245 H112 V190" fill="none" stroke="var(--diagrama-conector)" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#flecha-revision)"/><rect x="218" y="239" width="570" height="70" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="503" y="268" text-anchor="middle" font-size="16" font-weight="700" fill="var(--cabecera)">Revisor confirma coherencia y deja evidencia de aprobación</text><text x="503" y="292" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">un total correcto es el comienzo de la revisión, no su conclusión</text></svg><figcaption id="revision-caption">Ruta original para revisar el sentido de una cifra desde su soporte hasta su presentación.</figcaption></figure>
+</div>
+<div class="contenedor"><div class="lectura">
+<h2>Qué puede pasar inadvertido en un total correcto</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Área</th><th>Fallo posible</th><th>Pregunta de revisión</th></tr></thead><tbody><tr><td>Flujo de efectivo</td><td>Una entrada o salida está asignada a una categoría distinta de la que corresponde al hecho económico</td><td>¿El criterio de clasificación se documentó y es consistente con la política aplicable?</td></tr><tr><td>Deterioro de activos</td><td>El cálculo se replica, pero una premisa clave ya no representa las condiciones del negocio</td><td>¿Las fuentes y supuestos principales están actualizados, sustentados y aprobados?</td></tr><tr><td>Valor razonable</td><td>La cifra se presenta sin suficiente claridad sobre técnica, datos de entrada o incertidumbre</td><td>¿Puede otro revisor reconstruir cómo se obtuvo la medición?</td></tr><tr><td>Notas y narrativa</td><td>El estado, la nota y el comentario ejecutivo describen periodos o criterios distintos</td><td>¿La historia coincide en todos los apartados y con el soporte?</td></tr><tr><td>Ingresos</td><td>El reconocimiento depende de un hito, contrato o corte interpretado de manera inconsistente</td><td>¿Los casos límite se resolvieron con el mismo criterio?</td></tr></tbody></table></div>
+<p>El Financial Reporting Council del Reino Unido publicó en octubre de 2026 su revisión anual de reportes corporativos. Entre las áreas donde solicitó explicaciones sustantivas estuvieron estados de flujo de efectivo, instrumentos financieros, deterioro de activos, medición a valor razonable e ingresos. También destacó la revisión cuidadosa de la clasificación de flujos, la suficiencia de supuestos y la robustez de los procesos de revisión. Estos hallazgos describen las compañías bajo la revisión del FRC; los requisitos contables concretos dependen del marco aplicable a cada organización.</p>
+<h2>Haz una revisión que pueda repetirse</h2>
+<ol><li>Parte de un reporte de cambios o de las variaciones materiales: identifica qué rubros necesitan explicación, no solo qué celdas cambiaron.</li><li>Selecciona partidas representativas y sigue cada una hasta su documento fuente, regla de clasificación y periodo de contabilización.</li><li>Para mediciones estimadas, registra método, supuestos clave, fuente, fecha y responsable de aprobación.</li><li>Comprueba que los estados, notas y comentario de gestión usan la misma definición y el mismo corte.</li><li>Deja evidencia breve de qué se revisó, qué excepción quedó abierta y quién aceptó el resultado.</li></ol>
+<h2>Automatizar los controles repetibles, conservar el juicio</h2>
+<p>Un flujo puede comparar periodos, verificar que las categorías permitidas se respeten o señalar notas sin soporte adjunto. Esas comprobaciones reducen omisiones, pero no deciden por sí solas cuál es la clasificación adecuada ni si un supuesto representa el negocio. Para esas decisiones hace falta un responsable que conozca la política y pueda explicar el criterio.</p>
+<blockquote>El reporte puede cuadrar en Excel y, aun así, contar mal el hecho económico. Revisa el criterio que produce la cifra, no solo la fórmula que la suma.</blockquote>
+<div class="fuentes"><h2>Fuente reciente</h2><ol><li><a href="https://media.frc.org.uk/documents/Annual_Review_of_Corporate_Reporting_2025-26_Factsheet.pdf">Financial Reporting Council, “Annual Review of Corporate Reporting 2025/26 — Factsheet” (PDF original)</a>, publicado el 15 de octubre de 2026. Áreas de revisión y recomendaciones sobre clasificación, supuestos y controles de revisión.</li></ol><p class="glosa-grafico">Diagrama y tabla originales. El artículo resume hallazgos públicos y no sustituye la aplicación del marco contable de cada entidad.</p></div>
+<div class="siguiente"><a href="refresh-no-es-reporte-listo.html"><p class="rotulo">Artículo 01</p><strong>Comprobar el refresh y la vigencia</strong></a><a href="corregir-error-reporte-publicado.html"><p class="rotulo">Artículo 03</p><strong>Responder después de publicar</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

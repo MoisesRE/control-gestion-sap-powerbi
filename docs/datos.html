@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Modelo de datos — Moisés Retuerto Espinoza</title>
+<meta name="description" content="Esquema en estrella en PostgreSQL: dos tablas de hechos, restricciones que imponen las reglas de negocio, vistas del P&amp;L y controles que devuelven cero filas.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="tira-nav" aria-label="Principal">
+  <div class="contenedor">
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qu&eacute; automatizar</a>
+      <a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a>
+      <details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span>
+    </div>
+  </div>
+</nav>
+
+<main>
+<nav class="recorrido-caso" aria-label="Recorrido del Caso Ejemplo">
+  <div class="contenedor">
+    <span class="rotulo-recorrido">Recorrido del caso</span>
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</nav>
+
+<div class="contenedor">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo">Modelo de datos</p>
+    <h1>Cómo se guardan los datos para que no puedan descuadrar</h1>
+    <p class="entradilla">
+      Buena parte de lo que en otros proyectos se revisa después, aquí está
+      declarado en la propia base de datos, donde no se puede incumplir. Una
+      carga que rompa una regla es rechazada en lugar de entrar y descuadrar el
+      resultado en silencio.
+    </p>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El modelo</p>
+      <h2>Dos tablas de hechos y cuatro dimensiones</h2>
+      <p class="glosa-grafico">Cada hecho se cruza con escenario, periodo, centro y cuenta. El detalle y el comparativo viven separados a propósito.</p>
+      <figure id="diagrama-estrella"></figure>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>El esquema</h2>
+      <p>
+        <strong>Dos tablas de hechos, y no una.</strong> El real observado tiene
+        grano de apunte contable; el presupuesto y el escenario generado, de
+        centro por cuenta y mes. Apilarlos mezclaría dos granos y obligaría a
+        cada medida a saber de qué escenario viene la fila antes de sumarla.
+      </p>
+    </div>
+    <p>
+      El real aparece en las dos tablas, y un control comprueba que ambas suman
+      lo mismo al céntimo. En Power BI esa duplicidad tiene una consecuencia que
+      no perdona: una medida que sume las dos cuenta el real dos veces, y por
+      eso el modelo lleva una medida dedicada a vigilarlo.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Las tablas</h2>
+    </div>
+    <div class="marco-tabla">
+      <table class="datos">
+        <thead>
+          <tr><th scope="col">Tabla</th><th scope="col">Filas</th><th scope="col">Grano</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>core.fact_escenario</code></td><td class="cifra">42.017</td><td>escenario &times; centro &times; cuenta &times; mes</td></tr>
+          <tr><td><code>core.fact_resultado</code></td><td class="cifra">428.589</td><td>un apunte contable, solo real observado</td></tr>
+          <tr><td><code>core.dim_escenario</code></td><td class="cifra">4</td><td>escenario, con la marca de generado</td></tr>
+          <tr><td><code>core.dim_centro</code></td><td class="cifra">88</td><td>centro de coste</td></tr>
+          <tr><td><code>core.dim_cuenta</code></td><td class="cifra">152</td><td>cuenta del plan contable, con la jerarquía del P&amp;L</td></tr>
+          <tr><td><code>core.dim_tiempo</code></td><td class="cifra">24</td><td>periodo contable</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Las reglas de negocio viven dentro de la base, no en un manual</h2>
+      <p>
+        Al crear las tablas se declara qué combinación identifica a cada fila
+        —escenario, periodo, centro y cuenta—, de modo que una carga que
+        duplicase una de ellas <strong>es rechazada</strong> en lugar de inflar
+        el resultado. Y cada referencia tiene que existir: un centro de coste
+        que no esté dado de alta no puede entrar. Es el error que en un informe
+        aparece como una fila en blanco y descuadra los totales sin avisar.
+      </p>
+    </div>
+
+    <div class="codigo">
+      <header><span class="ruta">sql/02_tablas.sql</span><span class="lengua">SQL</span></header>
+<pre><code>CREATE TABLE IF NOT EXISTS core.fact_escenario (
+    escenario_clave text           NOT NULL,
+    fecha_clave     integer        NOT NULL,
+    ejercicio       smallint       NOT NULL,
+    periodo         smallint       NOT NULL,
+    ceco_codigo     text           NOT NULL,
+    cuenta_codigo   text           NOT NULL,
+    importe         numeric(18, 2) NOT NULL,
+    CONSTRAINT fact_escenario_pk PRIMARY KEY
+        (escenario_clave, fecha_clave, ceco_codigo, cuenta_codigo),
+    CONSTRAINT fact_escenario_escenario_fk FOREIGN KEY (escenario_clave)
+        REFERENCES core.dim_escenario (escenario_clave),
+    CONSTRAINT fact_escenario_tiempo_fk    FOREIGN KEY (fecha_clave)
+        REFERENCES core.dim_tiempo (fecha_clave),
+    CONSTRAINT fact_escenario_centro_fk    FOREIGN KEY (ceco_codigo)
+        REFERENCES core.dim_centro (ceco_codigo),
+    CONSTRAINT fact_escenario_cuenta_fk    FOREIGN KEY (cuenta_codigo)
+        REFERENCES core.dim_cuenta (cuenta_codigo),
+    CONSTRAINT fact_escenario_clave_derivada
+        CHECK (fecha_clave = ejercicio * 100 + periodo)
+);</code></pre>
+    </div>
+
+    <div class="rejilla dos">
+      <div class="tarjeta">
+        <h3>Una regla impide cargar datos sin anonimizar</h3>
+        <p>
+          La base exige que todo código de centro tenga la forma del
+          pseudónimo. Si alguien cargara por error el extracto original en una
+          base destinada a publicarse, fallaría en la primera fila y no en la
+          revisión final.
+        </p>
+        <div class="codigo">
+          <header><span class="ruta">sql/02_tablas.sql</span><span class="lengua">SQL</span></header>
+<pre><code>CONSTRAINT dim_centro_codigo_pseudonimizado
+    CHECK (ceco_codigo ~ '^CC-[0-9]+$')</code></pre>
+        </div>
+      </div>
+      <div class="tarjeta">
+        <h3>Decimales exactos, no aproximados</h3>
+        <p>
+          La suma en coma flotante no es asociativa, de modo que el total de una
+          columna dependería del orden en que el planificador decidiese agregar
+          las filas: el mismo <code>SELECT</code> podría devolver dos céntimos
+          distintos entre ejecuciones. Al volumen del detalle la deriva aparece
+          de verdad: 428.589 importes suman <code>...,7299999</code> en lugar de
+          <code>...,73</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Las vistas del P&amp;L</h2>
+      <p>
+        Seis vistas reconstruyen la cuenta de resultados. Son vistas y no tablas
+        materializadas: a este volumen, materializar añadiría un
+        <code>REFRESH</code> que orquestar tras cada carga y la posibilidad de
+        servir una versión desincronizada, a cambio de ahorrar décimas de
+        segundo.
+      </p>
+    </div>
+    <div class="tarjeta">
+      <div class="leyenda">
+        <span><i class="muestra" style="background: var(--serie-1)"></i>Tiempo de ejecución, mediana de siete pasadas con caché caliente</span>
+      </div>
+      <figure id="grafico-vistas"></figure>
+    </div>
+
+    <div class="aviso">
+      <p>
+        <strong>El convenio de signo hace el trabajo.</strong> Los importes
+        conservan el signo de SAP, ingreso positivo y coste negativo, lo que
+        convierte tres cálculos en sumas directas: el resultado es
+        <code>sum(importe)</code> sin un solo condicional. La desviación es
+        <code>real - presupuesto</code>, y es favorable cuando sale positiva
+        tanto en ingresos como en costes.
+      </p>
+    </div>
+
+    <div class="codigo">
+      <header><span class="ruta">sql/05_vistas_qa.sql</span><span class="lengua">SQL</span></header>
+<pre><code>-- Misma regla que la etapa 1: escalar y redondear n importes puede
+-- desviar su suma hasta n medias centesimas, de modo que la tolerancia
+-- es funcion del numero de filas agregadas y no un umbral elegido a
+-- ojo. El suelo de 0,05 cubre los periodos con muy pocas filas.
+greatest(0.05, coalesce(m.filas_agregadas, 0) * 0.005) AS tolerancia
+...
+SELECT * FROM comparacion
+WHERE abs(diferencia) &gt; tolerancia;</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Las comprobaciones que vigilan el modelo</h2>
+      <p>
+        Por convenio, una vista <code>qa.v_control_*</code> devuelve cero filas
+        cuando el modelo está sano: cada fila es un descuadre. El verificador
+        <strong>las descubre en el catálogo en lugar de listarlas</strong>, de
+        modo que añadir un control al DDL basta para que se ejecute, sin tocar
+        una línea de Python.
+      </p>
+    </div>
+
+    <div class="codigo">
+      <header><span class="ruta">src/finanzas_etl/load/postgres.py</span><span class="lengua">Python</span></header>
+<pre><code>cur.execute("""
+    SELECT table_name
+    FROM information_schema.views
+    WHERE table_schema = 'qa' AND table_name LIKE 'v\\_control\\_%'
+    ORDER BY table_name
+""")
+vistas = [fila[0] for fila in cur.fetchall()]
+if not vistas:
+    raise RuntimeError(
+        "no se encontro ninguna vista qa.v_control_*; el DDL no se aplico"
+    )</code></pre>
+    </div>
+
+    <div class="aviso">
+      <p>
+        <strong>No hay vista de claves huérfanas, y la ausencia es
+        deliberada.</strong> Con las claves foráneas declaradas, una fila
+        huérfana no puede existir, y una vista que las buscase sería incapaz de
+        devolver una sola fila. Un control que no puede fallar no es un control.
+      </p>
+    </div>
+
+    <p>
+      Las pruebas que cubren estos controles no comprueban que pasen con el
+      modelo sano, que es lo facil: <strong>rompen el modelo a propósito</strong>
+      -- alteran un importe, declaran mal los periodos cubiertos, insertan un
+      periodo de otro ejercicio -- y comprueban que cada control lo detecta.
+      Todo dentro de una transacción que se deshace.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Acelerar las consultas: cuándo compensa y cuándo no</h2>
+      <p>
+        Solo se indexa la tabla de detalle. Las dos últimas filas son la razón
+        de no indexar la tabla comparativa: con 42.017 filas la consulta ya
+        responde en milisegundos sin ayuda, y un índice solo añadiría espacio y
+        tiempo de carga.
+      </p>
+    </div>
+    <div class="tarjeta">
+      <div class="leyenda">
+        <span><i class="muestra" style="background: var(--serie-1)"></i>Con índice</span>
+        <span><i class="muestra" style="background: var(--serie-2)"></i>Recorrido secuencial</span>
+      </div>
+      <figure id="grafico-indices"></figure>
+    </div>
+    <p>
+      Escala logarítmica. Los tres índices ocupan 18 MB sobre una tabla de
+      74 MB, un 24% que las cifras de arriba justifican.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>El modelo, consultado</h2>
+      <p>
+        Lo que devuelve <code>pl.v_resultado_por_centro</code> para el escenario
+        que elijas. <strong>Solo dos de los 88 centros facturan</strong>, de modo
+        que un ranking por margen saldría con dos barras; el coste si esta
+        repartido, y es lo que esta vista analiza.
+      </p>
+    </div>
+
+    <div class="controles">
+      <label class="control">
+        <span>Escenario</span>
+        <select id="escenario-coste"></select>
+      </label>
+    </div>
+
+    <div class="rejilla dos">
+      <div class="tarjeta">
+        <h3>Coste por grupo de gasto</h3>
+        <figure id="grafico-ambito"></figure>
+      </div>
+      <div class="tarjeta">
+        <h3>Centros de mayor coste</h3>
+        <div class="marco-tabla" style="border:0">
+          <table class="datos" id="tabla-centros"></table>
+        </div>
+      </div>
+    </div>
+    <p id="aviso-coste"></p>
+  </div>
+</section>
+
+<section>
+  <div class="contenedor">
+    <div class="cabecera-seccion">
+      <h2>Una consulta de ejemplo</h2>
+      <p>
+        Así se compone el estado de resultados oficial desde el esquema en
+        estrella. El orden de los <code>CASE</code> importa: los grupos con
+        línea propia se resuelven primero y solo lo que queda se reparte entre
+        coste y gasto, de modo que ninguna cuenta cae en dos líneas ni se queda
+        sin ninguna.
+      </p>
+    </div>
+    <div class="codigo">
+      <header><span class="ruta">scripts/generar_cifras_web.py</span><span class="lengua">SQL</span></header>
+<pre><code>SELECT f.escenario_clave,
+       t.ejercicio,
+       t.periodo,
+       CASE
+           WHEN c.grupo = 'Ingresos'                                 THEN 1
+           WHEN c.grupo IN ('Ingresos Diversos', 'Egresos Diversos') THEN 5
+           WHEN c.grupo = 'Depreciacion'                             THEN 4
+           WHEN c.grupo = 'Gasto Financiero'                         THEN 6
+           WHEN c.grupo = 'Diferencia de Cambio'                     THEN 7
+           WHEN c.clase_costo_gasto = 'COSTO'                        THEN 2
+           ELSE 3
+       END AS orden,
+       sum(f.importe) AS importe
+  FROM core.fact_escenario f
+  JOIN core.dim_tiempo  t ON t.fecha_clave   = f.fecha_clave
+  JOIN core.dim_cuenta  c ON c.cuenta_codigo = f.cuenta_codigo
+ GROUP BY 1, 2, 3, 4</code></pre>
+    </div>
+    <p>
+      Esas siete líneas son las que el
+      <a href="index.html">estado de resultados</a> de la portada compone en
+      treinta y una filas. Su suma es el resultado neto al céntimo, y una prueba
+      lo comprueba en los cuatro escenarios.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { cargarDatos, compacto, crear, entero, escalaBonita, lienzo, nodo, porcentaje } from "./assets/comun.js";
+
+function texto(x, y, contenido, opciones = {}) {
+  return nodo("text", {
+    x, y, "font-family": "var(--texto)",
+    "font-size": opciones.tamano ?? 12,
+    "font-weight": opciones.peso ?? 400,
+    fill: opciones.color ?? "var(--tinta-media)",
+    "text-anchor": opciones.anclaje ?? "start",
+  }, contenido);
+}
+
+/** El estrella. Las dimensiones rodean a los dos hechos, y el hecho de detalle
+ *  queda debajo para que se vea que comparte tres de las cuatro claves. */
+function estrella() {
+  const ancho = 980, alto = 470;
+  const svg = lienzo(ancho, alto, "Esquema en estrella: dos tablas de hechos rodeadas por cuatro dimensiones");
+
+  const cajas = [
+    { id: "esc", t: "dim_escenario", s: "4 filas", x: 60, y: 40, w: 180, dim: true },
+    { id: "tie", t: "dim_tiempo", s: "24 filas", x: 740, y: 40, w: 180, dim: true },
+    { id: "cen", t: "dim_centro", s: "88 filas", x: 60, y: 360, w: 180, dim: true },
+    { id: "cue", t: "dim_cuenta", s: "152 filas", x: 740, y: 360, w: 180, dim: true },
+    { id: "fe", t: "fact_escenario", s: "42.017 filas &middot; escenario x centro x cuenta x mes", x: 330, y: 120, w: 320, dim: false },
+    { id: "fr", t: "fact_resultado", s: "428.589 filas &middot; un apunte contable", x: 330, y: 300, w: 320, dim: false },
+  ];
+  const mapa = Object.fromEntries(cajas.map((c) => [c.id, c]));
+  const centro = (c) => ({ x: c.x + c.w / 2, y: c.y + (c.dim ? 26 : 32) });
+
+  for (const [desde, hasta] of [["esc", "fe"], ["tie", "fe"], ["cen", "fe"], ["cue", "fe"],
+                                ["tie", "fr"], ["cen", "fr"], ["cue", "fr"]]) {
+    const a = centro(mapa[desde]);
+    const b = centro(mapa[hasta]);
+    svg.appendChild(nodo("line", {
+      x1: a.x, y1: a.y, x2: b.x, y2: b.y,
+      stroke: "var(--linea-fuerte)", "stroke-width": 1.2,
+    }));
+  }
+
+  for (const caja of cajas) {
+    const altura = caja.dim ? 52 : 64;
+    svg.appendChild(nodo("rect", {
+      x: caja.x, y: caja.y, width: caja.w, height: altura, rx: 8,
+      fill: caja.dim ? "var(--papel-hundido)" : "var(--marca-tinte)",
+      stroke: caja.dim ? "var(--linea-fuerte)" : "var(--marca)",
+      "stroke-width": caja.dim ? 1 : 1.5,
+    }));
+    svg.appendChild(texto(caja.x + caja.w / 2, caja.y + 24, caja.t, {
+      tamano: 14, peso: 600, anclaje: "middle",
+      color: caja.dim ? "var(--tinta)" : "var(--marca)",
+    }));
+    const glosa = texto(caja.x + caja.w / 2, caja.y + 43, "", { tamano: 11, anclaje: "middle", color: "var(--tinta-suave)" });
+    glosa.innerHTML = caja.s;
+    svg.appendChild(glosa);
+  }
+
+  svg.appendChild(texto(330, 240, "El real observado vive en las dos, y un control comprueba que suman lo mismo", { tamano: 11.5, color: "var(--tinta-suave)" }));
+  document.getElementById("diagrama-estrella").replaceChildren(svg);
+}
+
+/** Barras horizontales del tiempo de cada vista. */
+function vistas() {
+  const datos = [
+    { nombre: "v_hechos_escenario", ms: 273, filas: "42.017 filas" },
+    { nombre: "v_pl_mensual", ms: 182, filas: "1.110 filas" },
+    { nombre: "v_resultado_por_centro", ms: 101, filas: "302 filas" },
+    { nombre: "v_pl_resumen", ms: 46, filas: "46 filas" },
+    { nombre: "v_ejecucion_presupuestaria", ms: 41, filas: "611 filas" },
+    { nombre: "v_variacion_interanual", ms: 22, filas: "270 filas" },
+  ];
+  const ancho = 940, altoFila = 40;
+  const alto = datos.length * altoFila + 16;
+  const svg = lienzo(ancho, alto, "Tiempo de ejecucion de las seis vistas del P&L, en milisegundos");
+  const etiqueta = 230, pie = 150;
+  const tope = escalaBonita(Math.max(...datos.map((d) => d.ms)));
+
+  datos.forEach((dato, i) => {
+    const y = i * altoFila + 8;
+    svg.appendChild(texto(0, y + 21, dato.nombre, { tamano: 12.5, color: "var(--tinta)" }));
+    svg.appendChild(nodo("rect", {
+      x: etiqueta, y: y + 8, rx: 3,
+      width: Math.max(2, (dato.ms / tope) * (ancho - etiqueta - pie)),
+      height: 18, fill: "var(--serie-1)",
+    }));
+    svg.appendChild(texto(ancho - pie + 10, y + 21, `${dato.ms} ms`, { tamano: 12.5, peso: 600, color: "var(--tinta)" }));
+    svg.appendChild(texto(ancho - pie + 70, y + 21, dato.filas, { tamano: 11.5, color: "var(--tinta-suave)" }));
+  });
+  document.getElementById("grafico-vistas").replaceChildren(svg);
+}
+
+/** Con indice contra secuencial, en escala logaritmica: sin ella, 0,10 ms al
+ *  lado de 38,34 ms no se ve. */
+function indices() {
+  const datos = [
+    { nombre: "fact_resultado por centro", con: 0.10, sin: 38.34, gana: "383x" },
+    { nombre: "fact_resultado por cuenta", con: 0.34, sin: 47.75, gana: "140x" },
+    { nombre: "fact_resultado por periodo", con: 6.54, sin: 40.20, gana: "6x" },
+    { nombre: "fact_escenario por cuenta", con: null, sin: 2.74, gana: "sin indice" },
+    { nombre: "fact_escenario agregado", con: null, sin: 8.92, gana: "sin indice" },
+  ];
+  const ancho = 940, altoFila = 46;
+  const alto = datos.length * altoFila + 20;
+  const svg = lienzo(ancho, alto, "Tiempo de consulta con indice y con recorrido secuencial, en escala logaritmica");
+  const etiqueta = 250, pie = 90;
+  const util = ancho - etiqueta - pie;
+  // log10 sobre [0,05 ms, 100 ms]
+  const escala = (ms) => Math.max(3, (Math.log10(ms) - Math.log10(0.05)) / (Math.log10(100) - Math.log10(0.05)) * util);
+
+  datos.forEach((dato, i) => {
+    const y = i * altoFila + 10;
+    svg.appendChild(texto(0, y + 16, dato.nombre, { tamano: 12.5, color: "var(--tinta)" }));
+    if (dato.con !== null) {
+      svg.appendChild(nodo("rect", { x: etiqueta, y, width: escala(dato.con), height: 13, rx: 3, fill: "var(--serie-1)" }));
+      svg.appendChild(texto(etiqueta + escala(dato.con) + 8, y + 11, `${entero(dato.con * 100) / 100} ms`.replace(".", ","), { tamano: 11, color: "var(--tinta-suave)" }));
+    }
+    svg.appendChild(nodo("rect", { x: etiqueta, y: y + 17, width: escala(dato.sin), height: 13, rx: 3, fill: "var(--serie-2)" }));
+    svg.appendChild(texto(etiqueta + escala(dato.sin) + 8, y + 28, `${dato.sin} ms`.replace(".", ","), { tamano: 11, color: "var(--tinta-suave)" }));
+    svg.appendChild(texto(ancho, y + 21, dato.gana, { tamano: 12, peso: 600, anclaje: "end", color: dato.con === null ? "var(--tinta-suave)" : "var(--favorable)" }));
+  });
+  document.getElementById("grafico-indices").replaceChildren(svg);
+}
+
+/** Explorador del coste: lo unico de esta pagina que sale de la base y no de
+ *  una medicion escrita a mano. Lee el mismo `cifras.json` que el estado de
+ *  resultados de la portada. */
+async function coste() {
+  const datos = await cargarDatos("cifras.json", null);
+  if (!datos) return;
+
+  const select = document.getElementById("escenario-coste");
+  for (const escenario of datos.escenarios) {
+    const opcion = crear("option", null, escenario.escenario);
+    opcion.value = escenario.escenario_clave;
+    select.appendChild(opcion);
+  }
+  select.value = "R2025";
+
+  function pintar() {
+    const clave = select.value;
+    const escenario = datos.escenarios.find((e) => e.escenario_clave === clave);
+    // Los doce mayores, y el resto agregado: la suma de las barras sigue
+    // siendo el coste total y no una parte sin etiquetar.
+    const todos = datos.coste_por_grupo
+      .filter((a) => a.escenario_clave === clave)
+      .sort((a, b) => b.costes - a.costes);
+    const principales = todos.slice(0, 12);
+    const cola = todos.slice(12);
+    const grupos = cola.length
+      ? [...principales, { grupo: `Otros ${cola.length} grupos`, costes: cola.reduce((s, g) => s + g.costes, 0) }]
+      : principales;
+
+    const ancho = 520, altoFila = 28;
+    const svg = lienzo(ancho, grupos.length * altoFila + 10, `Coste por grupo de gasto en ${escenario.escenario}`);
+    const tope = Math.max(...grupos.map((g) => Math.abs(g.costes)));
+    const etiqueta = 190, pie = 76;
+    grupos.forEach((grupo, i) => {
+      const y = i * altoFila + 6;
+      // La diferencia de cambio puede ser una ganancia, y entonces sale
+      // negativa dentro del perimetro de coste. Se dibuja con su signo y en
+      // otro color en lugar de una barra minuscula que pareceria un gasto
+      // irrelevante.
+      const negativo = grupo.costes < 0;
+      svg.appendChild(texto(0, y + 15, grupo.grupo, { tamano: 12, color: "var(--tinta)" }));
+      svg.appendChild(nodo("rect", {
+        x: etiqueta, y: y + 4, rx: 3, height: 14,
+        width: Math.max(2, (Math.abs(grupo.costes) / tope) * (ancho - etiqueta - pie)),
+        fill: negativo ? "var(--favorable)" : "var(--serie-2)",
+      }));
+      svg.appendChild(texto(ancho, y + 15, (negativo ? "+" : "") + compacto(Math.abs(grupo.costes)), {
+        tamano: 11.5, anclaje: "end", color: negativo ? "var(--favorable)" : "var(--tinta-media)",
+      }));
+    });
+    document.getElementById("grafico-ambito").replaceChildren(svg);
+
+    const centros = datos.centros
+      .filter((c) => c.escenario_clave === clave)
+      .sort((a, b) => a.puesto - b.puesto);
+    const tabla = document.getElementById("tabla-centros");
+    tabla.replaceChildren();
+    const cabeza = tabla.createTHead().insertRow();
+    for (const titulo of ["Centro", "Coste", "% del total"]) {
+      const th = crear("th", null, titulo);
+      th.scope = "col";
+      cabeza.appendChild(th);
+    }
+    const cuerpo = tabla.createTBody();
+    let acumulado = 0;
+    for (const centro of centros) {
+      acumulado += centro.costes;
+      const fila = cuerpo.insertRow();
+      fila.insertCell().textContent = centro.ceco_nombre;
+      const coste = fila.insertCell();
+      coste.className = "cifra";
+      coste.textContent = entero(centro.costes);
+      const peso = fila.insertCell();
+      peso.className = "cifra";
+      peso.textContent = porcentaje(centro.costes / escenario.costes);
+    }
+    document.getElementById("aviso-coste").textContent =
+      `Los ${centros.length} centros de mayor coste concentran el ` +
+      `${porcentaje(acumulado / escenario.costes)} del coste de ${escenario.escenario}. ` +
+      "Los nombres son de un catalogo ficticio y los codigos, pseudonimos derivados por HMAC.";
+  }
+
+  select.addEventListener("change", pintar);
+  pintar();
+}
+
+estrella();
+vistas();
+indices();
+coste();
+</script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

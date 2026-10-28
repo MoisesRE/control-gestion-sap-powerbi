@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><title>Microsoft Fabric y Power BI: cómo encajan</title><meta name="description" content="Arquitectura y decisiones prácticas para entender la relación entre Microsoft Fabric y Power BI."><link rel="stylesheet" href="assets/estilo.css"></head><body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Power BI"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="powerbi.html">Power BI</a></div><span class="navegacion-articulos-contador">Artículo 02 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="power-bi-vs-ia.html" title="¿La IA hará desaparecer Power BI?"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Power BI vs. IA</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Microsoft Fabric y Power BI: cómo encajan"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Fabric + Power BI</span></span><a class="navegacion-articulos-opcion" href="mcp-power-bi-agentes.html" title="Conectar un proyecto Power BI a un agente con MCP"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">MCP y agentes</span></a><a class="navegacion-articulos-opcion" href="por-que-power-bi-empresas.html" title="Por qué Power BI aparece en tantas empresas"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Adopción empresarial</span></a></div></div></nav>
+<main><article><div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Arquitectura · 27 de octubre de 2026</span></p><h1>Microsoft Fabric y Power BI: cómo encajan</h1><p class="entradilla">Fabric amplía el recorrido de los datos; Power BI conserva una función central en el modelo semántico y la presentación. Entender dónde termina una capa y empieza la otra evita comprar una plataforma para resolver un problema que quizá sea solo un informe.</p></div></div>
+<section><div class="contenedor"><div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>No son dos nombres para el mismo producto</h2><p>Power BI responde a “¿qué pasó?” y “¿cómo lo comparo?”. Fabric añade un entorno compartido para ingerir, preparar, almacenar, gobernar y analizar datos. En una arquitectura Fabric, Power BI sigue siendo el espacio de modelos semánticos, informes y análisis de negocio.</p></div></div>
+<figure class="tarjeta" aria-labelledby="fabric-caption"><svg viewBox="0 0 1000 390" role="img" aria-labelledby="fabric-title fabric-desc"><title id="fabric-title">Cómo se conectan Fabric y Power BI</title><desc id="fabric-desc">Fuentes alimentan integración y preparación; OneLake comparte datos con modelos e informes de Power BI. Fabric IQ permite preguntas con contexto.</desc><defs><marker id="flecha-fabric" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--diagrama-conector)"/></marker></defs><rect x="30" y="135" width="150" height="95" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="105" y="174" text-anchor="middle" font-size="18" fill="var(--cabecera)">ERP · CRM</text><text x="105" y="201" text-anchor="middle" font-size="15" fill="var(--diagrama-neutro-texto)">archivos · eventos</text><path d="M185 183 H230" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-fabric)"/><rect x="245" y="70" width="250" height="225" rx="18" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)" stroke-width="2"/><text x="370" y="105" text-anchor="middle" font-size="19" font-weight="700" fill="var(--cabecera)">Fabric: trabajo con datos</text><rect x="270" y="125" width="200" height="55" rx="10" fill="var(--diagrama-neutro-fondo)"/><text x="370" y="159" text-anchor="middle" font-size="16" fill="var(--marca)">Data Factory</text><rect x="270" y="195" width="200" height="70" rx="10" fill="var(--diagrama-neutro-fondo)"/><text x="370" y="224" text-anchor="middle" font-size="16" fill="var(--marca)">Lakehouse · Warehouse</text><text x="370" y="248" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">ingeniería · tiempo real</text><path d="M500 183 H550" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-fabric)"/><rect x="565" y="115" width="170" height="135" rx="18" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)" stroke-width="2"/><text x="650" y="163" text-anchor="middle" font-size="21" font-weight="700" fill="var(--cabecera)">OneLake</text><text x="650" y="193" text-anchor="middle" font-size="15" fill="var(--diagrama-neutro-texto)">almacenamiento</text><text x="650" y="217" text-anchor="middle" font-size="15" fill="var(--diagrama-neutro-texto)">compartido</text><path d="M740 183 H785" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-fabric)"/><rect x="800" y="70" width="170" height="85" rx="14" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="885" y="105" text-anchor="middle" font-size="17" fill="var(--diagrama-verde-fuerte)">Power BI</text><text x="885" y="130" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">modelo + informes</text><rect x="800" y="180" width="170" height="85" rx="14" fill="var(--diagrama-berenjena-fondo)" stroke="var(--diagrama-berenjena-borde)"/><text x="885" y="216" text-anchor="middle" font-size="17" fill="var(--diagrama-berenjena-fuerte)">Fabric IQ</text><text x="885" y="240" text-anchor="middle" font-size="14" fill="var(--diagrama-berenjena-texto)">preguntas con contexto</text><path d="M650 255 V330 H885 V270" fill="none" stroke="var(--diagrama-conector)" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#flecha-fabric)"/><text x="760" y="355" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">métricas y semántica reutilizables</text></svg><figcaption id="fabric-caption">Vista conceptual basada en la arquitectura de Fabric de Microsoft. No implica que cada proyecto necesite activar todos los componentes.</figcaption></figure>
+<div class="lectura"><h2>El punto de unión es el modelo semántico</h2><p>El modelo guarda nombres de negocio, relaciones, jerarquías y medidas que convierten tablas en respuestas entendibles. Power BI usa esa capa en sus informes. Fabric puede conectar los modelos con almacenamiento y procesamiento compartidos; Fabric IQ puede llevar el contexto a experiencias conversacionales y agentes.</p><p>El acoplamiento no obliga a migrar cada conjunto de datos. Fabric tiene cargas de trabajo que comparten OneLake; Power BI sigue siendo una de ellas. Un equipo que ya tiene resuelta la integración puede continuar conectando Power BI a sus fuentes actuales.</p></div>
+<div class="cabecera-seccion"><h2>Elegir por el cuello de botella</h2><p>La decisión depende del trabajo que hoy consume tiempo, no de qué nombre aparece más en una presentación.</p></div><div class="marco-tabla"><table class="datos"><thead><tr><th>Problema principal</th><th>Empieza por…</th><th>Por qué</th></tr></thead><tbody><tr><td>Diseñar medidas, páginas y distribución de informes</td><td>Power BI</td><td>Es la capa de modelado semántico y visualización.</td></tr><tr><td>Repetir cargas, limpieza o consolidación de muchas fuentes</td><td>Evaluar Fabric</td><td>Data Factory, ingeniería y almacenamiento compartido pueden cubrir el flujo anterior al informe.</td></tr><tr><td>Consultar definiciones de negocio con IA</td><td>Preparar semántica y permisos; evaluar Fabric IQ</td><td>El agente necesita contexto gobernado, no solo acceso a archivos.</td></tr><tr><td>Reducir gasto o complejidad</td><td>Medir uso, capacidad y licencias</td><td>Una plataforma unificada también concentra consumo; vigila capacidad y coste.</td></tr></tbody></table></div>
+<div class="aviso"><p><strong>Fabric no convierte un mal modelo en uno bueno.</strong> Si las cuentas, fechas o reglas del P&amp;L están mal definidas, moverlas a OneLake solo permite que el mismo error se consuma desde más sitios.</p></div>
+<div class="lectura"><h2>Un caso financiero reciente</h2><p>En una historia de cliente publicada por Microsoft en septiembre de 2026, HFW Companies describe una plataforma Fabric que consolida 13 ERP. El paquete financiero mensual pasó de requerir tres personas durante dos semanas a generarse mediante un ciclo nocturno. Es un caso presentado por Microsoft, no un estudio independiente, pero ilustra la división práctica: Fabric organiza y transforma las fuentes; el modelo semántico de Power BI sirve el paquete financiero.</p><p>La regla útil: añadir Fabric cuando el cuello de botella está en la cadena de datos, no solo porque el informe final use Power BI.</p></div>
+<div class="fuentes"><h2>Fuentes consultadas</h2><ol><li><a href="https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview">Microsoft Learn, What is Microsoft Fabric?</a>, actualizado en septiembre de 2026. Arquitectura, OneLake y cargas de trabajo.</li><li><a href="https://learn.microsoft.com/en-us/fabric/fundamentals/whats-new">Microsoft Learn, What’s new in Fabric</a>, novedades de septiembre de 2026; incluye Fabric IQ en Microsoft 365 Copilot y Fabric IQ MCP.</li><li><a href="https://www.microsoft.com/en/customers/story/27108-hfw-companies-power-bi">Microsoft Customer Stories, HFW Companies</a>, 2 de septiembre de 2026. Caso de consolidación financiera; fuente publicada por el proveedor.</li><li><a href="https://learn.microsoft.com/en-us/azure/well-architected/microsoft-fabric/overview">Microsoft Azure Well-Architected Framework, Microsoft Fabric workloads</a>, publicado hace cinco meses. Explica el efecto de compartir capacidad.</li></ol><p class="glosa-grafico">Diagrama y análisis originales. El caso de HFW se resume y atribuye; no se reproduce su material gráfico.</p></div>
+<div class="siguiente"><a href="powerbi.html"><p class="rotulo">Sección</p><strong>Volver a Power BI</strong></a><a href="mcp-power-bi-agentes.html"><p class="rotulo">Siguiente</p><strong>Conectar un agente con MCP</strong></a></div>
+</div></section></article></main><footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer><script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body></html>

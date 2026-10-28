@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Se publicó un error: cómo contenerlo y corregirlo</title>
+<meta name="description" content="Un protocolo operativo para contener un error en un reporte financiero, corregirlo, comunicar la versión válida y prevenir su repetición.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; puede salir mal"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-puede-salir-mal.html">Qu&#233; puede salir mal</a></div><span class="navegacion-articulos-contador">Artículo 03 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="refresh-no-es-reporte-listo.html" title="Refresh correcto, reporte desactualizado"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Refresh ≠ listo</span></a><a class="navegacion-articulos-opcion" href="revisar-finanzas-antes-publicar.html" title="El reporte cuadra, pero algo está mal"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Revisión previa</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Se publicó un error: cómo contenerlo y corregirlo"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Corregir un error</span></span><a class="navegacion-articulos-opcion" href="postmortem-errores-reporte-financiero.html" title="Qué puede salir mal al automatizar un reporte financiero"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Postmortem</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 03 · Respuesta · 27 de octubre de 2026</span></p><h1>Se publicó un error: cómo contenerlo y corregirlo</h1><p class="entradilla">Cuando una cifra incorrecta ya salió del equipo, corregir el archivo no basta. Hay que saber qué versión circuló, quién tomó decisiones con ella y cómo reconocer el reemplazo antes de cerrar la investigación.</p><div class="meta-articulo"><span>Lectura de 6 minutos</span><span>&middot;</span><span>Para responsables de reportes y cierre</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>Primero evita que la versión equivocada siga actuando</h2><p>Un error material no debe quedar oculto detrás de un archivo con el mismo nombre. La primera respuesta consiste en detener su distribución o marcarlo claramente, conservar evidencia de la versión y avisar al responsable que puede evaluar el impacto.</p></div></div>
+<figure class="tarjeta" aria-labelledby="respuesta-caption"><svg viewBox="0 0 1000 360" role="img" aria-labelledby="respuesta-title respuesta-desc"><title id="respuesta-title">Protocolo para responder a un error en un reporte publicado</title><desc id="respuesta-desc">Detectar el error, contener la distribución, reconstruir su alcance, corregir y validar una nueva versión, comunicarla y prevenir la repetición.</desc><defs><marker id="flecha-respuesta" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="20" y="68" width="150" height="92" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="95" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="var(--cabecera)">1 · Detectar</text><text x="95" y="132" text-anchor="middle" font-size="12" fill="var(--diagrama-neutro-texto)">señal y evidencia</text><path d="M175 114 H205" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-respuesta)"/><rect x="218" y="68" width="150" height="92" rx="14" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="293" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diagrama-cobre-texto)">2 · Contener</text><text x="293" y="132" text-anchor="middle" font-size="12" fill="var(--diagrama-cobre-texto)">pausar distribución</text><path d="M373 114 H403" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-respuesta)"/><rect x="416" y="68" width="150" height="92" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="491" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="var(--cabecera)">3 · Delimitar</text><text x="491" y="132" text-anchor="middle" font-size="12" fill="var(--diagrama-neutro-texto)">audiencia e impacto</text><path d="M571 114 H601" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-respuesta)"/><rect x="614" y="68" width="150" height="92" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="689" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="var(--cabecera)">4 · Corregir</text><text x="689" y="132" text-anchor="middle" font-size="12" fill="var(--diagrama-neutro-texto)">recalcular y revisar</text><path d="M769 114 H799" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-respuesta)"/><rect x="812" y="68" width="168" height="92" rx="14" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="896" y="103" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diagrama-verde-fuerte)">5 · Reemplazar</text><text x="896" y="132" text-anchor="middle" font-size="12" fill="var(--diagrama-verde-texto)">avisar y documentar</text><path d="M896 173 V232 H95 V173" fill="none" stroke="var(--diagrama-conector)" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#flecha-respuesta)"/><rect x="273" y="226" width="444" height="72" rx="14" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="495" y="255" text-anchor="middle" font-size="15" font-weight="700" fill="var(--cabecera)">6 · Aprender: causa raíz, control y responsable</text><text x="495" y="279" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">la corrección queda cerrada cuando la causa deja de repetirse</text></svg><figcaption id="respuesta-caption">Secuencia original de respuesta. Ajusta responsables y tiempos a la materialidad y a la política de incidentes de la organización.</figcaption></figure>
+</div>
+<div class="contenedor"><div class="lectura">
+<h2>Acciones y evidencia para cada etapa</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Etapa</th><th>Acción inmediata</th><th>Evidencia que conservar</th></tr></thead><tbody><tr><td>Contener</td><td>Pausar la distribución programada o colocar un aviso claro junto a la versión afectada</td><td>Ubicación, fecha y hora de retiro o aviso</td></tr><tr><td>Delimitar</td><td>Identificar periodo, medida, audiencia y decisiones que pudieron verse afectadas</td><td>Versiones, historial de acceso disponible y lista de destinatarios</td></tr><tr><td>Reconstruir</td><td>Volver desde el reporte a la fuente, transformación, criterio y dato que originó el error</td><td>Archivos de origen, consultas, reglas, parámetros y bitácoras</td></tr><tr><td>Corregir y validar</td><td>Aplicar el arreglo y repetir controles de totales, periodo y clasificación con un revisor</td><td>Resultado corregido y aprobación identificable</td></tr><tr><td>Comunicar</td><td>Publicar una versión con fecha o número distinguible y explicar qué cambió</td><td>Mensaje de corrección, versión retirada y versión válida</td></tr><tr><td>Prevenir</td><td>Asignar responsable a la causa raíz y agregar una comprobación que habría detenido el error</td><td>Acción, dueño, fecha objetivo y comprobación de cierre</td></tr></tbody></table></div>
+<h2>Un caso real muestra cómo se acumulan los riesgos</h2>
+<p>En septiembre de 2026, la Government Accountability Office de Estados Unidos publicó un informe sobre los procesos usados para preparar los estados financieros consolidados del gobierno federal. Entre las deficiencias identificadas en la auditoría fiscal 2025 estaban notas incompletas o inexactas y evidencia insuficiente para confirmar que los accesos a un sistema de preparación fueran apropiados. La GAO también describió debilidades persistentes que afectaban la consistencia con los estados de las entidades, el balance y el soporte de ciertas conciliaciones.</p>
+<p>Ese informe corresponde a una organización pública y un marco específico; no representa a todas las empresas. Es útil como ejemplo de que un reporte puede fallar en varias capas al mismo tiempo: dato y conciliación, explicación y acceso al sistema. La respuesta práctica debe investigar cada capa y dejar claro quién valida la nueva versión.</p>
+<h2>Plantilla breve para comunicar la corrección</h2>
+<p>Una comunicación interna útil identifica el reporte y periodo, indica qué versión queda reemplazada, describe qué rubros o decisiones cambian y señala dónde consultar el archivo validado. Si el análisis del impacto sigue abierto, dilo de forma explícita y asigna quién dará la siguiente actualización. Así los destinatarios pueden diferenciar una corrección confirmada de una revisión todavía en curso.</p>
+<blockquote>Una corrección no está completa cuando se arregla el cálculo; está completa cuando quienes recibieron la versión anterior saben cuál usar y el equipo puede explicar qué cambió.</blockquote>
+<div class="fuentes"><h2>Fuente reciente</h2><ol><li><a href="https://files.gao.gov/reports/GAO-26-109081/index.html">U.S. Government Accountability Office, “U.S. Consolidated Financial Statements: Improvements Needed in Controls over Treasury Preparation Processes”</a>, 15 de septiembre de 2026. Hallazgos de auditoría y recomendaciones sobre preparación, notas, conciliaciones y revisión de accesos.</li></ol><p class="glosa-grafico">Diagrama, protocolo y tabla originales. El protocolo es una propuesta práctica para adaptar a la materialidad, seguridad y gobierno de cada entidad.</p></div>
+<div class="siguiente"><a href="revisar-finanzas-antes-publicar.html"><p class="rotulo">Artículo 02</p><strong>Revisar clasificaciones y supuestos</strong></a><a href="postmortem-errores-reporte-financiero.html"><p class="rotulo">Artículo 04</p><strong>Leer el postmortem del proyecto</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

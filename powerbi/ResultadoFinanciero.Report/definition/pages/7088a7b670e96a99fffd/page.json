@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "7088a7b670e96a99fffd",
+  "displayName": "Ejecucion presupuestaria",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><title>Conectar Power BI a un agente con MCP</title><meta name="description" content="Guía actualizada de los servidores MCP de Power BI para autoría de proyectos y consultas de agentes de IA."><link rel="stylesheet" href="assets/estilo.css"></head><body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Power BI"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="powerbi.html">Power BI</a></div><span class="navegacion-articulos-contador">Artículo 03 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="power-bi-vs-ia.html" title="¿La IA hará desaparecer Power BI?"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Power BI vs. IA</span></a><a class="navegacion-articulos-opcion" href="fabric-power-bi.html" title="Microsoft Fabric y Power BI: cómo encajan"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Fabric + Power BI</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Conectar un proyecto Power BI a un agente con MCP"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">MCP y agentes</span></span><a class="navegacion-articulos-opcion" href="por-que-power-bi-empresas.html" title="Por qué Power BI aparece en tantas empresas"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Adopción empresarial</span></a></div></div></nav>
+<main><article><div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Guía práctica · 27 de octubre de 2026</span></p><h1>Conectar un proyecto Power BI a un agente con MCP</h1><p class="entradilla">MCP no es un modelo de IA ni un botón mágico dentro de Power BI. Es el protocolo que permite que un cliente de agente encuentre herramientas y las use. Primero hay que decidir si el agente va a editar archivos o responder preguntas sobre datos publicados.</p></div></div>
+<section><div class="contenedor"><div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>Separar construir de consultar</h2><p>Microsoft documenta caminos distintos: Power BI Authoring MCP crea y modifica modelos; Fabric IQ MCP consulta datos gobernados. El endpoint antiguo de consumo sigue documentado para integraciones existentes, pero Microsoft recomienda Fabric IQ para nuevas experiencias de consulta.</p></div></div>
+<figure class="tarjeta" aria-labelledby="mcp-caption"><svg viewBox="0 0 1000 390" role="img" aria-labelledby="mcp-title mcp-desc"><title id="mcp-title">Tres rutas de un agente hacia Power BI</title><desc id="mcp-desc">Un agente en VS Code usa el servidor local de autoría para editar PBIP. El servidor alojado trabaja con modelos en Fabric. Fabric IQ permite consultas de solo lectura sobre modelos publicados.</desc><defs><marker id="flecha-mcp" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--diagrama-conector)"/></marker></defs><rect x="30" y="130" width="190" height="105" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="125" y="169" text-anchor="middle" font-size="18" fill="var(--cabecera)">Agente + cliente</text><text x="125" y="197" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">VS Code · Copilot</text><path d="M220 145 H260 V82 H285" stroke="var(--diagrama-conector)" stroke-width="3" fill="none" marker-end="url(#flecha-mcp)"/><rect x="300" y="35" width="300" height="95" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="450" y="74" text-anchor="middle" font-size="18" font-weight="700" fill="var(--cabecera)">Authoring MCP local</text><text x="450" y="101" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">PBIP / TMDL en disco · Desktop</text><path d="M605 82 H680" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-mcp)"/><rect x="695" y="35" width="265" height="95" rx="16" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="827" y="74" text-anchor="middle" font-size="18" fill="var(--diagrama-verde-fuerte)">Proyecto local</text><text x="827" y="101" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">cambios revisables en Git</text><path d="M225 182 H285" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-mcp)"/><rect x="300" y="147" width="300" height="75" rx="16" fill="var(--diagrama-berenjena-fondo)" stroke="var(--diagrama-berenjena-borde)"/><text x="450" y="177" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-berenjena-fuerte)">Authoring MCP alojado</text><text x="450" y="202" text-anchor="middle" font-size="14" fill="var(--diagrama-berenjena-texto)">modelo en workspace Fabric</text><path d="M605 185 H680" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-mcp)"/><rect x="695" y="147" width="265" height="75" rx="16" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="827" y="177" text-anchor="middle" font-size="17" fill="var(--diagrama-verde-fuerte)">Modelo semántico</text><text x="827" y="202" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">solo cambios autorizados</text><path d="M220 220 V298 H285" fill="none" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-mcp)"/><rect x="300" y="260" width="300" height="75" rx="16" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="450" y="290" text-anchor="middle" font-size="18" font-weight="700" fill="var(--diagrama-cobre-texto)">Fabric IQ MCP</text><text x="450" y="315" text-anchor="middle" font-size="14" fill="var(--diagrama-cobre-texto)">consulta gobernada · solo lectura</text><path d="M605 298 H680" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-mcp)"/><rect x="695" y="260" width="265" height="75" rx="16" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="827" y="290" text-anchor="middle" font-size="17" fill="var(--diagrama-verde-fuerte)">Preguntas de negocio</text><text x="827" y="315" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">modelo publicado + permisos</text></svg><figcaption id="mcp-caption">Elige la ruta según el destino. En septiembre de 2026, Authoring MCP alojado estaba en preview y el local en disponibilidad general.</figcaption></figure>
+<div class="cabecera-seccion"><h2>Qué servidor usar</h2></div><div class="marco-tabla"><table class="datos"><thead><tr><th>Objetivo</th><th>Ruta</th><th>Qué revisar</th></tr></thead><tbody><tr><td>Editar PBIP/TMDL o un modelo abierto en Desktop</td><td>Authoring MCP local</td><td>El servidor remoto no alcanza archivos locales; usa rama Git y revisa el diff.</td></tr><tr><td>Modificar un modelo de un workspace Fabric</td><td>Authoring MCP alojado o local</td><td>El endpoint alojado requiere habilitación del administrador; escribir exige permisos.</td></tr><tr><td>Responder preguntas sobre un modelo publicado</td><td>Fabric IQ MCP</td><td>Es la ruta de consumo; mantiene permisos y reglas por filas/objetos.</td></tr></tbody></table></div>
+<div class="lectura"><h2>Un flujo que deja rastro</h2><ol><li><strong>Prepara el proyecto.</strong> Abre el PBIP desde una copia bajo control de versiones; describe tablas, métricas, reglas y alcance.</li><li><strong>Conecta el cliente MCP correcto.</strong> VS Code puede actuar como host con un cliente de agente; el servidor expone operaciones. La identidad necesita autorización y permisos adecuados.</li><li><strong>Empieza por leer.</strong> Pide al agente que liste el modelo y explique las medidas antes de permitir cambios. Acota archivos y objetos que puede tocar.</li><li><strong>Genera, valida y revisa.</strong> Solicita una consulta DAX de validación y revisa resultados y diff. Para una página, inspecciona el render final, no solo el archivo.</li><li><strong>Publica por el proceso normal.</strong> La revisión humana y la aprobación siguen siendo importantes: un agente con permisos de escritura puede cambiar objetos reales.</li></ol></div>
+<div class="codigo"><header><span class="ruta">Ejemplo de instrucción al agente</span><span class="lengua">Solicitud</span></header><pre><code>Lee el modelo y explica cómo calcula la ejecución presupuestaria. Propón una medida que respete los filtros y periodos cubiertos. No edites los roles de seguridad. Valídala con DAX y presenta el diff para revisión antes de guardar.</code></pre></div>
+<div class="aviso"><p><strong>Permisos y estado del producto:</strong> Authoring MCP local puede trabajar con PBIP/TMDL en disco; el servidor alojado opera con modelos del workspace, no con archivos locales. Fabric IQ MCP está orientado a consultas. Revisa la etiqueta preview/GA y los permisos del tenant antes de desplegar.</p></div>
+<div class="lectura"><h2>Qué están probando los equipos</h2><p>En LinkedIn, Richa Pandit mostró una orquestación entre un modelo semántico, un informe Power BI y un agente de Copilot Studio conectado con Fabric IQ MCP. Tiffany Lin describió un experimento de presupuesto vs. real con skills y MCP: el agente armó un primer borrador y su trabajo pasó a enfocarse más en fijar reglas y revisar cambios. Son experiencias personales, no benchmarks, pero ayudan a ver cómo se ensamblan las piezas.</p><p>Para un PBIP como el de este sitio, empezaría con el servidor local para modelar en una rama y reservaría Fabric IQ para preguntas sobre el modelo publicado.</p></div>
+<div class="fuentes"><h2>Fuentes consultadas</h2><ol><li><a href="https://learn.microsoft.com/en-us/power-bi/developer/mcp/mcp-servers-overview">Microsoft Learn, Power BI MCP servers overview</a>, actualizado el 24 de septiembre de 2026.</li><li><a href="https://learn.microsoft.com/en-us/power-bi/developer/mcp/power-bi-authoring-mcp">Microsoft Learn, Power BI Authoring MCP server</a>, actualizado el 17 de septiembre de 2026.</li><li><a href="https://learn.microsoft.com/en-us/rest/api/fabric/articles/mcp-servers/what-is-fabric-mcp-server">Microsoft Learn, Fabric MCP servers overview</a>, actualizado el 23 de septiembre de 2026.</li><li><a href="https://www.linkedin.com/posts/richapandit_copilotstudio-microsoftfabric-powerbi-activity-7497438864681328640-LhWL">Richa Pandit, LinkedIn</a>, septiembre de 2026; experiencia con agentes y Fabric IQ MCP.</li><li><a href="https://www.linkedin.com/posts/tiffany-lin-workhard_powerbi-microsoftfabric-analytics-activity-7475363992694153217-Pu7J">Tiffany Lin, LinkedIn</a>, octubre de 2026; prototipo de presupuesto vs. real.</li></ol><p class="glosa-grafico">Texto, diagrama y solicitud de ejemplo originales. Las publicaciones son testimonios enlazados, no evidencia estadística.</p></div>
+<div class="siguiente"><a href="powerbi.html"><p class="rotulo">Sección</p><strong>Volver a Power BI</strong></a><a href="por-que-power-bi-empresas.html"><p class="rotulo">Siguiente</p><strong>Por qué se usa en las empresas</strong></a></div>
+</div></section></article></main><footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer><script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body></html>

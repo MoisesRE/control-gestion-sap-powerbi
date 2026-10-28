@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Qué puede y qué no puede hacer la IA en un cierre</title>
+<meta name="description" content="Un método para separar la redacción, el cálculo y la aprobación al automatizar un cierre financiero.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<nav class="tira-nav" aria-label="Principal">
+  <div class="contenedor">
+    <button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Inicio</a>
+      <a href="powerbi.html">Power BI</a>
+      <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+      <a href="defender-las-cifras.html">Defender las cifras</a>
+      <a href="que-automatizar.html">Qu&eacute; automatizar</a>
+      <a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a>
+      <details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span>
+    </div>
+  </div>
+</nav>
+
+<nav class="navegacion-articulos" aria-label="Artículos de IA para Finanzas"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="ia-en-el-cierre.html">IA para Finanzas</a></div><span class="navegacion-articulos-contador">Artículo 04 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="analisis-financiero-ia.html" title="Del dato a la decisión: análisis financiero con IA"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Análisis financiero</span></a><a class="navegacion-articulos-opcion" href="flujo-caja-ia.html" title="Flujo de caja con IA: pronósticos y escenarios"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Flujo de caja</span></a><a class="navegacion-articulos-opcion" href="depreciacion-ia.html" title="Depreciación de activos: dónde ayuda la IA y dónde decide el ERP"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Depreciación</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Qué puede y qué no puede hacer la IA en un cierre"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">IA en el cierre</span></span></div></div></nav>
+<main>
+<article>
+<div class="contenedor" id="articulo-cierre">
+  <div class="portada portada-grafico">
+    <div>
+    <p class="rotulo"><span class="tema">Artículo 04 · Método</span></p>
+    <h1>Qué puede y qué no puede hacer la IA en un cierre</h1>
+    <p class="entradilla">
+      La promesa habitual es «ahorra un 90% del tiempo». La pregunta que nadie
+      responde es: ¿de qué tiempo, y a cambio de qué? Esto es lo que aprendí
+      automatizando un P&amp;L real, separando lo que un asistente hace bien de
+      lo que hace mal con mucho aplomo.
+    </p>
+    <div class="meta-articulo">
+      <span>Lectura de 9 minutos</span>
+      <span>&middot;</span>
+      <span>Para control de gestión, FP&amp;A y costes</span>
+    </div>
+    </div>
+    <div class="marco-grafico">
+      <p class="rotulo">El método</p>
+      <h2>Tres capas, y el orden importa</h2>
+      <p class="glosa-grafico">Quien redacta el proceso no calcula la cifra, y quien calcula la cifra no decide si se publica.</p>
+      <figure id="figura-capas"></figure>
+    </div>
+  </div>
+</div>
+
+<div class="contenedor">
+  <div class="articulo">
+    <div class="lectura">
+
+
+    <h2 id="la-confusion">La confusión que está en la raíz</h2>
+
+    <p>
+      Un modelo de lenguaje es, literalmente, un sistema que predice qué palabra
+      va después. Eso lo hace extraordinariamente bueno escribiendo texto y
+      código, que son secuencias con estructura. Y lo hace poco fiable
+      calculando, que es una operación de naturaleza distinta.
+    </p>
+
+    <blockquote>
+      Escribe con fluidez; no es una calculadora. Confundir esas dos cosas es el
+      origen de casi todos los sustos.
+    </blockquote>
+
+    <p>
+      Es una distinción incómoda porque la salida no lo transparenta. Cuando un
+      asistente se equivoca en una suma, el resultado no viene con una
+      advertencia: viene redactado con la misma seguridad que cuando acierta. En
+      una hoja de cálculo un error se ve porque la celda queda en rojo o el
+      cuadre no sale. Aquí el error llega bien escrito.
+    </p>
+
+    <p>
+      De ahí sale toda la práctica que describo abajo: no se trata de usar o no
+      usar la herramienta, sino de <strong>ponerla donde su naturaleza
+      juega a favor</strong>.
+    </p>
+
+    <h2 id="donde-si">Las cinco cosas en las que sí acelera</h2>
+
+    <h3>1. Escribir el código de infraestructura</h3>
+    <p>
+      Leer un XLSX enorme sin que se coma la memoria, conectar con la base,
+      cargar sin duplicar. Es código tedioso, muy documentado y con poca
+      ambigüedad. En mi caso el lector incremental de Excel —la pieza que hace
+      viable todo lo demás— salió en una fracción del tiempo que me habría
+      costado a mano.
+    </p>
+
+    <h3>2. Traducir reglas de negocio a reglas técnicas</h3>
+    <p>
+      Esta es la que más me sorprendió. Yo sé lo que significa «el grano es
+      escenario por centro, cuenta y mes». Convertirlo en una clave primaria,
+      en claves foráneas y en restricciones que impidan cargar basura es
+      mecánico una vez que la regla está clara. El valor lo aportas tú al
+      formular la regla; la transcripción se delega.
+    </p>
+
+    <h3>3. Escribir las pruebas que intentan romper tu trabajo</h3>
+    <p>
+      Pedir «escribe pruebas» da pruebas que comprueban que todo va bien, que
+      es lo fácil y lo inútil. Lo que funciona es pedir lo contrario:
+      <strong>rompe el modelo a propósito y comprueba que el control lo
+      detecta</strong>. Altera un importe, declara mal los periodos cubiertos,
+      inserta un periodo de otro ejercicio. Un control que no puede fallar no es
+      un control.
+    </p>
+
+    <h3>4. Documentar mientras construyes</h3>
+    <p>
+      La documentación se escribe al final, cuando ya no te acuerdas de por qué
+      descartaste la alternativa. Con un asistente se escribe a la vez, y el
+      efecto secundario es el que de verdad importa: al redactar por qué
+      elegiste algo, a veces descubres que no tienes un motivo.
+    </p>
+
+    <h3>5. Discutir una decisión de diseño</h3>
+    <p>
+      Pedir «dame la alternativa y el argumento en contra» antes de implementar
+      cambia la calidad del resultado. En este proyecto me hizo revisar el
+      perímetro de ingresos, replantear si la dimensión de tiempo debía bajar a
+      día y descartar materializar unas vistas que no lo necesitaban.
+    </p>
+
+    <h2 id="donde-no">Las cuatro en las que falla, y falla convencido</h2>
+
+    <h3>1. Calcular la cifra</h3>
+    <p>
+      Ninguna cifra de este sitio la produce un modelo de lenguaje. Las calcula
+      la base de datos y las verifica el modelo de Power BI por un camino
+      distinto. Si le pides a un asistente que te sume una columna, puede
+      acertar; el problema es que no puedes saber cuándo no lo ha hecho.
+    </p>
+
+    <h3>2. Conocer tu libro mayor</h3>
+    <p>
+      El modelo no sabe qué cuentas usa tu empresa, qué significa tu centro
+      90001 ni por qué una partida se clasifica como coste y no como gasto. Lo
+      que hace es producir una respuesta plausible, que en contabilidad es
+      justo lo peligroso: plausible y equivocado se parecen mucho.
+    </p>
+
+    <h3>3. Recordar tu perímetro</h3>
+    <p>
+      En mi caso el perímetro de ingresos es un grupo concreto del plan, no
+      «todo lo que parece ingreso». La diferencia entre las dos definiciones
+      eran cuatro centésimas en la ejecución presupuestaria —88,52% contra
+      88,56%— y solo una de las dos cuadra con el reporte oficial. Ninguna
+      herramienta va a saber cuál quieres si no se lo dices.
+    </p>
+
+    <h3>4. Decidir qué es un error</h3>
+    <p>
+      Más de una vez, ante un control que no pasaba, la propuesta fue subir la
+      tolerancia. Es la tentación más peligrosa del oficio, con o sin IA: un
+      umbral que se ajusta hasta que el control pase ya no mide nada. Las
+      tolerancias se derivan del proceso. En mi pipeline, escalar y redondear
+      <em>n</em> importes puede desviar la suma hasta <em>n</em> medias
+      centésimas, de modo que la tolerancia es función del número de apuntes del
+      periodo. No es negociable, porque no es una opinión.
+    </p>
+
+    <h2 id="sesgo">El riesgo real no es el error: es creérselo</h2>
+
+    <p>
+      El término que usan los organismos profesionales es <strong>sesgo de
+      automatización</strong>: la tendencia a aceptar la salida de un sistema
+      automático por encima de nuestro propio juicio. Es un riesgo conocido
+      desde mucho antes de la IA generativa —pasa igual con una macro heredada
+      que nadie revisa—, pero ahora llega con una redacción impecable que
+      desarma la sospecha.
+    </p>
+
+    <p>
+      La defensa no es desconfiar de todo, que es inoperante. Es tener una
+      cifra externa contra la que contrastar. En mi caso esa cifra es la maqueta
+      oficial que Control de Gestión ya publica: si el pipeline no la reproduce
+      mes a mes, se detiene. No necesito confiar en el proceso porque tengo cómo
+      comprobarlo.
+    </p>
+
+    <div class="aviso">
+      <p>
+        <strong>Un ejemplo de mi propio proyecto.</strong> Escribí en la
+        documentación que el escalado de importes conservaba los ratios
+        «exactamente». Dos pruebas fallaron: no es cierto, porque el redondeo a
+        céntimos introduce un error pequeño pero real. Corregí la afirmación, no
+        la prueba. Esa afirmación la había escrito yo con total convicción.
+      </p>
+    </div>
+
+    <h2 id="regla">La regla de las tres capas</h2>
+
+    <p>
+      Después de este proyecto la resumo así, y me sirve para cualquier reporte:
+    </p>
+
+    <ol>
+      <li>
+        <strong>La IA escribe el proceso.</strong> El código, las consultas, las
+        pruebas, la documentación. Es texto estructurado y ahí rinde.
+      </li>
+      <li>
+        <strong>El motor calcula la cifra.</strong> La base de datos, el modelo
+        semántico, la hoja de cálculo. Aritmética determinista y reproducible.
+      </li>
+      <li>
+        <strong>El control decide si se publica.</strong> La reconciliación
+        contra la cifra oficial, con una tolerancia derivada. Si no cuadra, no
+        sale.
+      </li>
+    </ol>
+
+    <p>
+      Invierte ese orden y obtienes lo que abunda ahora mismo: un informe
+      impecable de aspecto que nadie puede defender cuando alguien pregunta de
+      dónde sale el número. De eso va
+      <a href="metodo-defender-cifras.html">el artículo siguiente</a>.
+    </p>
+    <h2 id="empezar">Por dónde empezar el lunes</h2>
+
+    <p>
+      Si trabajas en control de gestión o en costes y quieres probar esto sin
+      montar un proyecto entero:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Elige el reporte que más te repite.</strong> El que haces igual
+        todos los meses. Si lo haces una vez al año, automatizarlo no compensa.
+      </li>
+      <li>
+        <strong>Escribe primero el control, no el informe.</strong> ¿Contra qué
+        cifra ya publicada tiene que cuadrar esto? Si no existe esa cifra, el
+        primer trabajo es conseguirla.
+      </li>
+      <li>
+        <strong>Empieza por la extracción, no por el gráfico.</strong> Lo que te
+        quita horas no es dibujar; es copiar, pegar y cuadrar.
+      </li>
+      <li>
+        <strong>Pide la alternativa antes que la solución.</strong> «Dame dos
+        formas de hacer esto y el argumento en contra de cada una» produce
+        mejores decisiones que «hazlo».
+      </li>
+      <li>
+        <strong>No publiques nada que no puedas reproducir.</strong> Si no sabes
+        volver a generar la cifra desde el origen, todavía no has automatizado:
+        has escondido el trabajo manual.
+      </li>
+    </ul>
+
+    <aside class="caja-autor">
+      <div class="iniciales" aria-hidden="true">MR</div>
+      <div>
+        <p class="rotulo">Sobre el autor</p>
+        <h2>Moisés Retuerto Espinoza</h2>
+        <p>
+          Profesional con m&aacute;s de 7 a&ntilde;os de experiencia en Control de Gesti&oacute;n y
+          Planeamiento Financiero en los sectores de servicios, log&iacute;stica,
+          miner&iacute;a y construcci&oacute;n. Experto en transformar grandes vol&uacute;menes de
+          datos en insights accionables (Power BI, SQL, Python) para optimizar
+          costos y potenciar la rentabilidad del negocio.
+        </p>
+        <div class="contacto">
+          <a class="boton-enlace" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn</a>
+          <a class="boton-enlace secundario" href="caso.html">Ver el caso completo</a>
+        </div>
+      </div>
+    </aside>
+
+    <div class="siguiente">
+      <a href="metodo-defender-cifras.html">
+        <p class="rotulo">Siguiente</p>
+        <strong>El problema no es generar el informe, es poder defenderlo</strong>
+      </a>
+      <a href="caso.html">
+        <p class="rotulo">El caso</p>
+        <strong>De un Excel de 165 MB a un P&amp;L automatizado</strong>
+      </a>
+    </div>
+    </div>
+
+    <aside class="rail">
+      <div class="bloque">
+        <h2>En esta página</h2>
+        <ol>
+          <li><a href="#la-confusion">La confusión que está en la raíz</a></li>
+          <li><a href="#donde-si">Las cinco cosas en las que sí acelera</a></li>
+          <li><a href="#donde-no">Las cuatro en las que falla</a></li>
+          <li><a href="#sesgo">El riesgo real es creérselo</a></li>
+          <li><a href="#regla">La regla de las tres capas</a></li>
+          <li><a href="#empezar">Por dónde empezar el lunes</a></li>
+        </ol>
+      </div>
+      <div class="bloque">
+        <h2>Del caso real</h2>
+        <div class="dato">
+          <span class="numero">36</span>
+          <span class="glosa">periodos reconciliados al céntimo</span>
+        </div>
+        <div class="dato">
+          <span class="numero">0</span>
+          <span class="glosa">cifras calculadas por un modelo de lenguaje</span>
+        </div>
+        <div class="dato">
+          <span class="numero">30</span>
+          <span class="glosa">fallos que los controles encontraron</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+
+</article>
+</main>
+
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { tresCapas } from "./assets/figuras.js";
+document.getElementById("figura-capas").replaceChildren(tresCapas());
+</script>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

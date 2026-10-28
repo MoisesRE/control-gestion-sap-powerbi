@@ -1,0 +1,162 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9bf63c50c388d94e5596",
+  "position": {
+    "x": 16,
+    "y": 162,
+    "z": 1000,
+    "height": 550,
+    "width": 744,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Resultado"
+                    }
+                  },
+                  "Property": "Ingresos"
+                }
+              },
+              "queryRef": "Resultado.Ingresos",
+              "nativeQueryRef": "Ingresos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reconciliacion Oficial"
+                    }
+                  },
+                  "Property": "Ingresos Oficiales"
+                }
+              },
+              "queryRef": "Reconciliacion Oficial.Ingresos Oficiales",
+              "nativeQueryRef": "Ingresos Oficiales"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reconciliacion Oficial"
+                    }
+                  },
+                  "Property": "Diferencia Reconciliacion"
+                }
+              },
+              "queryRef": "Reconciliacion Oficial.Diferencia Reconciliacion",
+              "nativeQueryRef": "Diferencia Reconciliacion"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Reconciliacion Oficial"
+                    }
+                  },
+                  "Property": "Reconciliacion Cuadra"
+                }
+              },
+              "queryRef": "Reconciliacion Oficial.Reconciliacion Cuadra",
+              "nativeQueryRef": "Reconciliacion Cuadra"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Escenario"
+                    }
+                  },
+                  "Property": "Escenario"
+                }
+              },
+              "queryRef": "Escenario.Escenario",
+              "nativeQueryRef": "Escenario"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Periodo Contable"
+                    }
+                  },
+                  "Property": "Mes Abrev"
+                }
+              },
+              "queryRef": "Periodo Contable.Mes Abrev",
+              "nativeQueryRef": "Mes Abrev"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ingresos del modelo contra la maqueta de Control de Gestion'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

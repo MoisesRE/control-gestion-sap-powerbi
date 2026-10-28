@@ -1,0 +1,3966 @@
+{
+  "generado_utc": "2026-10-23T17:33:53+00:00",
+  "origen": {
+    "base": "finanzas_analytics",
+    "vistas": [
+      "pl.v_pl_resumen",
+      "pl.v_ejecucion_presupuestaria",
+      "pl.v_resultado_por_centro",
+      "qa.control_reconciliacion"
+    ],
+    "perimetro_ingresos": "Ingresos"
+  },
+  "escenarios": [
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "tipo_escenario": "Presupuesto",
+      "es_simulado": false,
+      "periodos": 12,
+      "ingresos": 80553599.56,
+      "ingresos_diversos": 728942.44,
+      "costes": 72670331.15,
+      "resultado": 8612210.85,
+      "margen_pct": 10.69
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "tipo_escenario": "Real",
+      "es_simulado": false,
+      "periodos": 12,
+      "ingresos": 71341366.94,
+      "ingresos_diversos": 606400.77,
+      "costes": 69556781.55,
+      "resultado": 2390986.16,
+      "margen_pct": 3.35
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "tipo_escenario": "Presupuesto",
+      "es_simulado": false,
+      "periodos": 12,
+      "ingresos": 71737307.25,
+      "ingresos_diversos": 321632.65,
+      "costes": 62853717.06,
+      "resultado": 9205222.84,
+      "margen_pct": 12.83
+    },
+    {
+      "escenario_clave": "R2026",
+      "escenario": "Real 2026",
+      "tipo_escenario": "Real",
+      "es_simulado": true,
+      "periodos": 10,
+      "ingresos": 61403600.49,
+      "ingresos_diversos": 404906.17,
+      "costes": 56112588.73,
+      "resultado": 5695917.93,
+      "margen_pct": 9.28
+    }
+  ],
+  "mensual": [
+    {
+      "escenario_clave": "P2025",
+      "periodo": 1,
+      "etiqueta_mes": "Ene 2025",
+      "ingresos": 5710556.89,
+      "costes": 5568719.68,
+      "resultado": 141837.21,
+      "resultado_acumulado": 141837.21
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 2,
+      "etiqueta_mes": "Feb 2025",
+      "ingresos": 5801737.63,
+      "costes": 5619409.65,
+      "resultado": 182327.98,
+      "resultado_acumulado": 324165.19
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 3,
+      "etiqueta_mes": "Mar 2025",
+      "ingresos": 6215284.08,
+      "costes": 6008158.87,
+      "resultado": 400813.59,
+      "resultado_acumulado": 724978.78
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 4,
+      "etiqueta_mes": "Abr 2025",
+      "ingresos": 6679875.58,
+      "costes": 6134684.93,
+      "resultado": 705972.05,
+      "resultado_acumulado": 1430950.83
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 5,
+      "etiqueta_mes": "May 2025",
+      "ingresos": 6840814.02,
+      "costes": 6229476.94,
+      "resultado": 750917.32,
+      "resultado_acumulado": 2181868.15
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 6,
+      "etiqueta_mes": "Jun 2025",
+      "ingresos": 6255185.02,
+      "costes": 5813117.23,
+      "resultado": 569818.2,
+      "resultado_acumulado": 2751686.35
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 7,
+      "etiqueta_mes": "Jul 2025",
+      "ingresos": 7177252.76,
+      "costes": 6154319.11,
+      "resultado": 1022933.65,
+      "resultado_acumulado": 3774620.0
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 8,
+      "etiqueta_mes": "Ago 2025",
+      "ingresos": 7267936.03,
+      "costes": 6255069.95,
+      "resultado": 1012866.08,
+      "resultado_acumulado": 4787486.08
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 9,
+      "etiqueta_mes": "Sep 2025",
+      "ingresos": 6918323.76,
+      "costes": 6048105.96,
+      "resultado": 942995.51,
+      "resultado_acumulado": 5730481.59
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 10,
+      "etiqueta_mes": "Oct 2025",
+      "ingresos": 7319525.4,
+      "costes": 6458533.05,
+      "resultado": 860992.35,
+      "resultado_acumulado": 6591473.94
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 11,
+      "etiqueta_mes": "Nov 2025",
+      "ingresos": 7230690.43,
+      "costes": 6186469.57,
+      "resultado": 1044220.86,
+      "resultado_acumulado": 7635694.8
+    },
+    {
+      "escenario_clave": "P2025",
+      "periodo": 12,
+      "etiqueta_mes": "Dic 2025",
+      "ingresos": 7136417.96,
+      "costes": 6194266.21,
+      "resultado": 976516.05,
+      "resultado_acumulado": 8612210.85
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 1,
+      "etiqueta_mes": "Ene 2026",
+      "ingresos": 5407691.56,
+      "costes": 5118829.59,
+      "resultado": 288861.97,
+      "resultado_acumulado": 288861.97
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 2,
+      "etiqueta_mes": "Feb 2026",
+      "ingresos": 5148434.92,
+      "costes": 5103677.77,
+      "resultado": 44757.15,
+      "resultado_acumulado": 333619.12
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 3,
+      "etiqueta_mes": "Mar 2026",
+      "ingresos": 5914943.01,
+      "costes": 5231318.23,
+      "resultado": 745117.46,
+      "resultado_acumulado": 1078736.58
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 4,
+      "etiqueta_mes": "Abr 2026",
+      "ingresos": 5949309.61,
+      "costes": 5371513.77,
+      "resultado": 588404.64,
+      "resultado_acumulado": 1667141.22
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 5,
+      "etiqueta_mes": "May 2026",
+      "ingresos": 6225994.22,
+      "costes": 5260791.3,
+      "resultado": 975811.72,
+      "resultado_acumulado": 2642952.94
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 6,
+      "etiqueta_mes": "Jun 2026",
+      "ingresos": 5890653.54,
+      "costes": 5139812.47,
+      "resultado": 821217.95,
+      "resultado_acumulado": 3464170.89
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 7,
+      "etiqueta_mes": "Jul 2026",
+      "ingresos": 5948461.67,
+      "costes": 5192411.38,
+      "resultado": 766659.09,
+      "resultado_acumulado": 4230829.98
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 8,
+      "etiqueta_mes": "Ago 2026",
+      "ingresos": 6162529.61,
+      "costes": 5239088.65,
+      "resultado": 934049.76,
+      "resultado_acumulado": 5164879.74
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 9,
+      "etiqueta_mes": "Sep 2026",
+      "ingresos": 5970259.32,
+      "costes": 5159662.26,
+      "resultado": 871968.81,
+      "resultado_acumulado": 6036848.55
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 10,
+      "etiqueta_mes": "Oct 2026",
+      "ingresos": 5958003.03,
+      "costes": 5188121.57,
+      "resultado": 780490.26,
+      "resultado_acumulado": 6817338.81
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 11,
+      "etiqueta_mes": "Nov 2026",
+      "ingresos": 6164235.3,
+      "costes": 5279650.37,
+      "resultado": 895193.73,
+      "resultado_acumulado": 7712532.54
+    },
+    {
+      "escenario_clave": "P2026",
+      "periodo": 12,
+      "etiqueta_mes": "Dic 2026",
+      "ingresos": 6996791.46,
+      "costes": 5568839.7,
+      "resultado": 1492690.3,
+      "resultado_acumulado": 9205222.84
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 1,
+      "etiqueta_mes": "Ene 2025",
+      "ingresos": 5991610.35,
+      "costes": 6071923.05,
+      "resultado": -74669.0,
+      "resultado_acumulado": -74669.0
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 2,
+      "etiqueta_mes": "Feb 2025",
+      "ingresos": 5433882.56,
+      "costes": 5418797.01,
+      "resultado": 23365.08,
+      "resultado_acumulado": -51303.92
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 3,
+      "etiqueta_mes": "Mar 2025",
+      "ingresos": 6200577.61,
+      "costes": 5411037.74,
+      "resultado": 865375.87,
+      "resultado_acumulado": 814071.95
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 4,
+      "etiqueta_mes": "Abr 2025",
+      "ingresos": 6259023.73,
+      "costes": 6086515.35,
+      "resultado": 185484.99,
+      "resultado_acumulado": 999556.94
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 5,
+      "etiqueta_mes": "May 2025",
+      "ingresos": 6449324.45,
+      "costes": 5961712.08,
+      "resultado": 495582.9,
+      "resultado_acumulado": 1495139.84
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 6,
+      "etiqueta_mes": "Jun 2025",
+      "ingresos": 5976561.85,
+      "costes": 5887005.67,
+      "resultado": 155335.45,
+      "resultado_acumulado": 1650475.29
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 7,
+      "etiqueta_mes": "Jul 2025",
+      "ingresos": 6075415.5,
+      "costes": 6219286.2,
+      "resultado": -129257.91,
+      "resultado_acumulado": 1521217.38
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 8,
+      "etiqueta_mes": "Ago 2025",
+      "ingresos": 5792000.78,
+      "costes": 6040536.2,
+      "resultado": -236154.39,
+      "resultado_acumulado": 1285062.99
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 9,
+      "etiqueta_mes": "Sep 2025",
+      "ingresos": 5907999.05,
+      "costes": 5757845.8,
+      "resultado": 226250.44,
+      "resultado_acumulado": 1511313.43
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 10,
+      "etiqueta_mes": "Oct 2025",
+      "ingresos": 5682711.01,
+      "costes": 6201463.96,
+      "resultado": -369684.17,
+      "resultado_acumulado": 1141629.26
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 11,
+      "etiqueta_mes": "Nov 2025",
+      "ingresos": 5451195.95,
+      "costes": 5626151.44,
+      "resultado": -170274.31,
+      "resultado_acumulado": 971354.95
+    },
+    {
+      "escenario_clave": "R2025",
+      "periodo": 12,
+      "etiqueta_mes": "Dic 2025",
+      "ingresos": 6121064.1,
+      "costes": 4874507.05,
+      "resultado": 1419631.21,
+      "resultado_acumulado": 2390986.16
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 1,
+      "etiqueta_mes": "Ene 2026",
+      "ingresos": 5681270.46,
+      "costes": 5724428.31,
+      "resultado": -38873.56,
+      "resultado_acumulado": -38873.56
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 2,
+      "etiqueta_mes": "Feb 2026",
+      "ingresos": 5275826.2,
+      "costes": 4311013.39,
+      "resultado": 973830.0,
+      "resultado_acumulado": 934956.44
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 3,
+      "etiqueta_mes": "Mar 2026",
+      "ingresos": 5982202.01,
+      "costes": 4831388.7,
+      "resultado": 1212113.39,
+      "resultado_acumulado": 2147069.83
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 4,
+      "etiqueta_mes": "Abr 2026",
+      "ingresos": 6221309.84,
+      "costes": 5466021.5,
+      "resultado": 761662.13,
+      "resultado_acumulado": 2908731.96
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 5,
+      "etiqueta_mes": "May 2026",
+      "ingresos": 6684266.91,
+      "costes": 5956923.11,
+      "resultado": 731857.66,
+      "resultado_acumulado": 3640589.62
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 6,
+      "etiqueta_mes": "Jun 2026",
+      "ingresos": 6410169.51,
+      "costes": 5958799.23,
+      "resultado": 502161.85,
+      "resultado_acumulado": 4142751.47
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 7,
+      "etiqueta_mes": "Jul 2026",
+      "ingresos": 6615858.69,
+      "costes": 5947318.72,
+      "resultado": 681565.88,
+      "resultado_acumulado": 4824317.35
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 8,
+      "etiqueta_mes": "Ago 2026",
+      "ingresos": 6074821.58,
+      "costes": 6016387.85,
+      "resultado": 70193.56,
+      "resultado_acumulado": 4894510.91
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 9,
+      "etiqueta_mes": "Sep 2026",
+      "ingresos": 6326502.33,
+      "costes": 5611388.79,
+      "resultado": 784278.85,
+      "resultado_acumulado": 5678789.76
+    },
+    {
+      "escenario_clave": "R2026",
+      "periodo": 10,
+      "etiqueta_mes": "Oct 2026",
+      "ingresos": 6131372.96,
+      "costes": 6288919.13,
+      "resultado": 17128.17,
+      "resultado_acumulado": 5695917.93
+    }
+  ],
+  "pl_oficial": [
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5710556.89
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5369796.55
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -127007.71
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -71408.13
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -507.29
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5801737.63
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5418484.25
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -129137.23
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -71577.23
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -210.94
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6215284.08
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5534717.76
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -339499.1
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -74292.25
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 160953.07
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -26914.45
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6679875.58
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5788981.34
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -203349.67
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -82375.61
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 128046.09
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -27243.0
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6840814.02
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5689107.48
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -351968.79
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -82372.6
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 86991.28
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -53439.11
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6255185.02
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5419341.58
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -248156.02
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -92994.01
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 127750.41
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -52625.62
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 7177252.76
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5772460.93
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -236440.4
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -92765.76
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -52652.02
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 7267936.03
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5838081.86
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -265008.55
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -100359.02
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -51620.52
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6918323.76
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5641347.14
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -251463.83
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -104498.95
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 72777.71
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -50796.04
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 7319525.4
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5792330.98
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -508642.76
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -106761.68
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -50797.63
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 7230690.43
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5799555.69
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -230335.35
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -106809.78
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -49768.75
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 7136417.96
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5769364.25
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -271027.9
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -104940.98
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 34364.3
+    },
+    {
+      "escenario_clave": "P2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -48933.08
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5407691.56
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4779395.99
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -141179.45
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -183794.89
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -14459.26
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5148434.92
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4765154.63
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -154889.33
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -174088.44
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -9545.37
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5914943.01
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4881878.42
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -141560.59
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -174123.9
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 61492.68
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -33755.32
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5949309.61
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5030917.11
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -140920.53
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -170399.67
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -29276.46
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6225994.22
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4927019.91
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -140977.0
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -171017.62
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -21776.77
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5890653.54
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4787184.14
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -141617.77
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -174651.59
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 70376.88
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -36358.97
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5948461.67
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4823249.88
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -166311.08
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -174933.85
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -27916.57
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6162529.61
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4890553.51
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -145421.65
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -175335.75
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -27777.74
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5970259.32
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4807150.04
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -150242.58
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -175290.13
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 61371.75
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -26979.51
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5958003.03
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4841682.06
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -145103.94
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -175222.63
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -26112.94
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6164235.3
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4933245.44
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -145075.22
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -175339.7
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 10608.8
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 11,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -25990.01
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6996791.46
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5175852.7
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -191250.29
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -175760.09
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 64738.54
+    },
+    {
+      "escenario_clave": "P2026",
+      "ejercicio": 2026,
+      "periodo": 12,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -25976.62
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5991610.35
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5987256.54
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -110305.25
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -69115.11
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 5643.7
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -567.97
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 1,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 95321.82
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5433882.56
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5213932.79
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -189740.19
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -68209.01
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 8279.53
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -640.6
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 2,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 53725.58
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6200577.61
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5173848.71
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -178203.72
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -72814.38
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 75836.0
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -216.02
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 3,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 14045.09
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6259023.73
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5862921.51
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -140086.53
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -71452.68
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 12976.61
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -2422.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 4,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": -9632.58
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6449324.45
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5843635.88
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -118341.33
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -78018.13
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 7970.53
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -426.69
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 5,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 78709.95
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5976561.85
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5962850.11
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": 19840.16
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -74916.24
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 65779.27
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -436.14
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 6,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 131356.66
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6075415.5
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5751841.82
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -304412.1
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -73934.58
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 14612.79
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -637.63
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 7,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": -88460.07
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5792000.78
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5900224.45
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -124501.72
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -81204.62
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 12381.03
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -527.18
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 8,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 65921.77
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5907999.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5723657.6
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -52712.15
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -85081.02
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 76095.82
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -362.0
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 9,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 103968.34
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5682711.01
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5566272.69
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -591810.18
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -79325.97
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 73623.51
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -12007.18
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 10,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 123397.33
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5451195.95
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4919149.89
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -541917.63
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -178205.08
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 4383.04
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -628.27
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 11,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 14047.57
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6121064.1
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5136183.48
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": 338924.2
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -80776.45
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 120485.2
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -17184.12
+    },
+    {
+      "escenario_clave": "R2025",
+      "ejercicio": 2025,
+      "periodo": 12,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 73301.76
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5681270.46
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5652923.13
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -118054.64
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -84327.15
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 4284.29
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -776.9
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 1,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 131653.51
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5275826.2
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4109994.55
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -177718.47
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -88565.99
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 9017.19
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -917.74
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 2,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 66183.36
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 5982202.01
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -4595612.24
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -155461.48
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -96309.9
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 61300.08
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -281.49
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 3,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 16276.41
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6221309.84
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5226812.01
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -127824.86
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -100883.22
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 6373.79
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -2357.64
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 4,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": -8143.77
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6684266.91
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5801702.38
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -126504.92
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -109352.93
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 4513.86
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -514.71
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 5,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 81151.83
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6410169.51
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5976796.16
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -15677.99
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -108034.03
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 50791.57
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -551.92
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 6,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 142260.87
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6615858.69
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5401952.57
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -339837.92
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -100385.05
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 13025.91
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -1077.17
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 7,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": -104066.01
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6074821.58
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5799194.09
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -134855.3
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -112018.4
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 11759.83
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -738.51
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 8,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 30418.45
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6326502.33
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5535433.47
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -35279.25
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -119885.95
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 69163.89
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -540.19
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 9,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 79751.49
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 1,
+      "linea": "Ingresos",
+      "importe": 6131372.96
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 2,
+      "linea": "Costos Ventas",
+      "importe": -5678820.07
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 3,
+      "linea": "Gastos Adm/Ventas",
+      "importe": -437844.04
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 4,
+      "linea": "Depreciacion",
+      "importe": -111364.84
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 5,
+      "linea": "I/E. Excepcionales",
+      "importe": 71196.79
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 6,
+      "linea": "I/E. Financieros",
+      "importe": -15480.77
+    },
+    {
+      "escenario_clave": "R2026",
+      "ejercicio": 2026,
+      "periodo": 10,
+      "orden": 7,
+      "linea": "Tipo de Cambio",
+      "importe": 58068.14
+    }
+  ],
+  "reconciliacion": [
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodos": 12,
+      "maqueta": 80553599.56,
+      "pipeline": 80553599.56,
+      "diferencia": 0.0,
+      "tolerancia": 0.12
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodos": 12,
+      "maqueta": 71341366.95,
+      "pipeline": 71341366.94,
+      "diferencia": -0.01,
+      "tolerancia": 0.09
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodos": 12,
+      "maqueta": 71737307.27,
+      "pipeline": 71737307.25,
+      "diferencia": -0.02,
+      "tolerancia": 0.12
+    }
+  ],
+  "reconciliacion_periodo": [
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 1,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 2,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 3,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 4,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 5,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 6,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 7,
+      "diferencia": 0.01,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 8,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 9,
+      "diferencia": -0.01,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 10,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 11,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2025",
+      "escenario": "Presupuesto 2025",
+      "periodo": 12,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 1,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 2,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 3,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 4,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 5,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 6,
+      "diferencia": -0.01,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 7,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 8,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 9,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 10,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 11,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "escenario": "Real 2025",
+      "periodo": 12,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 1,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 2,
+      "diferencia": -0.01,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 3,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 4,
+      "diferencia": -0.01,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 5,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 6,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 7,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 8,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 9,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 10,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 11,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    },
+    {
+      "escenario_clave": "P2026",
+      "escenario": "Presupuesto 2026",
+      "periodo": 12,
+      "diferencia": 0.0,
+      "tolerancia": 0.05
+    }
+  ],
+  "ejecucion": [
+    {
+      "ejercicio": 2025,
+      "periodos_comparables": 12,
+      "periodos_totales": 12,
+      "real_comparable": 71341366.94,
+      "presupuesto_comparable": 80553599.56,
+      "real_total": 71341366.94,
+      "presupuesto_total": 80553599.56,
+      "ejecucion_pct": 88.56,
+      "ejecucion_pct_sin_recorte": 88.56
+    },
+    {
+      "ejercicio": 2026,
+      "periodos_comparables": 10,
+      "periodos_totales": 12,
+      "real_comparable": 61403600.49,
+      "presupuesto_comparable": 58576280.49,
+      "real_total": 61403600.49,
+      "presupuesto_total": 71737307.25,
+      "ejecucion_pct": 104.83,
+      "ejecucion_pct_sin_recorte": 85.6
+    }
+  ],
+  "coste_por_grupo": [
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Servicio de terceros",
+      "costes": 31048491.99
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Mano de Obra",
+      "costes": 19493912.61
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Combustible",
+      "costes": 5366266.98
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Alquileres",
+      "costes": 4026041.89
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Mantenimiento Unidades",
+      "costes": 3188491.96
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Peajes",
+      "costes": 1137377.52
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Servicios Diversos",
+      "costes": 1112064.39
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Depreciacion",
+      "costes": 1091156.0
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Seguridad",
+      "costes": 908424.14
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Suministros",
+      "costes": 845639.69
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Seguros",
+      "costes": 821181.39
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Otros Gastos Personal",
+      "costes": 663066.71
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Mantenimiento Diversos",
+      "costes": 606516.95
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Comisiones",
+      "costes": 555937.55
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Publicidad",
+      "costes": 524483.66
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Gasto Financiero",
+      "costes": 465508.45
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Servicios de Comunicación",
+      "costes": 255091.17
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Tributos",
+      "costes": 160702.5
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Gastos de Viaje",
+      "costes": 155337.77
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Egresos Diversos",
+      "costes": 118059.58
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Servicios Basicos",
+      "costes": 78297.98
+    },
+    {
+      "escenario_clave": "P2025",
+      "grupo": "Asesorias",
+      "costes": 48280.27
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Servicio de terceros",
+      "costes": 24125331.03
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Mano de Obra",
+      "costes": 17674789.98
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Combustible",
+      "costes": 5674778.93
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Mantenimiento Unidades",
+      "costes": 3748163.14
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Alquileres",
+      "costes": 2830514.23
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Depreciacion",
+      "costes": 2099958.26
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Peajes",
+      "costes": 1137498.0
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Seguros",
+      "costes": 753667.88
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Seguridad",
+      "costes": 746469.6
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Suministros",
+      "costes": 601983.07
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Servicios Diversos",
+      "costes": 594466.25
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Otros Gastos Personal",
+      "costes": 427859.66
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Comisiones",
+      "costes": 408798.94
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Mantenimiento Diversos",
+      "costes": 375733.02
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Publicidad",
+      "costes": 345835.26
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Servicios de Comunicación",
+      "costes": 330256.68
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Gastos de Viaje",
+      "costes": 312690.83
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Gasto Financiero",
+      "costes": 305925.54
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Tributos",
+      "costes": 172477.51
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Servicios Basicos",
+      "costes": 108459.3
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Asesorias",
+      "costes": 76522.99
+    },
+    {
+      "escenario_clave": "P2026",
+      "grupo": "Servicio Pasajeros",
+      "costes": 1536.96
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicio de terceros",
+      "costes": 32325729.07
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Mano de Obra",
+      "costes": 18113424.0
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Combustible",
+      "costes": 4321866.2
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Alquileres",
+      "costes": 4064453.88
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Mantenimiento Unidades",
+      "costes": 2421747.3
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicios Diversos",
+      "costes": 1552054.17
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Peajes",
+      "costes": 1280347.33
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Depreciacion",
+      "costes": 1013053.27
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Mantenimiento Diversos",
+      "costes": 953602.75
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Seguridad",
+      "costes": 828652.94
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Seguros",
+      "costes": 705072.22
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Suministros",
+      "costes": 629255.26
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Otros Gastos Personal",
+      "costes": 472673.44
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Gastos de Viaje",
+      "costes": 418506.74
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicios de Comunicación",
+      "costes": 282095.04
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Publicidad",
+      "costes": 256490.14
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Comisiones",
+      "costes": 144031.35
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Egresos Diversos",
+      "costes": 128333.74
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Tributos",
+      "costes": 104063.82
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicios Basicos",
+      "costes": 80048.89
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Asesorias",
+      "costes": 77303.72
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Gasto Financiero",
+      "costes": 36055.85
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicio Pasajeros",
+      "costes": 3285.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Servicio de Lavanderia",
+      "costes": 338.6
+    },
+    {
+      "escenario_clave": "R2025",
+      "grupo": "Diferencia de Cambio",
+      "costes": -655703.22
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicio de terceros",
+      "costes": 25421703.76
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Mano de Obra",
+      "costes": 14364345.1
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Combustible",
+      "costes": 4082243.99
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Alquileres",
+      "costes": 3119319.43
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Mantenimiento Unidades",
+      "costes": 2446440.5
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicios Diversos",
+      "costes": 1175996.16
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Depreciacion",
+      "costes": 1031127.46
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Peajes",
+      "costes": 944374.56
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Seguridad",
+      "costes": 673868.42
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Seguros",
+      "costes": 587772.24
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Suministros",
+      "costes": 530416.06
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Mantenimiento Diversos",
+      "costes": 483444.25
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Otros Gastos Personal",
+      "costes": 389851.91
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Gastos de Viaje",
+      "costes": 298473.61
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicios de Comunicación",
+      "costes": 257482.25
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Publicidad",
+      "costes": 227491.34
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Comisiones",
+      "costes": 211253.93
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Tributos",
+      "costes": 120949.89
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Egresos Diversos",
+      "costes": 103478.97
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicios Basicos",
+      "costes": 64073.59
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Asesorias",
+      "costes": 46577.94
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Gasto Financiero",
+      "costes": 23237.04
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicio Pasajeros",
+      "costes": 1879.93
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Servicio de Lavanderia",
+      "costes": 340.68
+    },
+    {
+      "escenario_clave": "R2026",
+      "grupo": "Diferencia de Cambio",
+      "costes": -493554.28
+    }
+  ],
+  "centros": [
+    {
+      "escenario_clave": "P2025",
+      "puesto": 1,
+      "ceco_codigo": "CC-7168",
+      "ceco_nombre": "Planta Monteverde - Administracion",
+      "ambito": "Servicios",
+      "costes": 53225028.41
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 2,
+      "ceco_codigo": "CC-9858",
+      "ceco_nombre": "Planta Lomas - Transporte",
+      "ambito": "Servicios",
+      "costes": 4672701.86
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 3,
+      "ceco_codigo": "CC-4966",
+      "ceco_nombre": "Base Quebrada - Soporte",
+      "ambito": "Servicios",
+      "costes": 1756315.9
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 4,
+      "ceco_codigo": "CC-1870",
+      "ceco_nombre": "Base Terrazas - Administracion",
+      "ambito": "Unidad de Negocio",
+      "costes": 1675316.5
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 5,
+      "ceco_codigo": "CC-9261",
+      "ceco_nombre": "Base Yungas - Soporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 1675264.34
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 6,
+      "ceco_codigo": "CC-8765",
+      "ceco_nombre": "Planta Canteras - Almacen",
+      "ambito": "Servicios",
+      "costes": 1278267.82
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 7,
+      "ceco_codigo": "CC-1427",
+      "ceco_nombre": "Centro Yungas - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 1088577.49
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 8,
+      "ceco_codigo": "CC-8870",
+      "ceco_nombre": "Base Farallon - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 998893.94
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 9,
+      "ceco_codigo": "CC-7890",
+      "ceco_nombre": "Base Canteras - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 910714.35
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 10,
+      "ceco_codigo": "CC-5656",
+      "ceco_nombre": "Terminal Horizonte - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 447551.93
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 11,
+      "ceco_codigo": "CC-6200",
+      "ceco_nombre": "Terminal Fuentes - Transporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 437953.13
+    },
+    {
+      "escenario_clave": "P2025",
+      "puesto": 12,
+      "ceco_codigo": "CC-1046",
+      "ceco_nombre": "Planta Farallon - Transporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 337917.58
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 1,
+      "ceco_codigo": "CC-8771",
+      "ceco_nombre": "Terminal Brisas - Transporte",
+      "ambito": "Servicios",
+      "costes": 46921175.71
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 2,
+      "ceco_codigo": "CC-9858",
+      "ceco_nombre": "Planta Lomas - Transporte",
+      "ambito": "Servicios",
+      "costes": 4846205.57
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 3,
+      "ceco_codigo": "CC-9261",
+      "ceco_nombre": "Base Yungas - Soporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 1491081.69
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 4,
+      "ceco_codigo": "CC-1870",
+      "ceco_nombre": "Base Terrazas - Administracion",
+      "ambito": "Unidad de Negocio",
+      "costes": 1231960.73
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 5,
+      "ceco_codigo": "CC-4966",
+      "ceco_nombre": "Base Quebrada - Soporte",
+      "ambito": "Servicios",
+      "costes": 1225374.92
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 6,
+      "ceco_codigo": "CC-8870",
+      "ceco_nombre": "Base Farallon - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 1185260.75
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 7,
+      "ceco_codigo": "CC-7890",
+      "ceco_nombre": "Base Canteras - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 824312.52
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 8,
+      "ceco_codigo": "CC-5656",
+      "ceco_nombre": "Terminal Horizonte - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 663455.06
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 9,
+      "ceco_codigo": "CC-6200",
+      "ceco_nombre": "Terminal Fuentes - Transporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 528256.33
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 10,
+      "ceco_codigo": "CC-3773",
+      "ceco_nombre": "Terminal Monteverde - Mantenimiento",
+      "ambito": "Unidad de Negocio",
+      "costes": 368231.79
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 11,
+      "ceco_codigo": "CC-7866",
+      "ceco_nombre": "Centro Dos Rios - Distribucion",
+      "ambito": "Unidad de Negocio",
+      "costes": 312933.86
+    },
+    {
+      "escenario_clave": "P2026",
+      "puesto": 12,
+      "ceco_codigo": "CC-7168",
+      "ceco_nombre": "Planta Monteverde - Administracion",
+      "ambito": "Servicios",
+      "costes": 297980.47
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 1,
+      "ceco_codigo": "CC-7168",
+      "ceco_nombre": "Planta Monteverde - Administracion",
+      "ambito": "Servicios",
+      "costes": 36242088.25
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 2,
+      "ceco_codigo": "CC-8771",
+      "ceco_nombre": "Terminal Brisas - Transporte",
+      "ambito": "Servicios",
+      "costes": 17272884.35
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 3,
+      "ceco_codigo": "CC-9858",
+      "ceco_nombre": "Planta Lomas - Transporte",
+      "ambito": "Servicios",
+      "costes": 4317538.18
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 4,
+      "ceco_codigo": "CC-9261",
+      "ceco_nombre": "Base Yungas - Soporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 2062177.86
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 5,
+      "ceco_codigo": "CC-1870",
+      "ceco_nombre": "Base Terrazas - Administracion",
+      "ambito": "Unidad de Negocio",
+      "costes": 1304738.21
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 6,
+      "ceco_codigo": "CC-1427",
+      "ceco_nombre": "Centro Yungas - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 1122929.05
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 7,
+      "ceco_codigo": "CC-4966",
+      "ceco_nombre": "Base Quebrada - Soporte",
+      "ambito": "Servicios",
+      "costes": 999869.09
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 8,
+      "ceco_codigo": "CC-8870",
+      "ceco_nombre": "Base Farallon - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 920387.4
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 9,
+      "ceco_codigo": "CC-7890",
+      "ceco_nombre": "Base Canteras - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 894867.82
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 10,
+      "ceco_codigo": "CC-5656",
+      "ceco_nombre": "Terminal Horizonte - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 515905.47
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 11,
+      "ceco_codigo": "CC-1046",
+      "ceco_nombre": "Planta Farallon - Transporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 411678.97
+    },
+    {
+      "escenario_clave": "R2025",
+      "puesto": 12,
+      "ceco_codigo": "CC-3773",
+      "ceco_nombre": "Terminal Monteverde - Mantenimiento",
+      "ambito": "Unidad de Negocio",
+      "costes": 401246.43
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 1,
+      "ceco_codigo": "CC-7168",
+      "ceco_nombre": "Planta Monteverde - Administracion",
+      "ambito": "Servicios",
+      "costes": 33643331.91
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 2,
+      "ceco_codigo": "CC-8771",
+      "ceco_nombre": "Terminal Brisas - Transporte",
+      "ambito": "Servicios",
+      "costes": 9212733.61
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 3,
+      "ceco_codigo": "CC-9858",
+      "ceco_nombre": "Planta Lomas - Transporte",
+      "ambito": "Servicios",
+      "costes": 3443616.39
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 4,
+      "ceco_codigo": "CC-9261",
+      "ceco_nombre": "Base Yungas - Soporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 1764740.93
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 5,
+      "ceco_codigo": "CC-1870",
+      "ceco_nombre": "Base Terrazas - Administracion",
+      "ambito": "Unidad de Negocio",
+      "costes": 1095658.81
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 6,
+      "ceco_codigo": "CC-1427",
+      "ceco_nombre": "Centro Yungas - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 868073.98
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 7,
+      "ceco_codigo": "CC-4966",
+      "ceco_nombre": "Base Quebrada - Soporte",
+      "ambito": "Servicios",
+      "costes": 788989.54
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 8,
+      "ceco_codigo": "CC-7890",
+      "ceco_nombre": "Base Canteras - Operaciones",
+      "ambito": "Unidad de Negocio",
+      "costes": 751913.2
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 9,
+      "ceco_codigo": "CC-8870",
+      "ceco_nombre": "Base Farallon - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 711906.88
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 10,
+      "ceco_codigo": "CC-5656",
+      "ceco_nombre": "Terminal Horizonte - Comercial",
+      "ambito": "Unidad de Negocio",
+      "costes": 375580.72
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 11,
+      "ceco_codigo": "CC-1046",
+      "ceco_nombre": "Planta Farallon - Transporte",
+      "ambito": "Unidad de Negocio",
+      "costes": 339133.24
+    },
+    {
+      "escenario_clave": "R2026",
+      "puesto": 12,
+      "ceco_codigo": "CC-3773",
+      "ceco_nombre": "Terminal Monteverde - Mantenimiento",
+      "ambito": "Unidad de Negocio",
+      "costes": 314211.39
+    }
+  ]
+}

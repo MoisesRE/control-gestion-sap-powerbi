@@ -1,0 +1,62 @@
+/// Periodo contable, no fecha natural: es el periodo de imputacion -- y no la fecha del documento -- lo que determina en que mes se reconoce un resultado. El grano es el mes y no hay columna de fecha, de modo que la tabla admitiria los periodos 13 a 16 de cierre que un calendario diario no puede representar.
+table 'Periodo Contable'
+	lineageTag: 8afe86f3-6579-401f-bcf6-820f3a527574
+
+	/// Clave inteligente ejercicio*100+periodo, p. ej. 202503. Oculta pero disponible en MDX porque ordena la columna Etiqueta Mes.
+	column 'Clave Periodo'
+		dataType: int64
+		isHidden
+		lineageTag: 35114952-7953-4ddb-813d-252174245c89
+		summarizeBy: none
+		sourceColumn: fecha_clave
+
+	/// Ejercicio contable de cuatro digitos.
+	column Ejercicio
+		dataType: int64
+		lineageTag: 839ec229-b807-413f-89a3-8ad34135b497
+		summarizeBy: none
+		sourceColumn: ejercicio
+
+	/// Periodo contable 1-12. El extracto no trae los periodos de cierre.
+	column Periodo
+		dataType: int64
+		lineageTag: b2f9c59e-91b8-4b1b-a223-713086f524bd
+		summarizeBy: none
+		sourceColumn: periodo
+
+	/// Nombre del mes en castellano. Ordenado por Periodo para que no salga alfabetico.
+	column Mes
+		dataType: string
+		lineageTag: e9a13b10-df77-4e4c-8226-4d6d386b4588
+		sourceColumn: mes_nombre
+		sortByColumn: Periodo
+
+	/// Abreviatura de tres letras del mes, para ejes estrechos.
+	column 'Mes Abrev'
+		dataType: string
+		lineageTag: ce97313d-b814-41a4-9152-a9ab59977cdd
+		sourceColumn: mes_abrev
+		sortByColumn: Periodo
+
+	/// Trimestre natural 1-4, derivado del periodo.
+	column Trimestre
+		dataType: int64
+		lineageTag: 5c2493f1-a94d-4816-a8db-ffeeafd8bdb3
+		summarizeBy: none
+		sourceColumn: trimestre
+
+	/// Mes con ejercicio, p. ej. Mar 2025. Es la etiqueta de los ejes que recorren los dos ejercicios, ordenada por la clave del periodo.
+	column 'Etiqueta Mes'
+		dataType: string
+		lineageTag: a58bacf4-1ee9-4f8b-a7e0-b0a7d00a3ad6
+		sourceColumn: etiqueta_mes
+		sortByColumn: 'Clave Periodo'
+
+	partition 'Periodo Contable' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select fecha_clave, ejercicio, periodo, mes_nombre, mes_abrev, trimestre, etiqueta_mes from core.dim_tiempo"])
+				in
+				    Origen
+

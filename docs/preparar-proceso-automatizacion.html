@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Antes de automatizar: reglas, responsables y excepciones</title>
+<meta name="description" content="Cómo mapear un proceso financiero, hacer explícitas sus reglas y decidir qué hacer con las excepciones antes de automatizarlo.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; automatizar"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-automatizar.html">Qu&#233; automatizar</a></div><span class="navegacion-articulos-contador">Artículo 02 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="priorizar-automatizacion-financiera.html" title="Qué automatizar primero: valor, volumen y riesgo"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Priorizar tareas</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Antes de automatizar: reglas, responsables y excepciones"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Preparar proceso</span></span><a class="navegacion-articulos-opcion" href="medir-automatizacion-financiera.html" title="Del piloto a la operación: medir y mantener la automatización"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Medir resultados</span></a><a class="navegacion-articulos-opcion" href="metodo-que-automatizar.html" title="Cómo decidir qué automatizar, y en qué orden"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Orden de decisión</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 02 · Preparación · 27 de octubre de 2026</span></p><h1>Antes de automatizar: reglas, responsables y excepciones</h1><p class="entradilla">Una automatización solo puede repetir lo que el equipo sabe describir. Dibujar el proceso real ayuda a localizar decisiones, datos incompletos y situaciones que deben volver a una persona.</p><div class="meta-articulo"><span>Lectura de 5 minutos</span><span>&middot;</span><span>Para finanzas y dueños de proceso</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>Documentar el proceso real, no el que aparece en el procedimiento</h2><p>Los atajos, correos de aprobación y ajustes manuales suelen guardar reglas que nadie escribió. Antes de automatizar, observa una ejecución normal y varias excepciones: ahí aparece qué puede decidir un sistema y qué necesita autorización.</p></div></div>
+<figure class="tarjeta" aria-labelledby="proceso-caption"><svg viewBox="0 0 1000 370" role="img" aria-labelledby="proceso-title proceso-desc"><title id="proceso-title">Preparar un proceso financiero para automatizar</title><desc id="proceso-desc">Una fuente con dueño alimenta una secuencia de reglas documentadas. Los casos normales continúan a la salida; los datos incompletos o dudosos se desvían a una cola de revisión humana.</desc><defs><marker id="flecha-proceso" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="115" width="170" height="110" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="110" y="155" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Entrada</text><text x="110" y="183" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">fuente + responsable</text><text x="110" y="205" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">formato conocido</text><path d="M201 170 H249" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-proceso)"/><rect x="264" y="95" width="205" height="150" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="366" y="135" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Reglas explícitas</text><text x="366" y="166" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">clasificar · validar</text><text x="366" y="191" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">aprobar · calcular</text><text x="366" y="219" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">versión documentada</text><path d="M475 170 H520" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-proceso)"/><polygon points="600,120 680,170 600,220 520,170" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)" stroke-width="2"/><text x="600" y="164" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diagrama-cobre-texto)">¿Cumple?</text><text x="600" y="185" text-anchor="middle" font-size="13" fill="var(--diagrama-cobre-texto)">regla y datos</text><path d="M682 170 H748" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-proceso)"/><text x="716" y="155" text-anchor="middle" font-size="12" fill="var(--diagrama-neutro-texto)">sí</text><rect x="763" y="112" width="205" height="100" rx="15" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="865" y="151" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-verde-fuerte)">Salida revisable</text><text x="865" y="181" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">resultado + registro</text><path d="M600 222 V297 H748" fill="none" stroke="var(--diagrama-cobre-fuerte)" stroke-width="3" marker-end="url(#flecha-proceso)"/><text x="625" y="248" font-size="12" fill="var(--diagrama-cobre-texto)">no / duda</text><rect x="763" y="258" width="205" height="78" rx="15" fill="var(--diagrama-berenjena-fondo)" stroke="var(--diagrama-berenjena-borde)"/><text x="865" y="290" text-anchor="middle" font-size="16" font-weight="700" fill="var(--diagrama-berenjena-fuerte)">Revisión humana</text><text x="865" y="315" text-anchor="middle" font-size="13" fill="var(--diagrama-berenjena-texto)">causa y resolución</text><text x="500" y="356" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">Un buen diseño hace visible el desvío; no esconde la excepción dentro del promedio.</text></svg><figcaption id="proceso-caption">Diagrama original. La ruta de excepción se diseña antes de automatizar, con responsable y forma de registrar la decisión.</figcaption></figure></div>
+<div class="contenedor"><div class="lectura">
+<h2>La ficha de preparación</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Parte del proceso</th><th>Qué dejar por escrito</th><th>Quién responde</th></tr></thead><tbody><tr><td>Inicio y entradas</td><td>Evento que inicia el trabajo, fuente, campos obligatorios y corte</td><td>Dueño de los datos</td></tr><tr><td>Reglas</td><td>Clasificaciones, cálculos, aprobaciones y criterios de rechazo</td><td>Dueño del proceso y Finanzas</td></tr><tr><td>Excepciones</td><td>Casos fuera de regla, su destino y plazo para resolverlos</td><td>Revisor asignado</td></tr><tr><td>Salida</td><td>Formato, sistema destino, registro de ejecución y controles</td><td>Responsable de publicar</td></tr></tbody></table></div>
+<h2>Clasificar excepciones antes de escoger herramienta</h2>
+<p>Separa los casos que tienen una respuesta clara de los que requieren juicio. Una cuenta sin mapeo puede detener el lote y pasar a revisión; una celda vacía puede ser válida si el campo es opcional; un importe fuera de rango puede necesitar confirmación del dueño del dato. Si todas estas situaciones se mezclan en una sola alerta, el equipo termina revisando todo a mano y la automatización pierde utilidad.</p>
+<p>También conviene acordar qué sucede ante una interrupción: reintentar, conservar el lote, notificar a alguien o volver temporalmente al procedimiento manual. Esa ruta de respaldo se prueba antes de que el proceso dependa de ella en un cierre real.</p>
+<h2>Codificar una rutina que el equipo pueda repetir</h2>
+<p>Microsoft describe en Copilot para Excel las “skills” como instrucciones para repetir procesos financieros con estructura y formato acordados, desde actualizar un modelo mensual hasta preparar un análisis de variaciones. Es un ejemplo de producto, pero la idea de diseño aplica a cualquier herramienta: el proceso tiene que expresar pasos, contexto, decisiones y resultado esperado.</p>
+<p>El Financial Reporting Council observó que la confianza, la calidad de los datos y los controles de gobierno son barreras relevantes para ampliar el uso de IA en reportes corporativos. Por eso, automatizar una tarea no termina en conseguir una salida: hay que saber qué entradas utilizó, quién puede revisar excepciones y cómo se corrige una regla si el negocio cambia.</p>
+<blockquote>Si una persona nueva no puede seguir el flujo escrito y llegar a la misma salida, todavía falta trabajo de proceso antes de automatizar.</blockquote>
+<div class="fuentes"><h2>Fuentes recientes</h2><ol><li><a href="https://www.microsoft.com/en-us/copilot/blog/2026/06/25/copilot-in-excel-built-for-the-era-of-frontier-finance/">Microsoft Copilot Blog</a>, 25 de junio de 2026. Flujos financieros reutilizables, reglas y trazabilidad; fuente del proveedor.</li><li><a href="https://www.frc.org.uk/news-and-events/news/2026/07/corporate-reporting-remains-human-led-amid-growing-adoption-of-artificial-intelligence/">Financial Reporting Council, Corporate reporting remains human-led</a>, 8 de julio de 2026. Investigación sobre confianza, calidad de datos y gobierno en reportes corporativos.</li></ol><p class="glosa-grafico">Diagrama y ficha de preparación originales. Los ejemplos describen prácticas de diseño, no un producto específico.</p></div>
+<div class="siguiente"><a href="priorizar-automatizacion-financiera.html"><p class="rotulo">Artículo 01</p><strong>Priorizar por valor y preparación</strong></a><a href="medir-automatizacion-financiera.html"><p class="rotulo">Artículo 03</p><strong>Medir después del piloto</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

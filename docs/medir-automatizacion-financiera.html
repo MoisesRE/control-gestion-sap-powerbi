@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Del piloto a la operación: medir y mantener la automatización</title>
+<meta name="description" content="Cómo establecer una línea base, medir resultados de una automatización financiera y mantener controles, responsables y revisión humana.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Qu&#233; automatizar"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="que-automatizar.html">Qu&#233; automatizar</a></div><span class="navegacion-articulos-contador">Artículo 03 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="priorizar-automatizacion-financiera.html" title="Qué automatizar primero: valor, volumen y riesgo"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Priorizar tareas</span></a><a class="navegacion-articulos-opcion" href="preparar-proceso-automatizacion.html" title="Antes de automatizar: reglas, responsables y excepciones"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Preparar proceso</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Del piloto a la operación: medir y mantener la automatización"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Medir resultados</span></span><a class="navegacion-articulos-opcion" href="metodo-que-automatizar.html" title="Cómo decidir qué automatizar, y en qué orden"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Orden de decisión</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 03 · Medición y operación · 27 de octubre de 2026</span></p><h1>Del piloto a la operación: medir y mantener la automatización</h1><p class="entradilla">Un piloto demuestra que el flujo puede funcionar en condiciones acotadas. Para decidir si conviene ampliarlo, Finanzas necesita una comparación con el proceso anterior, un responsable y una forma visible de detectar cuándo algo se desvía.</p><div class="meta-articulo"><span>Lectura de 6 minutos</span><span>&middot;</span><span>Para responsables de proceso y control</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>El ahorro se comprueba después del entusiasmo inicial</h2><p>Una demo puede completar una tarea con un archivo limpio y un ejemplo conocido. La operación mensual trae cierres tardíos, cambios de formato, aprobaciones pendientes y datos que no cuadran. Medir ambos escenarios con los mismos criterios evita confundir una prueba exitosa con una mejora sostenida.</p></div></div>
+<figure class="tarjeta" aria-labelledby="ciclo-caption"><svg viewBox="0 0 1000 330" role="img" aria-labelledby="ciclo-title ciclo-desc"><title id="ciclo-title">Ciclo de medición de una automatización financiera</title><desc id="ciclo-desc">El equipo mide el proceso actual, prueba en un alcance pequeño, compara resultados y pasa a operación con seguimiento. Los errores y excepciones alimentan una revisión del proceso.</desc><defs><marker id="flecha-ciclo" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="80" width="205" height="105" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="127" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">1 · Línea base</text><text x="127" y="148" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">tiempo, errores, volumen</text><path d="M235 132 H278" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-ciclo)"/><rect x="293" y="80" width="205" height="105" rx="16" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="395" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">2 · Piloto</text><text x="395" y="148" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">alcance y criterios definidos</text><path d="M503 132 H546" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-ciclo)"/><rect x="561" y="80" width="205" height="105" rx="16" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="663" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-cobre-texto)">3 · Comparación</text><text x="663" y="148" text-anchor="middle" font-size="14" fill="var(--diagrama-cobre-texto)">beneficio, fallas, excepciones</text><path d="M771 132 H814" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-ciclo)"/><rect x="829" y="80" width="145" height="105" rx="16" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="901" y="119" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-verde-fuerte)">4 · Operación</text><text x="901" y="148" text-anchor="middle" font-size="13" fill="var(--diagrama-verde-texto)">alertas + revisión</text><path d="M900 198 V260 H395 V198" fill="none" stroke="var(--diagrama-conector)" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#flecha-ciclo)"/><text x="647" y="286" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">Los incidentes y cambios de reglas actualizan la línea base y el control</text></svg><figcaption id="ciclo-caption">Ciclo original de evaluación. Define criterios antes del piloto para que la decisión no dependa de una impresión posterior.</figcaption></figure>
+</div>
+<div class="contenedor"><div class="lectura">
+<h2>Fija una línea base que se pueda repetir</h2>
+<p>Registra varias ejecuciones representativas del proceso actual, no solo la última que recuerde el equipo. Para cada ciclo, anota el volumen procesado, el tiempo transcurrido, las horas de trabajo activo, las correcciones y las excepciones. Conserva la misma ventana de medición tras el lanzamiento y aclara si hay factores que distorsionan la comparación, como cierres extraordinarios o un cambio en el volumen.</p>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Indicador</th><th>Definición práctica</th><th>Qué decisión informa</th></tr></thead><tbody><tr><td>Tiempo de ciclo</td><td>Desde que las entradas están disponibles hasta que el resultado se revisa y queda listo</td><td>¿El proceso termina antes en el calendario?</td></tr><tr><td>Trabajo activo</td><td>Horas de intervención humana, incluidos preparar datos y revisar salidas</td><td>¿Se liberó capacidad o solo cambió de tarea?</td></tr><tr><td>Tasa de excepción</td><td>Casos desviados a corrección o revisión sobre el total procesado</td><td>¿El flujo automático cubre el proceso real?</td></tr><tr><td>Retrabajo</td><td>Errores confirmados, correcciones posteriores y minutos para resolverlos</td><td>¿La calidad mejora sin trasladar el costo a otra etapa?</td></tr><tr><td>Resultado válido</td><td>Casos terminados y aprobados respecto del total elegible</td><td>¿Se cumplen los criterios de cierre y control?</td></tr><tr><td>Costo de operación</td><td>Licencias, soporte, revisión, cambios y mantenimiento atribuibles</td><td>¿El beneficio neto sigue superando el costo?</td></tr></tbody></table></div>
+<h2>Compara calidad y capacidad, no solo velocidad</h2>
+<p>Una reducción de minutos tiene poco valor si aumentan los ajustes manuales o si el equipo revisa cada salida desde cero. Por eso conviene informar por separado la productividad, la calidad y el control: tiempo ahorrado, tasa de errores y excepciones, y porcentaje de resultados revisados y aprobados. Si se usa una estimación monetaria, explicita el costo horario y el costo de construir y mantener el flujo; las horas liberadas no equivalen automáticamente a ahorro en caja.</p>
+<p>Gartner publicó en septiembre de 2026 los resultados de una encuesta a 160 líderes financieros: ciertos usos de extracción de datos, cuentas por pagar y cobrar y creación de informes tendían a retornar en nueve a diez meses, mientras los usos más complejos requerían más tiempo. Es una referencia de cartera basada en encuesta, no una promesa ni una proyección para un proyecto particular. La evaluación del propio proceso debe usar su volumen, costo, riesgos y gastos de soporte.</p>
+<h2>Antes de ampliar, acuerda qué significa “listo”</h2>
+<ol><li>Elige un alcance acotado y define qué entradas y casos quedan dentro del piloto.</li><li>Establece criterios de aceptación con quien revisa la cifra: exactitud, conciliación, formato y evidencia requerida.</li><li>Define una condición de parada y una ruta manual para datos incompletos, resultados inesperados o cambios en la regla.</li><li>Registra cada ejecución, incidencias y correcciones en una bitácora accesible al responsable del proceso.</li><li>Compara el piloto con la línea base y decide continuar, corregir o cerrar usando los umbrales acordados.</li></ol>
+<h2>La operación necesita dueño y revisión periódica</h2>
+<p>Al pasar a producción, asigna quién mantiene las reglas, quién autoriza cambios y quién responde por los resultados. La bitácora debe permitir reconstruir qué archivo y versión de reglas se usaron, cuándo corrió el flujo, qué casos se desviaron y quién aprobó el resultado. Revisa las métricas con una frecuencia proporcional al impacto del proceso y vuelve a validar después de cambios en fuentes, formatos, controles o sistema.</p>
+<p>La investigación del Financial Reporting Council publicada en julio de 2026 encontró una adopción cautelosa y desigual de IA en reportes corporativos; los equipos señalaron confianza, calidad de datos y controles de gobierno entre las barreras para ampliar su uso. Aunque el estudio se centra en IA y reporting, la lección operativa es pertinente: un proceso sensible requiere trazabilidad, límites claros y revisión humana donde el juicio o la responsabilidad no se pueden delegar.</p>
+<p>Microsoft describe habilidades reutilizables para flujos de Finanzas y cambios rastreables en Excel. Es información de producto publicada por el proveedor; sirve para conocer capacidades disponibles, pero la organización sigue teniendo que comprobar permisos, licencias, calidad de datos y controles propios.</p>
+<blockquote>Un piloto termina cuando hay evidencia suficiente para decidir. La automatización se vuelve operación cuando alguien puede detectar, explicar y corregir una desviación.</blockquote>
+<div class="fuentes"><h2>Fuentes recientes</h2><ol><li><a href="https://www.gartner.com/en/newsroom/press-releases/2026-09-24-gartner-says-cfos-must-take-a-more-disciplined-approach">Gartner, “Gartner Says CFOs Must Take a More Disciplined Approach to Finance AI Investment”</a>, 24 de septiembre de 2026. Encuesta a 160 líderes financieros y diferencias de tiempo de retorno según el tipo de uso.</li><li><a href="https://www.frc.org.uk/news-and-events/news/2026/07/corporate-reporting-remains-human-led-amid-growing-adoption-of-artificial-intelligence/">Financial Reporting Council, “Corporate reporting remains human-led amid growing adoption of artificial intelligence”</a>, 8 de julio de 2026. Hallazgos sobre adopción, calidad de datos, confianza y gobierno.</li><li><a href="https://www.microsoft.com/en-us/copilot/blog/2026/06/25/copilot-in-excel-built-for-the-era-of-frontier-finance/">Microsoft Copilot Blog, “Copilot in Excel: Built for the era of Frontier Finance”</a>, 25 de junio de 2026. Descripción del proveedor sobre flujos de Finanzas reutilizables y trazabilidad en Excel.</li></ol><p class="glosa-grafico">Ciclo, tabla y criterios originales. Las definiciones de indicadores son una propuesta práctica y pueden adaptarse al control interno de cada organización.</p></div>
+<div class="siguiente"><a href="preparar-proceso-automatizacion.html"><p class="rotulo">Artículo 02</p><strong>Preparar reglas y excepciones</strong></a><a href="metodo-que-automatizar.html"><p class="rotulo">Artículo 04</p><strong>Leer el método aplicado</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

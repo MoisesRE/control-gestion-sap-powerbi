@@ -1,0 +1,40 @@
+relationship 'Resultado a Escenario'
+	fromColumn: Resultado.'Clave Escenario'
+	toColumn: Escenario.'Clave Escenario'
+
+relationship 'Resultado a Periodo Contable'
+	fromColumn: Resultado.'Clave Periodo'
+	toColumn: 'Periodo Contable'.'Clave Periodo'
+
+relationship 'Resultado a Centro de Coste'
+	fromColumn: Resultado.'Codigo Centro'
+	toColumn: 'Centro de Coste'.'Codigo Centro'
+
+relationship 'Resultado a Cuenta'
+	fromColumn: Resultado.'Codigo Cuenta'
+	toColumn: Cuenta.'Codigo Cuenta'
+
+relationship 'Apuntes a Escenario'
+	fromColumn: Apuntes.'Clave Escenario'
+	toColumn: Escenario.'Clave Escenario'
+
+relationship 'Apuntes a Periodo Contable'
+	fromColumn: Apuntes.'Clave Periodo'
+	toColumn: 'Periodo Contable'.'Clave Periodo'
+
+relationship 'Apuntes a Centro de Coste'
+	fromColumn: Apuntes.'Codigo Centro'
+	toColumn: 'Centro de Coste'.'Codigo Centro'
+
+relationship 'Apuntes a Cuenta'
+	fromColumn: Apuntes.'Codigo Cuenta'
+	toColumn: Cuenta.'Codigo Cuenta'
+
+relationship 'Reconciliacion Oficial a Escenario'
+	fromColumn: 'Reconciliacion Oficial'.'Clave Escenario'
+	toColumn: Escenario.'Clave Escenario'
+
+relationship 'Reconciliacion Oficial a Periodo Contable'
+	fromColumn: 'Reconciliacion Oficial'.'Clave Periodo'
+	toColumn: 'Periodo Contable'.'Clave Periodo'
+

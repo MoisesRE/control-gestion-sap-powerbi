@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Del indicador al asiento: trazabilidad financiera</title>
+<meta name="description" content="Cómo documentar el recorrido de una cifra desde la fuente y el cálculo hasta el informe y su evidencia de revisión.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Defender las cifras"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="defender-las-cifras.html">Defender las cifras</a></div><span class="navegacion-articulos-contador">Artículo 02 de 04</span></div><div class="navegacion-articulos-lista"><a class="navegacion-articulos-opcion" href="calidad-datos-financieros.html" title="Antes del cuadre: integridad del dato financiero"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Calidad de datos</span></a><span class="navegacion-articulos-opcion" aria-current="page" title="Del indicador al asiento: una cifra que se puede reconstruir"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Trazabilidad</span></span><a class="navegacion-articulos-opcion" href="analitica-excepciones.html" title="Analítica de excepciones: dónde investigar primero"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Excepciones</span></a><a class="navegacion-articulos-opcion" href="metodo-defender-cifras.html" title="El problema no es generar el informe, es poder defenderlo"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Defender el informe</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 02 · Evidencia · 27 de octubre de 2026</span></p><h1>Del indicador al asiento: trazabilidad financiera</h1><p class="entradilla">Cuando alguien pregunta de dónde sale un KPI, la respuesta debería ser un recorrido que se pueda repetir: qué fuente se usó, qué regla transformó los datos y qué asiento respalda el total.</p><div class="meta-articulo"><span>Lectura de 5 minutos</span><span>&middot;</span><span>Para control de gestión, auditoría y reporting</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>La evidencia es una ruta, no una captura</h2><p>Una imagen del dashboard conserva lo que se vio, pero no siempre cómo se obtuvo. Para repetir el resultado hacen falta las fuentes, el periodo, las transformaciones, la definición de la medida y el resultado de los controles.</p></div></div>
+<figure class="tarjeta" aria-labelledby="traza-caption"><svg viewBox="0 0 1000 340" role="img" aria-labelledby="traza-title traza-desc"><title id="traza-title">Ruta de trazabilidad de un indicador financiero</title><desc id="traza-desc">Una fuente identificada pasa por transformación versionada, medida de negocio, cifra publicada y evidencia de revisión conectada al asiento.</desc><defs><marker id="flecha-traza" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="92" width="165" height="112" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="107" y="130" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Fuente</text><text x="107" y="160" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">libro · ERP</text><text x="107" y="183" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">periodo y versión</text><path d="M196 148 H242" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-traza)"/><rect x="257" y="92" width="165" height="112" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="339" y="130" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Transformación</text><text x="339" y="160" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">consulta · código</text><text x="339" y="183" text-anchor="middle" font-size="13" fill="var(--diagrama-neutro-texto)">versión y fecha</text><path d="M428 148 H474" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-traza)"/><rect x="489" y="92" width="165" height="112" rx="15" fill="var(--diagrama-berenjena-fondo)" stroke="var(--diagrama-berenjena-borde)"/><text x="571" y="130" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-berenjena-fuerte)">Medida</text><text x="571" y="160" text-anchor="middle" font-size="14" fill="var(--diagrama-berenjena-texto)">regla de negocio</text><text x="571" y="183" text-anchor="middle" font-size="13" fill="var(--diagrama-berenjena-texto)">filtro y contexto</text><path d="M660 148 H706" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-traza)"/><rect x="721" y="92" width="165" height="112" rx="15" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="803" y="130" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-verde-fuerte)">Informe</text><text x="803" y="160" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">KPI · línea</text><text x="803" y="183" text-anchor="middle" font-size="13" fill="var(--diagrama-verde-texto)">revisión · firma</text><path d="M803 211 V265 H571 V211" fill="none" stroke="var(--diagrama-conector)" stroke-width="2" stroke-dasharray="7 6" marker-end="url(#flecha-traza)"/><rect x="400" y="269" width="340" height="50" rx="12" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="570" y="300" text-anchor="middle" font-size="15" font-weight="700" fill="var(--diagrama-cobre-texto)">Evidencia vinculada: asiento, documento y control</text></svg><figcaption id="traza-caption">Diagrama original. La revisión puede recorrer el cálculo en ambos sentidos: desde el informe a la fuente y desde el asiento a la cifra presentada.</figcaption></figure></div>
+<div class="contenedor"><div class="lectura">
+<h2>Qué guardar para poder reconstruir el número</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Elemento</th><th>Registro mínimo</th><th>Pregunta que resuelve</th></tr></thead><tbody><tr><td>Fuente</td><td>Nombre del sistema o archivo, periodo y fecha de extracción</td><td>¿Qué versión de los datos entró?</td></tr><tr><td>Transformación</td><td>Consulta o código versionado, mapa de cuentas y parámetros</td><td>¿Qué se filtró, agrupó o reclasificó?</td></tr><tr><td>Medida</td><td>Definición de negocio, fórmula y contexto de filtros</td><td>¿Qué significa exactamente el KPI?</td></tr><tr><td>Control</td><td>Resultado de conciliación, regla, tolerancia y excepción</td><td>¿Qué pruebas pasaron y qué quedó pendiente?</td></tr><tr><td>Revisión</td><td>Responsable, fecha y evidencia asociada al asiento</td><td>¿Quién revisó y qué sustentó la publicación?</td></tr></tbody></table></div>
+<h2>Ejemplo: margen mensual por centro de coste</h2>
+<p>La cifra de margen de una página de Power BI puede tener filtros por sociedad, escenario, mes y centro. En la revisión, se abre el detalle hasta las cuentas que componen el resultado; de ahí se obtiene el identificador del asiento y se enlaza con el comprobante de origen. Si hubo una reclasificación, el registro conserva el antes y el después junto con la regla aplicada.</p>
+<p>Para que esa ruta siga funcionando en el siguiente cierre, el modelo necesita una definición estable del KPI y una versión conocida de las transformaciones. Una corrección manual en el archivo final puede servir para una emergencia, pero si no se refleja en el origen o en una regla aprobada, el próximo periodo volverá a producir la misma diferencia.</p>
+<h2>Un expediente pequeño puede ser suficiente</h2>
+<ol><li>Identificar la fuente, el corte y la ejecución del proceso.</li><li>Guardar la versión de la consulta o modelo que produjo la cifra.</li><li>Registrar el control aplicado y su resultado, incluso cuando la salida sea “sin excepciones”.</li><li>Conservar enlaces al asiento y al documento que explica el movimiento.</li><li>Dejar una nota breve sobre cualquier juicio o ajuste aprobado.</li></ol>
+<p>En agosto de 2026, la IAASB publicó propuestas de revisión para las normas ISA 330, ISA 500 y ISA 520. El borrador propone una definición de evidencia de auditoría adaptada al entorno digital y refuerza la evaluación de relevancia y fiabilidad de la información. Está en consulta y todavía no es una norma final; sí muestra por qué preservar el origen y la calidad de la evidencia resulta central en un proceso cada vez más automatizado.</p>
+<p>La GAO también renovó en 2026 su manual de auditoría financiera y ofrece plantillas para evaluar controles específicos, riesgos de partidas, muestreo y exposiciones de auditoría. Ese manual aplica a auditorías de entidades federales de Estados Unidos; sus formularios son una referencia práctica, no una exigencia para toda empresa.</p>
+<blockquote>La trazabilidad no consiste en guardar todo para siempre: consiste en conservar lo necesario para que otra persona entienda y vuelva a ejecutar el razonamiento.</blockquote>
+<div class="fuentes"><h2>Fuentes recientes</h2><ol><li><a href="https://www.iaasb.org/publications/proposed-revisions-audit-evidence-risk-response-isa-330-isa-500-isa-520">IAASB, Proposed Revisions for Audit Evidence &amp; Risk Response</a>, 5 de agosto de 2026. Borradores de ISA 330, ISA 500 y ISA 520; consulta abierta hasta diciembre de 2026.</li><li><a href="https://www.gao.gov/financial-audit-manual">U.S. GAO y CIGIE, Financial Audit Manual</a>, volúmenes 1 y 2 de junio y volumen 3 de julio de 2026. Metodología y formularios de auditoría federal estadounidense.</li></ol><p class="glosa-grafico">Diagrama, tabla y ejemplo originales. La IAASB publicó propuestas para consulta, no requisitos finales vigentes.</p></div>
+<div class="siguiente"><a href="calidad-datos-financieros.html"><p class="rotulo">Artículo 01</p><strong>Validar los datos antes del cuadre</strong></a><a href="analitica-excepciones.html"><p class="rotulo">Artículo 03</p><strong>Priorizar excepciones financieras</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>

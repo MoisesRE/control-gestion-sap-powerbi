@@ -1,0 +1,711 @@
+/// Hecho comparativo al grano escenario x centro x cuenta x periodo (42.017 filas). Es la tabla que alimenta toda comparacion entre escenarios. Los importes conservan el signo de SAP: ingreso positivo, coste negativo, de modo que el resultado es la suma directa de la columna sin condicionales. No se importan las columnas ejercicio y periodo del hecho: en SQL son redundantes a proposito para ahorrar un join, pero aqui el filtro llega por la relacion con Periodo Contable y solo costarian memoria.
+table Resultado
+	lineageTag: 213f7647-95ef-4a28-93ed-a0af0e33cbb0
+
+	/// Ingresos del grupo Ingresos. Es el perimetro oficial: el que reconcilia al centimo contra la maqueta de Control de Gestion. No incluye Ingresos Diversos, que tiene su propia medida.
+	measure Ingresos =
+			// El perimetro es el grupo Ingresos a secas, no la bandera Es Ingreso, que
+			// tambien cubre Ingresos Diversos. Es el perimetro de la fila INGRESOS de la
+			// maqueta de Control de Gestion y el unico contra el que el modelo reconcilia.
+			// KEEPFILTERS y no reemplazo: en una tabla desglosada por grupo o por linea del
+			// P&L, reemplazar el filtro repetiria el ingreso total en cada fila.
+			CALCULATE(
+			    SUM('Resultado'[Importe]),
+			    KEEPFILTERS('Cuenta'[Grupo] = "Ingresos")
+			)
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: 981be3b8-2871-4c87-8fc0-7ffdc2972767
+
+	/// Ingresos del grupo Ingresos Diversos. Va aparte porque la maqueta no lo cuenta como ingreso, y es la diferencia entre Resultado Neto e Ingresos mas Costes.
+	measure 'Ingresos Diversos' =
+			CALCULATE(
+			    SUM('Resultado'[Importe]),
+			    KEEPFILTERS('Cuenta'[Grupo] = "Ingresos Diversos")
+			)
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: 3014f4d9-beab-46a8-bcb7-2b8470bddaec
+
+	/// Costes y gastos con el signo de SAP, es decir en negativo. Cubre todo lo que no es ingreso, incluidos los grupos sin clase COSTO o GASTO asignada.
+	measure Costes =
+			// Conserva el signo contable, de modo que sale negativo. Es deliberado: con el
+			// signo de SAP el resultado es la suma directa de la columna y la desviacion
+			// favorable es siempre la positiva. Para leerlo como un P&L impreso esta
+			// Costes Presentacion.
+			CALCULATE(
+			    SUM('Resultado'[Importe]),
+			    KEEPFILTERS('Cuenta'[Es Ingreso] = FALSE())
+			)
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: d6a636ee-e83e-4f19-bbae-43cbcfb0d1d9
+
+	/// Los costes en positivo, para presentarlos como en un estado de resultados impreso. Misma cifra que Costes con el signo cambiado.
+	measure 'Costes Presentacion' =
+			// El signo invertido, que es como se lee un P&L impreso. Replica la columna
+			// importe_presentacion de las vistas de PostgreSQL.
+			- [Costes]
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: 9fbc5599-714e-46c8-9833-603d5a50c02d
+
+	/// Resultado del perimetro: la suma de todas las lineas del P&L. Difiere de Ingresos mas Costes en el importe de Ingresos Diversos.
+	measure 'Resultado Neto' =
+			// Sin condicionales ni CASE por tipo de linea: el convenio de signo de SAP
+			// convierte el resultado en una suma directa. No es exactamente Ingresos mas
+			// Costes, porque incluye tambien Ingresos Diversos.
+			SUM('Resultado'[Importe])
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: 8c548850-42ce-44e8-85ba-bb1f00360d01
+
+	/// Importe con el signo invertido en las lineas de coste, para tablas que presentan el P&L con todas las cifras en positivo. Replica importe_presentacion de las vistas SQL.
+	measure 'Importe Presentacion' =
+			// Suma con los costes invertidos: equivale a la columna importe_presentacion
+			// de pl.v_hechos_escenario. Aqui el perimetro de ingreso es la bandera Es
+			// Ingreso, como en la vista, y no el grupo Ingresos.
+			VAR _ingresos = CALCULATE(
+			    SUM('Resultado'[Importe]),
+			    KEEPFILTERS('Cuenta'[Es Ingreso] = TRUE())
+			)
+			VAR _costes = CALCULATE(
+			    SUM('Resultado'[Importe]),
+			    KEEPFILTERS('Cuenta'[Es Ingreso] = FALSE())
+			)
+			RETURN
+			    _ingresos - _costes
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: 87d34738-0781-4470-93f2-0eb169db841a
+
+	/// Resultado neto sobre ingresos del grupo Ingresos. El denominador es el perimetro oficial, de modo que el margen del real 2025 es 3,35% y no 3,32%: medirlo sobre el perimetro amplio lo separaria de la cifra que la organizacion publica.
+	measure 'Margen %' =
+			// DIVIDE y no la barra: un mes sin facturacion devuelve vacio en lugar de
+			// romper el calculo. Un margen indefinido no es un margen del cero por ciento.
+			VAR _ingresos = [Ingresos]
+			RETURN
+			    DIVIDE([Resultado Neto], _ingresos)
+		formatString: 0.00%
+		displayFolder: 01 Cuenta de resultados
+		lineageTag: f6ed42e2-f0cc-479d-b2e9-9a69902eef82
+
+	/// Resultado neto acumulado desde el periodo 1 del ejercicio en contexto hasta el ultimo periodo visible. Se reinicia en cada ejercicio.
+	measure 'Resultado Acumulado' =
+			// Acumulado del ejercicio escrito a mano, sin TOTALYTD. Periodo Contable tiene
+			// grano mensual y ninguna columna de fecha, de modo que no es una tabla de
+			// fechas y la familia de inteligencia temporal no se le puede aplicar. El
+			// filtro booleano sobre Periodo REEMPLAZA el filtro de esa columna, no lo
+			// intersecta, y el filtro de Ejercicio se conserva: de ahi que el acumulado se
+			// reinicie en cada ejercicio sin decirlo en ninguna parte.
+			VAR _ultimoPeriodo = MAX('Periodo Contable'[Periodo])
+			RETURN
+			    CALCULATE(
+			        [Resultado Neto],
+			        'Periodo Contable'[Periodo] <= _ultimoPeriodo
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 02 Acumulado del ejercicio
+		lineageTag: 3d636551-1d10-4b53-8c4c-2a07ef451a90
+
+	/// Ingresos acumulados desde el periodo 1 del ejercicio en contexto hasta el ultimo periodo visible.
+	measure 'Ingresos Acumulados' =
+			VAR _ultimoPeriodo = MAX('Periodo Contable'[Periodo])
+			RETURN
+			    CALCULATE(
+			        [Ingresos],
+			        'Periodo Contable'[Periodo] <= _ultimoPeriodo
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 02 Acumulado del ejercicio
+		lineageTag: a7e24f7b-a1d4-4d24-b54b-01ac396bd96e
+
+
+	/// Periodos con datos del escenario real del ejercicio en contexto. Es el tope al que se recorta el presupuesto para que la ejecucion sea homogenea.
+	measure 'Periodos Cubiertos Real' =
+			// Cuantos periodos cubre el real del ejercicio en contexto. El real de 2026
+			// llega a octubre, de modo que son 10 ahi y 12 en 2025.
+			// No hay relacion entre Escenario y Periodo Contable -- son dos dimensiones
+			// del mismo hecho -- asi que el ejercicio se traslada con TREATAS, que es la
+			// forma recomendada de aplicar una relacion virtual.
+			VAR _ejercicios = VALUES('Periodo Contable'[Ejercicio])
+			RETURN
+			    CALCULATE(
+			        MIN('Escenario'[Periodos Cubiertos]),
+			        REMOVEFILTERS('Escenario'),
+			        'Escenario'[Tipo Escenario] = "Real",
+			        TREATAS(_ejercicios, 'Escenario'[Ejercicio])
+			    )
+		formatString: 0
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: fcda8f5a-cd68-4ae6-95bf-dbc2745950e8
+
+	/// Resultado neto del escenario real del ejercicio en contexto, con independencia del escenario seleccionado en el visual.
+	measure 'Resultado Real' =
+			// REMOVEFILTERS sobre Escenario y se vuelve a filtrar por tipo: asi la medida
+			// devuelve el real aunque el visual este filtrado por otro escenario, que es lo
+			// que permite poner real y presupuesto uno al lado del otro. El ejercicio no
+			// hace falta resolverlo: llega por la relacion con Periodo Contable, y hay
+			// exactamente un real por ejercicio.
+			CALCULATE(
+			    [Resultado Neto],
+			    REMOVEFILTERS('Escenario'),
+			    'Escenario'[Tipo Escenario] = "Real"
+			)
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: c1efb13b-216a-41dc-b1de-07566bd40c60
+
+	/// Resultado neto presupuestado del ejercicio en contexto, recortado a los periodos que el real cubre para que la comparacion sea homogenea.
+	measure 'Resultado Presupuesto' =
+			// El presupuesto recortado a los periodos que el real cubre. Sin el recorte, la
+			// ejecucion de 2026 se mediria contra doce meses de presupuesto y daria un 85%
+			// inventado en lugar del 104,8% real.
+			// KEEPFILTERS y no reemplazo: si el visual ya muestra un mes concreto, el
+			// recorte debe intersectar con el, no sustituirlo.
+			VAR _tope = [Periodos Cubiertos Real]
+			RETURN
+			    CALCULATE(
+			        [Resultado Neto],
+			        REMOVEFILTERS('Escenario'),
+			        'Escenario'[Tipo Escenario] = "Presupuesto",
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 253c3b8d-5e7c-4643-8f4e-03d6428e7ca1
+
+	/// Ingresos del escenario real del ejercicio en contexto.
+	measure 'Ingresos Real' =
+			CALCULATE(
+			    [Ingresos],
+			    REMOVEFILTERS('Escenario'),
+			    'Escenario'[Tipo Escenario] = "Real"
+			)
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 55f397d5-2efd-4003-803c-d708a999cc2e
+
+	/// Ingresos presupuestados del ejercicio en contexto, recortados a los periodos que el real cubre.
+	measure 'Ingresos Presupuesto' =
+			VAR _tope = [Periodos Cubiertos Real]
+			RETURN
+			    CALCULATE(
+			        [Ingresos],
+			        REMOVEFILTERS('Escenario'),
+			        'Escenario'[Tipo Escenario] = "Presupuesto",
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 5bc9903f-4588-4252-adb4-6fd50e1f07ee
+
+	/// Desviacion del resultado sobre el presupuesto comparable. Positiva es favorable, tanto en lineas de ingreso como de coste.
+	measure Desviacion =
+			// Real menos presupuesto. Con el signo contable la desviacion favorable es
+			// siempre la positiva, tanto en ingresos como en costes: facturar de mas da una
+			// diferencia positiva, y gastar de menos da un numero negativo mas proximo a
+			// cero, que tambien es mayor.
+			[Resultado Real] - [Resultado Presupuesto]
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: a1369f71-8bba-42e5-96c4-cd3f658b1275
+
+	/// Desviacion de los ingresos sobre el presupuesto comparable.
+	measure 'Desviacion Ingresos' = [Ingresos Real] - [Ingresos Presupuesto]
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 9d6061e5-846b-476f-b7cf-171a5b18f15a
+
+	/// Resultado real sobre el presupuestado comparable. Vacio si no hay presupuesto, en lugar de cero.
+	measure 'Ejecucion %' =
+			VAR _presupuesto = [Resultado Presupuesto]
+			RETURN
+			    DIVIDE([Resultado Real], _presupuesto)
+		formatString: 0.0%
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 281c33c8-ed3d-49c6-a1f9-19cf93dd82ff
+
+	/// Ingresos reales sobre los presupuestados comparables. Es el 88,6% en 2025 y el 104,8% en 2026; sin el recorte de periodos, 2026 daria un 85% que no significa nada.
+	measure 'Ejecucion Ingresos %' =
+			VAR _presupuesto = [Ingresos Presupuesto]
+			RETURN
+			    DIVIDE([Ingresos Real], _presupuesto)
+		formatString: 0.0%
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: f8ec9eb3-40d0-4914-8a30-d20a05d6e96d
+
+	/// Etiqueta el signo de la desviacion del resultado. Replica la columna es_favorable de pl.v_ejecucion_presupuestaria.
+	measure 'Es Favorable' =
+			IF(
+			    [Desviacion] >= 0,
+			    "Favorable",
+			    "Desfavorable"
+			)
+		displayFolder: 03 Ejecucion presupuestaria
+		lineageTag: 661fe25e-ed11-4a78-b07a-8bf230e307b9
+
+	/// Minimo de periodos cubiertos entre los escenarios reales. Es el tope de la comparacion interanual, distinto de Periodos Cubiertos Real, que es por ejercicio.
+	measure 'Periodos Comparables' =
+			// El menor numero de periodos cubiertos entre los escenarios reales: 10, porque
+			// el real de 2026 llega a octubre y el de 2025 cubre los doce. La comparacion
+			// interanual se recorta a ese minimo, que es la unica forma de que sea
+			// homogenea; sin el recorte apareceria una caida inventada de dos meses de
+			// actividad.
+			CALCULATE(
+			    MIN('Escenario'[Periodos Cubiertos]),
+			    REMOVEFILTERS('Escenario'),
+			    'Escenario'[Tipo Escenario] = "Real"
+			)
+		formatString: 0
+		displayFolder: 04 Variacion interanual
+		lineageTag: a19e26eb-4834-47a2-a86b-c99152acb817
+
+	/// Resultado real del ejercicio en contexto, recortado a los periodos comparables entre ejercicios.
+	measure 'Resultado Real Comparable' =
+			VAR _tope = [Periodos Comparables]
+			RETURN
+			    CALCULATE(
+			        [Resultado Real],
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 04 Variacion interanual
+		lineageTag: 0234b841-5d7e-419c-8d11-3644e84dad7e
+
+	/// Resultado real del ejercicio inmediatamente anterior, en los mismos periodos y recortado a los comparables. Vacio para el primer ejercicio del modelo.
+	measure 'Resultado Ejercicio Anterior' =
+			// Sin SAMEPERIODLASTYEAR: necesita una tabla de fechas diaria y contigua, que
+			// este modelo no tiene a proposito, y sobre todo no sabria nada del recorte a
+			// periodos comparables, que es la parte que de verdad importa aqui.
+			// Se quita el filtro del ejercicio y se sustituye por el anterior, conservando
+			// el del periodo: asi la comparacion es mes contra el mismo mes.
+			VAR _tope = [Periodos Comparables]
+			VAR _ejerciciosAnteriores =
+			    SELECTCOLUMNS(
+			        VALUES('Periodo Contable'[Ejercicio]),
+			        "@ejercicio", 'Periodo Contable'[Ejercicio] - 1
+			    )
+			RETURN
+			    CALCULATE(
+			        [Resultado Real],
+			        REMOVEFILTERS('Periodo Contable'[Ejercicio]),
+			        TREATAS(_ejerciciosAnteriores, 'Periodo Contable'[Ejercicio]),
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 04 Variacion interanual
+		lineageTag: 03640af8-a7e6-430f-9c97-4b4d737c045c
+
+	/// Ingresos reales del ejercicio anterior, en los mismos periodos y recortados a los comparables.
+	measure 'Ingresos Ejercicio Anterior' =
+			VAR _tope = [Periodos Comparables]
+			VAR _ejerciciosAnteriores =
+			    SELECTCOLUMNS(
+			        VALUES('Periodo Contable'[Ejercicio]),
+			        "@ejercicio", 'Periodo Contable'[Ejercicio] - 1
+			    )
+			RETURN
+			    CALCULATE(
+			        [Ingresos Real],
+			        REMOVEFILTERS('Periodo Contable'[Ejercicio]),
+			        TREATAS(_ejerciciosAnteriores, 'Periodo Contable'[Ejercicio]),
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 04 Variacion interanual
+		lineageTag: 3b9f09c7-1201-4486-85b6-e9bdae8606ab
+
+	/// Ingresos reales del ejercicio en contexto, recortados a los periodos comparables entre ejercicios.
+	measure 'Ingresos Real Comparable' =
+			VAR _tope = [Periodos Comparables]
+			RETURN
+			    CALCULATE(
+			        [Ingresos Real],
+			        KEEPFILTERS('Periodo Contable'[Periodo] <= _tope)
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 04 Variacion interanual
+		lineageTag: 2c5c9cd4-4cc6-4907-adfe-550c7ae9b957
+
+	/// Variacion del resultado real entre el ejercicio en contexto y el anterior, sobre periodos comparables. Vacia en el primer ejercicio del modelo, donde no hay con que comparar.
+	measure 'Variacion Interanual' =
+			// Vacio cuando no hay ejercicio anterior en el modelo, en lugar de devolver el
+			// importe actual entero. DAX trata el vacio como cero en una resta, de modo que
+			// sin esta guarda el primer ejercicio del modelo aparecia con una variacion
+			// igual a su propio resultado: una subida inventada desde la nada.
+			// La comprobacion mira si el ejercicio anterior EXISTE como periodo, y no si la
+			// medida salio vacia: una linea del P&L que el ano pasado no tuvo importe si
+			// debe arrojar variacion, y es un caso distinto.
+			VAR _ejercicioAnterior = MAX('Periodo Contable'[Ejercicio]) - 1
+			VAR _existeElAnterior =
+			    CALCULATE(
+			        COUNTROWS('Periodo Contable'),
+			        REMOVEFILTERS('Periodo Contable'),
+			        'Periodo Contable'[Ejercicio] = _ejercicioAnterior
+			    ) > 0
+			RETURN
+			    IF(
+			        _existeElAnterior,
+			        [Resultado Real Comparable] - [Resultado Ejercicio Anterior]
+			    )
+		formatString: "S/. "#,##0,;("S/. "#,##0,)
+		displayFolder: 04 Variacion interanual
+		lineageTag: 2d571ae0-0d7f-4525-95e0-996fee0a129a
+
+	/// Variacion interanual del resultado en porcentaje, con el valor absoluto del ejercicio anterior como denominador para que el signo no se invierta en las lineas de coste.
+	measure 'Variacion Interanual %' =
+			// El denominador es el valor absoluto del ejercicio anterior, para que una
+			// linea de coste que empeora no aparezca con el porcentaje de signo contrario.
+			VAR _anterior = [Resultado Ejercicio Anterior]
+			RETURN
+			    DIVIDE([Variacion Interanual], ABS(_anterior))
+		formatString: 0.0%
+		displayFolder: 04 Variacion interanual
+		lineageTag: 5c95729c-6e73-4491-817a-3453bb0ddb2e
+
+	/// Variacion interanual de los ingresos reales en porcentaje, sobre periodos comparables.
+	measure 'Variacion Ingresos %' =
+			VAR _anterior = [Ingresos Ejercicio Anterior]
+			RETURN
+			    DIVIDE([Ingresos Real Comparable] - _anterior, ABS(_anterior))
+		formatString: 0.0%
+		displayFolder: 04 Variacion interanual
+		lineageTag: 7e1e0c19-3eba-4b6a-8cf3-904276efcbc3
+
+	/// Clave foranea al escenario.
+	column 'Clave Escenario'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: d0dd68de-fd03-492c-a855-e316a161c419
+		sourceColumn: escenario_clave
+
+	/// Clave foranea al periodo contable.
+	column 'Clave Periodo'
+		dataType: int64
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 371946c7-8870-4b58-b5be-439ba8f0d56c
+		summarizeBy: none
+		sourceColumn: fecha_clave
+
+	/// Clave foranea al centro de coste.
+	column 'Codigo Centro'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 2307c493-303a-4cb5-8ee6-a6a64f918a35
+		sourceColumn: ceco_codigo
+
+	/// Clave foranea a la cuenta.
+	column 'Codigo Cuenta'
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 3a27079f-3294-44a6-b3dc-41d5ddd7b769
+		sourceColumn: cuenta_codigo
+
+	/// Importe en soles con el signo de SAP. Oculta porque se agrega en medidas explicitas. El tipo es decimal fijo y no coma flotante por el mismo motivo por el que en PostgreSQL es numeric(18,2): la suma en coma flotante no es asociativa y el total dependeria del orden de agregacion. El tipo se fija ademas en el M de la particion, porque el refresco reconcilia el tipo declarado con el que entrega el conector.
+	column Importe
+		dataType: decimal
+		isHidden
+		formatString: #,##0.00
+		isAvailableInMdx: false
+		lineageTag: c9260591-dbd7-48cf-87e2-23a5e3ed7576
+		summarizeBy: sum
+		sourceColumn: importe
+
+
+	/// Valor de la linea del P&L que este en contexto. Resuelve las siete lineas de importe sumando el hecho por Cuenta[Linea Oficial], y deriva de ellas los subtotales y los margenes. El formato cambia solo: soles en las lineas de importe, porcentaje en las de margen.
+	measure 'Importe PL' =
+			// Una sola medida para las treinta y una filas del P&L. La alternativa -- una
+			// medida por linea -- multiplicaria por treinta el modelo y obligaria a
+			// recordar cual va en cada fila; asi el eje de la tabla es la propia lista de
+			// lineas y la medida responde a la que toque.
+			//
+			// Las tres lineas que este extracto no tiene valen cero y estan declaradas
+			// como variables, no como huecos: dejan ver en el codigo que la plantilla las
+			// contempla y que el perimetro no las cubre.
+			VAR _linea = SELECTEDVALUE('Linea PL Oficial'[Linea])
+			VAR _ingresos        = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "Ingresos")
+			VAR _costos          = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "Costos Ventas")
+			VAR _gastos          = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "Gastos Adm/Ventas")
+			VAR _depreciacion    = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "Depreciacion")
+			VAR _excepcionales   = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "I/E. Excepcionales")
+			VAR _financieros     = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "I/E. Financieros")
+			VAR _tipoCambio      = CALCULATE(SUM('Resultado'[Importe]), 'Cuenta'[Linea Oficial] = "Tipo de Cambio")
+			VAR _depreciacionUso = 0
+			VAR _ventaUnidades   = 0
+			VAR _soporte         = 0
+			VAR _bruta        = _ingresos + _costos
+			VAR _operativa    = _bruta + _gastos + _depreciacion + _depreciacionUso + _excepcionales
+			VAR _netaSinVenta = _operativa + _financieros
+			VAR _netaNegocio  = _netaSinVenta + _ventaUnidades
+			VAR _antesTC      = _netaNegocio + _soporte
+			VAR _netaTotal    = _antesTC + _tipoCambio
+			VAR _ebitda       = _operativa - _depreciacion - _depreciacionUso
+			RETURN
+			    SWITCH(
+			        _linea,
+			        "Ingresos",                                _ingresos,
+			        "Costos Ventas",                           _costos,
+			        "Utilidad Bruta",                          _bruta,
+			        "% Margen Bruto",                          DIVIDE(_bruta, _ingresos),
+			        "Gastos Adm/Ventas",                       _gastos,
+			        "% Gastos Adm/Ventas",                     DIVIDE(_gastos, _ingresos),
+			        "Depreciacion",                            _depreciacion,
+			        "% Gastos Depreciacion",                   DIVIDE(_depreciacion, _ingresos),
+			        "Depreciacion por Uso",                    _depreciacionUso,
+			        "% Depreciacion por Uso",                  DIVIDE(_depreciacionUso, _ingresos),
+			        "I/E. Excepcionales",                      _excepcionales,
+			        "% I/E. Excepcionales",                    DIVIDE(_excepcionales, _ingresos),
+			        "Utilidad Operativa",                      _operativa,
+			        "% Margen operativo",                      DIVIDE(_operativa, _ingresos),
+			        "I/E. Financieros",                        _financieros,
+			        "% I/E. Financieros",                      DIVIDE(_financieros, _ingresos),
+			        "Utilidad Neta Negocio (s/vta. Unidades)", _netaSinVenta,
+			        "% Margen Neto Negocio",                   DIVIDE(_netaSinVenta, _ingresos),
+			        "Venta de Unidades (inc. Enaj.)",          _ventaUnidades,
+			        "Utilidad Neta Negocio",                   _netaNegocio,
+			        "% Margen negocio",                        DIVIDE(_netaNegocio, _ingresos),
+			        "Gastos Soporte Directo - Corporativo",    _soporte,
+			        // Estos dos porcentajes van sobre la utilidad neta del negocio y no
+			        // sobre las ventas, como en la plantilla oficial.
+			        "% Gastos Soporte Directo / U. Neta Neg.", DIVIDE(_soporte, _netaNegocio),
+			        "Utilidad Neta Negocio Total (antes T.C)", _antesTC,
+			        "% Margen negocio total",                  DIVIDE(_antesTC, _ingresos),
+			        "Tipo de Cambio",                          _tipoCambio,
+			        "% TC / U. Neta Neg.",                     DIVIDE(_tipoCambio, _netaNegocio),
+			        "Utilidad Neta Negocio Total",             _netaTotal,
+			        "% Margen Neto",                           DIVIDE(_netaTotal, _ingresos),
+			        "Ebitda Negocio",                          _ebitda,
+			        "% Margen Ebitda",                         DIVIDE(_ebitda, _ingresos)
+			    )
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c001
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Valor de la linea del P&L para el escenario real del ejercicio en contexto, con independencia del escenario que este seleccionado.
+	measure 'PL Real' =
+			CALCULATE(
+			    [Importe PL],
+			    REMOVEFILTERS('Escenario'),
+			    'Escenario'[Tipo Escenario] = "Real"
+			)
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c002
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Valor de la linea del P&L para el presupuesto del ejercicio en contexto. No se recorta a los periodos cubiertos: en esta vista el periodo lo elige el usuario y la comparacion es mes contra el mismo mes.
+	measure 'PL Ppto' =
+			CALCULATE(
+			    [Importe PL],
+			    REMOVEFILTERS('Escenario'),
+			    'Escenario'[Tipo Escenario] = "Presupuesto"
+			)
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c003
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Real menos presupuesto del periodo. En las lineas de margen es la diferencia en puntos porcentuales.
+	measure 'PL Var' =
+			[PL Real] - [PL Ppto]
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c004
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Variacion sobre el presupuesto en porcentaje. El denominador es el valor absoluto, para que una linea de coste que empeora no salga con el signo cambiado.
+	measure 'PL Var %' =
+			VAR _presupuesto = [PL Ppto]
+			RETURN
+			    DIVIDE([PL Var], ABS(_presupuesto))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c005
+
+	/// Real acumulado desde el periodo 1 del ejercicio hasta el ultimo periodo seleccionado.
+	measure 'PL Real Acum' =
+			// El acumulado se escribe a mano por la misma razon que el resto del modelo:
+			// la dimension de tiempo tiene grano mensual y no es una tabla de fechas.
+			//
+			// ALLEXCEPT y no un filtro suelto sobre Periodo: el segmentador de esta pagina
+			// filtra por Mes, que es una columna distinta de Periodo aunque signifique lo
+			// mismo. Reemplazar solo Periodo dejaba vivo el filtro de Mes y el acumulado
+			// devolvia el mes seleccionado. Se quitan todos los filtros de la tabla menos
+			// el del ejercicio, y se vuelve a aplicar el corte por periodo.
+			VAR _hasta = MAX('Periodo Contable'[Periodo])
+			RETURN
+			    CALCULATE(
+			        [PL Real],
+			        ALLEXCEPT('Periodo Contable', 'Periodo Contable'[Ejercicio]),
+			        'Periodo Contable'[Periodo] <= _hasta
+			    )
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c006
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Presupuesto acumulado desde el periodo 1 del ejercicio hasta el ultimo periodo seleccionado.
+	measure 'PL Ppto Acum' =
+			// Mismo motivo que en PL Real Acumulado.
+			VAR _hasta = MAX('Periodo Contable'[Periodo])
+			RETURN
+			    CALCULATE(
+			        [PL Ppto],
+			        ALLEXCEPT('Periodo Contable', 'Periodo Contable'[Ejercicio]),
+			        'Periodo Contable'[Periodo] <= _hasta
+			    )
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c007
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Variacion acumulada del real sobre el presupuesto, hasta el periodo seleccionado.
+	measure 'PL Var Acum' =
+			[PL Real Acum] - [PL Ppto Acum]
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c008
+		formatStringDefinition =
+				// Un P&L mezcla soles y porcentajes en la misma columna. El formato se
+				// decide por el tipo de la fila, de modo que una sola medida sirve para
+				// las treinta y una lineas sin que los margenes salgan en soles.
+				IF(
+				    SELECTEDVALUE('Linea PL Oficial'[Tipo]) = "Margen",
+				    "0.0%",
+				    """S/. ""#,##0,;(""S/. ""#,##0,)"
+				)
+
+	/// Variacion acumulada en porcentaje sobre el presupuesto acumulado.
+	measure 'PL Var Acum %' =
+			VAR _presupuesto = [PL Ppto Acum]
+			RETURN
+			    DIVIDE([PL Var Acum], ABS(_presupuesto))
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: 06 Estado de resultados
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7c009
+
+
+	/// Color de fondo de la fila del P&L. Las lineas de subtotal van sombreadas y las de margen en un gris mas claro, como en la plantilla impresa. Es una medida de formato: devuelve un hexadecimal, no una cifra.
+	measure 'PL Color Fondo' =
+			// El formato condicional por valor de campo acepta una medida que devuelva un
+			// color. Resolverlo aqui y no con reglas por umbral permite que el sombreado
+			// dependa de QUE es la fila -- subtotal, margen o importe -- y no de cuanto
+			// vale, que es lo que un estado de resultados necesita.
+			SWITCH(
+			    SELECTEDVALUE('Linea PL Oficial'[Tipo]),
+			    "Subtotal", "#D6DCE4",
+			    "Margen",   "#F2F2F2",
+			    "#FFFFFF"
+			)
+		isHidden
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d001
+
+	/// Color del texto de la fila del P&L. Los subtotales en azul oscuro y los margenes en verde, para distinguirlos de las lineas de importe.
+	measure 'PL Color Texto' =
+			SWITCH(
+			    SELECTEDVALUE('Linea PL Oficial'[Tipo]),
+			    "Subtotal", "#1F3864",
+			    "Margen",   "#1F7A3F",
+			    "#000000"
+			)
+		isHidden
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d002
+
+	/// Cuadrado del semaforo de la variacion del mes. Es texto, no un icono: asi su color lo decide una medida y no una escala de umbrales.
+	measure 'PL Semaforo' =
+			UNICHAR(9632)
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d003
+
+	/// Color del semaforo del mes: verde cuando la desviacion es favorable, rojo cuando no.
+	measure 'PL Color Semaforo' =
+			// Con el signo contable, la desviacion favorable es SIEMPRE la positiva: se
+			// factura de mas, o se gasta menos y el numero negativo se acerca a cero. Por
+			// eso un solo criterio sirve para las lineas de ingreso y las de coste.
+			VAR _variacion = [PL Var]
+			RETURN
+			    IF(_variacion >= 0, "#2E7D32", "#C62828")
+		isHidden
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d004
+
+	/// Cuadrado del semaforo de la variacion acumulada.
+	measure 'PL Semaforo Acumulado' =
+			UNICHAR(9632)
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d005
+
+	/// Color del semaforo acumulado: verde cuando la desviacion acumulada es favorable, rojo cuando no.
+	measure 'PL Color Semaforo Acumulado' =
+			VAR _variacion = [PL Var Acum]
+			RETURN
+			    IF(_variacion >= 0, "#2E7D32", "#C62828")
+		isHidden
+		displayFolder: 07 Formato del P&L
+		lineageTag: 7c1a9e52-3b64-4d18-9f20-5e8c41d7d006
+
+	partition Resultado = m
+		mode: import
+		source =
+				let
+				    // Se enumeran las columnas en el SQL en lugar de traer la tabla entera:
+				    // la proyeccion la hace PostgreSQL y el repositorio deja ver exactamente
+				    // que sale de la base.
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select escenario_clave, fecha_clave, ceco_codigo, cuenta_codigo, importe from core.fact_escenario"]),
+				    // El tipo se fija AQUI y no solo en los metadatos de la columna. Al refrescar,
+				    // Power BI reconcilia el tipo declarado con el que entrega el conector, y el de
+				    // PostgreSQL llega como numero de coma flotante: sin esta linea la columna acaba
+				    // siendo Double y la suma de los importes deja de ser exacta.
+				    Tipado = Table.TransformColumnTypes(Origen, {{"importe", Currency.Type}})
+				in
+				    Tipado
+

@@ -1,0 +1,42 @@
+/// Centro de coste en su version reasignada por Control de Gestion (CeCo FINAL), que es la que construye el reporte oficial, y no la cruda de SAP. Los nombres son ficticios: los originales contenian toponimos de agencias reales.
+table 'Centro de Coste'
+	lineageTag: 5ce52629-b6bc-4ef5-88a7-a248088953fe
+
+	/// Codigo pseudonimizado del centro, con el prefijo CC-.
+	column 'Codigo Centro'
+		dataType: string
+		lineageTag: 72c2be0c-f86a-4daf-b763-bfd8d9e54b58
+		sourceColumn: ceco_codigo
+
+	/// Nombre ficticio del centro.
+	column 'Centro de Coste'
+		dataType: string
+		lineageTag: 43ca36fd-b927-4a18-a2b8-2716b5f8a818
+		sourceColumn: ceco_nombre
+
+	/// Taxonomia interna generalizada: ambito del centro. Vacia en los centros que la clasificacion interna no cubre.
+	column Ambito
+		dataType: string
+		lineageTag: eba31ca9-a472-4f98-a6f9-7ffc803d5332
+		sourceColumn: ambito
+
+	/// Taxonomia interna generalizada: estructura organizativa.
+	column Estructura
+		dataType: string
+		lineageTag: e9416dbb-dce8-4e17-b4fe-e248c75e389e
+		sourceColumn: estructura
+
+	/// Taxonomia interna generalizada: unidad de negocio.
+	column 'Unidad de Negocio'
+		dataType: string
+		lineageTag: 17a14d47-9b95-4ba0-b741-f51b9cac60d8
+		sourceColumn: unidad_negocio
+
+	partition 'Centro de Coste' = m
+		mode: import
+		source =
+				let
+				    Origen = PostgreSQL.Database(Servidor, BaseDatos, [Query="select ceco_codigo, ceco_nombre, ambito, estructura, unidad_negocio from core.dim_centro"])
+				in
+				    Origen
+

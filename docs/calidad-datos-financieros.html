@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<title>Antes del cuadre: integridad del dato financiero</title>
+<meta name="description" content="Controles de completitud, duplicados, periodos y clasificación para descubrir problemas en los datos antes de publicar un reporte financiero.">
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<header class="cabecera">
+  <div class="contenedor">
+    <div class="identidad">
+      <a class="marca-sitio" href="index.html">
+        <svg class="glifo" width="190" height="66" viewBox="0 0 196 68" aria-hidden="true">
+          <line x1="10" y1="56" x2="74" y2="56" stroke="var(--cabecera-suave)" stroke-opacity=".35" stroke-width="1.5"></line>
+          <rect x="14" y="39" width="8" height="17" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="28" y="29" width="8" height="27" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".86"></rect>
+          <rect x="42" y="34" width="8" height="22" rx="1.5" fill="var(--acento-cabecera-fuerte)" opacity=".72"></rect>
+          <rect x="56" y="18" width="8" height="38" rx="1.5" fill="var(--acento-cabecera-fuerte)"></rect>
+          <line x1="86" y1="14" x2="86" y2="54" stroke="var(--cabecera-suave)" stroke-opacity=".28"></line>
+          <path d="M110 18H107Q104 18 104 21V47Q104 50 107 50H110" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M114 28L119 34L114 40M123 28L128 34L123 40" fill="none" stroke="#c3b9a7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <text x="131" y="42" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".2" fill="#f3efe7">P<tspan fill="#d9ad63">&amp;</tspan>L</text>
+          <path d="M180 18H183Q186 18 186 21V47Q186 50 183 50H180" fill="none" stroke="#d2c7b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span>
+          <span class="nombre">Moisés Retuerto Espinoza</span>
+          <span class="cargo">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</span>
+        </span>
+      </a>
+      <nav class="enlaces-cabecera" aria-label="Perfiles y proyecto">
+        <a href="https://www.linkedin.com/in/moises-retuerto-b5882747/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </div>
+</header>
+<nav class="tira-nav" aria-label="Principal"><div class="contenedor"><button class="alternar" type="button" aria-expanded="false" aria-controls="menu">Secciones</button><div class="menu" id="menu"><a href="index.html">Inicio</a><a href="powerbi.html">Power BI</a><a href="ia-en-el-cierre.html">IA para Finanzas</a><a href="defender-las-cifras.html">Defender las cifras</a><a href="que-automatizar.html">Qu&eacute; automatizar</a><a href="que-puede-salir-mal.html">Qu&eacute; puede salir mal</a><details class="grupo-menu">
+  <summary>Caso Ejemplo</summary>
+  <div class="submenu">
+    <a href="caso.html">Resumen y resultado</a>
+    <a href="proceso.html">Proceso</a>
+    <a href="datos.html">Modelo de datos</a>
+    <a href="explorador.html">Explorador de datos</a>
+  </div>
+</details>
+<span class="separador" role="presentation"></span></div></div></nav>
+<nav class="navegacion-articulos" aria-label="Artículos de Defender las cifras"><div class="contenedor"><div class="navegacion-articulos-cabecera"><div class="navegacion-articulos-ruta"><a href="index.html">Inicio</a><span aria-hidden="true">›</span><a href="defender-las-cifras.html">Defender las cifras</a></div><span class="navegacion-articulos-contador">Artículo 01 de 04</span></div><div class="navegacion-articulos-lista"><span class="navegacion-articulos-opcion" aria-current="page" title="Antes del cuadre: integridad del dato financiero"><span class="navegacion-articulos-numero">01</span><span class="navegacion-articulos-titulo">Calidad de datos</span></span><a class="navegacion-articulos-opcion" href="trazabilidad-cifras-financieras.html" title="Del indicador al asiento: una cifra que se puede reconstruir"><span class="navegacion-articulos-numero">02</span><span class="navegacion-articulos-titulo">Trazabilidad</span></a><a class="navegacion-articulos-opcion" href="analitica-excepciones.html" title="Analítica de excepciones: dónde investigar primero"><span class="navegacion-articulos-numero">03</span><span class="navegacion-articulos-titulo">Excepciones</span></a><a class="navegacion-articulos-opcion" href="metodo-defender-cifras.html" title="El problema no es generar el informe, es poder defenderlo"><span class="navegacion-articulos-numero">04</span><span class="navegacion-articulos-titulo">Defender el informe</span></a></div></div></nav>
+<main><article>
+<div class="contenedor"><div class="portada"><p class="rotulo"><span class="tema">Artículo 01 · Calidad de datos · 27 de octubre de 2026</span></p><h1>Antes del cuadre: integridad del dato financiero</h1><p class="entradilla">Un total que coincide puede ocultar filas que faltan, duplicados que se compensan o un código que cayó en la cuenta equivocada. La revisión empieza antes de sumar.</p><div class="meta-articulo"><span>Lectura de 5 minutos</span><span>&middot;</span><span>Para control de gestión, contabilidad y reporting</span></div></div></div>
+<section><div class="contenedor">
+<div class="contexto"><div class="icono" aria-hidden="true">i</div><div><h2>El cuadre tiene que partir de un universo correcto</h2><p>Conciliar contra un reporte oficial confirma que las dos cifras son comparables. También hay que probar que se cargó el periodo completo, que cada movimiento aparece una sola vez y que conserva su clasificación. Esas verificaciones separan una coincidencia útil de un resultado fiable.</p></div></div>
+<figure class="tarjeta" aria-labelledby="calidad-caption"><svg viewBox="0 0 1000 340" role="img" aria-labelledby="calidad-title calidad-desc"><title id="calidad-title">Controles de calidad antes de publicar datos financieros</title><desc id="calidad-desc">Los archivos de origen pasan pruebas de completitud, unicidad, clasificación y periodo. Si una prueba falla, se registra la excepción y se bloquea la publicación hasta resolverla.</desc><defs><marker id="flecha-calidad" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="var(--diagrama-conector)"/></marker></defs><rect x="25" y="98" width="160" height="115" rx="15" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)"/><text x="105" y="137" text-anchor="middle" font-size="17" font-weight="700" fill="var(--cabecera)">Fuentes</text><text x="105" y="166" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">ERP · Excel</text><text x="105" y="189" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">maestro · catálogo</text><path d="M191 155 H245" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-calidad)"/><rect x="260" y="62" width="375" height="185" rx="18" fill="var(--diagrama-neutro-fondo)" stroke="var(--diagrama-neutro-borde)" stroke-width="2"/><text x="448" y="96" text-anchor="middle" font-size="18" font-weight="700" fill="var(--cabecera)">Pruebas automáticas</text><rect x="285" y="116" width="145" height="48" rx="9" fill="var(--diagrama-neutro-fondo)"/><text x="357" y="146" text-anchor="middle" font-size="14" fill="var(--marca)">completitud</text><rect x="455" y="116" width="155" height="48" rx="9" fill="var(--diagrama-neutro-fondo)"/><text x="532" y="146" text-anchor="middle" font-size="14" fill="var(--marca)">duplicados</text><rect x="285" y="178" width="145" height="48" rx="9" fill="var(--diagrama-neutro-fondo)"/><text x="357" y="208" text-anchor="middle" font-size="14" fill="var(--marca)">clasificación</text><rect x="455" y="178" width="155" height="48" rx="9" fill="var(--diagrama-neutro-fondo)"/><text x="532" y="208" text-anchor="middle" font-size="14" fill="var(--marca)">periodo y signos</text><path d="M641 155 H695" stroke="var(--diagrama-conector)" stroke-width="3" marker-end="url(#flecha-calidad)"/><rect x="710" y="45" width="260" height="95" rx="15" fill="var(--diagrama-verde-fondo)" stroke="var(--diagrama-verde-borde)"/><text x="840" y="82" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-verde-fuerte)">Sin excepciones</text><text x="840" y="110" text-anchor="middle" font-size="14" fill="var(--diagrama-verde-texto)">continúa la publicación</text><path d="M635 200 H675 V235 H695" fill="none" stroke="var(--diagrama-cobre-fuerte)" stroke-width="3" marker-end="url(#flecha-calidad)"/><rect x="710" y="190" width="260" height="95" rx="15" fill="var(--diagrama-cobre-fondo)" stroke="var(--diagrama-cobre-borde)"/><text x="840" y="227" text-anchor="middle" font-size="17" font-weight="700" fill="var(--diagrama-cobre-texto)">Con excepciones</text><text x="840" y="255" text-anchor="middle" font-size="14" fill="var(--diagrama-cobre-texto)">bloquea y deja evidencia</text><text x="500" y="319" text-anchor="middle" font-size="14" fill="var(--diagrama-neutro-texto)">El control registra qué regla falló, en qué archivo y qué cambió al corregirlo.</text></svg><figcaption id="calidad-caption">Flujo original de calidad de datos. Una alerta accionable identifica la regla y el registro, y evita que un problema silencioso llegue al reporte.</figcaption></figure></div>
+<div class="contenedor"><div class="lectura">
+<h2>Cuatro pruebas antes de agrupar importes</h2>
+<div class="marco-tabla"><table class="datos"><thead><tr><th>Prueba</th><th>Pregunta que responde</th><th>Ejemplo de control</th></tr></thead><tbody><tr><td>Completitud</td><td>¿Llegó todo el periodo y todas las fuentes esperadas?</td><td>Comparar meses, sociedades, centros y conteos con el calendario de carga</td></tr><tr><td>Unicidad</td><td>¿Una misma operación se cargó dos veces?</td><td>Validar la clave natural: sistema, documento, posición y periodo</td></tr><tr><td>Clasificación</td><td>¿Cada cuenta y centro tiene una regla de negocio?</td><td>Detener el proceso ante cuentas sin mapeo o asignaciones ambiguas</td></tr><tr><td>Periodo e integridad</td><td>¿El movimiento pertenece al corte que se informa?</td><td>Revisar fechas, moneda, signos, campos obligatorios y rangos válidos</td></tr></tbody></table></div>
+<h2>Un ejemplo de error que no levanta la mano</h2>
+<p>Si un proceso lee una columna del libro por su posición, basta con que alguien inserte otra para que se importe el escenario equivocado. El archivo abre, los números son válidos y quizá el total hasta coincida con otra columna. Una regla que busca el encabezado esperado y valida el nombre del escenario habría parado esa corrida.</p>
+<p>La misma lógica sirve para los datos transaccionales: no dar por bueno un lote solo porque el programa terminó. Comprobar el rango de fechas, cantidad de registros, total de débitos y créditos, cuentas sin mapeo y duplicados antes de escribir la tabla de salida.</p>
+<h2>La salida del control debe ayudar a corregir</h2>
+<p>Una alerta del tipo “falló calidad” obliga a investigar el proceso entero. Una buena excepción indica archivo y fecha, identificador de la fila, valor recibido, regla esperada y razón de rechazo. Si se corrige la fuente, el registro de la nueva ejecución debe permitir comparar el lote original con el corregido.</p>
+<p>El FRC identificó la calidad de datos y los controles de gobierno entre las preocupaciones que frenan la adopción de IA en los reportes corporativos. Aunque este artículo se centra en controles generales de datos, el reto se vuelve más visible cuando una herramienta produce texto o análisis a partir de información incompleta. Un comentario claro no reemplaza una fuente íntegra.</p>
+<blockquote>Una conciliación confirma una relación entre cifras. Las pruebas de entrada ayudan a confirmar que las cifras representan el universo que se quería informar.</blockquote>
+<div class="fuentes"><h2>Fuentes recientes</h2><ol><li><a href="https://www.gao.gov/financial-audit-manual">U.S. GAO y CIGIE, Financial Audit Manual</a>, volúmenes revisados en junio y julio de 2026. Incluye metodología de auditoría financiera y plantillas para evaluación de controles y riesgos; aplica a entidades federales de Estados Unidos.</li><li><a href="https://www.frc.org.uk/news-and-events/news/2026/07/corporate-reporting-remains-human-led-amid-growing-adoption-of-artificial-intelligence/">Financial Reporting Council, Corporate reporting remains human-led</a>, 8 de julio de 2026. Resume el estudio sobre datos, controles y responsabilidad en reportes con IA.</li></ol><p class="glosa-grafico">Texto, ejemplo y diagrama originales. Las pruebas son propuestas operativas; cada organización debe adaptarlas a su proceso y marco contable.</p></div>
+<div class="siguiente"><a href="defender-las-cifras.html"><p class="rotulo">Sección</p><strong>Volver a Defender las cifras</strong></a><a href="trazabilidad-cifras-financieras.html"><p class="rotulo">Artículo 02</p><strong>Reconstruir la cifra hasta su origen</strong></a></div>
+</div></div></section>
+</article></main>
+<footer class="pie pie-global">
+  <div class="contenedor">
+    <div class="pie-global-cabecera">
+      <div class="pie-global-perfil">
+        <p class="pie-global-etiqueta">FINANZAS · DATOS · CONTROL</p>
+        <p class="firma">Moisés Retuerto Espinoza</p>
+        <p class="cargo-pie">Planeamiento Financiero | Business &amp; Data Analyst | Control de Gestión</p>
+        <a class="pie-global-contacto" href="https://www.linkedin.com/in/moises-retuerto-b5882747/">Conectar en LinkedIn <span aria-hidden="true">↗</span></a>
+        <p id="sello"></p>
+      </div>
+
+      <nav class="pie-global-rutas" aria-label="Explorar el sitio">
+        <div class="pie-global-grupo">
+          <h2>Temas</h2>
+          <a href="powerbi.html">Power BI</a>
+          <a href="ia-en-el-cierre.html">IA para Finanzas</a>
+          <a href="defender-las-cifras.html">Defender las cifras</a>
+          <a href="que-automatizar.html">Qué automatizar</a>
+          <a href="que-puede-salir-mal.html">Qué puede salir mal</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Caso aplicado</h2>
+          <a href="caso.html">Resumen y resultado</a>
+          <a href="proceso.html">Proceso</a>
+          <a href="datos.html">Modelo de datos</a>
+          <a href="explorador.html">Explorador de datos</a>
+        </div>
+        <div class="pie-global-grupo">
+          <h2>Recursos</h2>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi">Repositorio en GitHub</a>
+          <a href="https://github.com/MoisesRE/control-gestion-sap-powerbi#readme">Memoria técnica</a>
+          <a href="cifras.json">Datos del informe (JSON)</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script type="module" src="assets/comun.js"></script>
+  <script defer src="assets/portadas-visual.js"></script>
+</body>
+</html>
